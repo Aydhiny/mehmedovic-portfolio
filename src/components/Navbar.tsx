@@ -5,7 +5,7 @@ import { FaYoutube } from "react-icons/fa";
 
 export default function Navbar() {
   return (
-    <div className="p-4 shadow-2xl bg-gradient-to-l from-main-background-grey via-neutral-800 to-teal-950">
+    <div className="p-4 shadow-2xl bg-gradient-to-l from-main-background-grey via-neutral-800 to-purple-950">
       <nav>
         <ul className="flex justify-center items-center">
           <li className="mr-4 font-bold text-main-app-purple transition-colors duration-150">

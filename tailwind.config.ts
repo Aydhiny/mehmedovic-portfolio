@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "site-pattern": "url('/src/images/pattern.svg')",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

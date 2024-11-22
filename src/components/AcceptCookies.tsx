@@ -12,7 +12,7 @@ const AcceptCookies: React.FC = () => {
     <>
       {isVisible && (
         <div className="fixed z-50 text-center rounded-3xl bottom-4 left-4 bg-main-background-grey shadow-2xl p-4 w-80 lg:w-96 flex flex-col gap-3 items-start">
-          <p className="text-main-app-teal">
+          <p className="text-white">
             🍪 This site uses cookies to provide you with the best experience.
           </p>
           <div className="flex-col flex w-full">
