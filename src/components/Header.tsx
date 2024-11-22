@@ -5,6 +5,7 @@ import { FaDownload } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa6";
 import Profile from "../images/profile-pic.png";
 import Line from "../images/line-1.svg";
+import Line2 from "../images/line-2.svg";
 import { TiNotes } from "react-icons/ti";
 import { FaPenFancy } from "react-icons/fa";
 import { FaCodeBranch } from "react-icons/fa";
@@ -50,6 +51,13 @@ export default function Header() {
         src={Line}
         alt="line-1"
         className="fixed top-96 z-[-1] left-10"
+        width={2000}
+        height={2000}
+      />
+      <Image
+        src={Line2}
+        alt="line-2"
+        className="fixed right-0 rotate-90 z-[-1]"
         width={2000}
         height={2000}
       />
