@@ -59,7 +59,9 @@ export default function page() {
           views={"53"}
         />
       </div>
-      <p className="text-gray-300">Read all posts --</p>
+      <p className="text-gray-400 font-semibold my-4 cursor-pointer">
+        Read all posts --{">"}{" "}
+      </p>
     </div>
   );
 }

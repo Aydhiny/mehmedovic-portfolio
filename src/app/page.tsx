@@ -13,7 +13,6 @@ export default function Home() {
       <Chatbot />
       <AcceptCookies />
       {/* Pages */}
-      <Navbar />
       <Header />
       <Featured />
       <Projects />
