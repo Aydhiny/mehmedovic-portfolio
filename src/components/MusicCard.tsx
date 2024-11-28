@@ -22,13 +22,13 @@ const MusicCard: React.FC<MusicCardProps> = ({
   desc,
 }) => {
   return (
-    <div className="w-80 h-[500px] mx-4 hover:shadow-2xl hover:shadow-main-app-teal transition-shadow duration-150 flex flex-col p-4 border rounded-xl border-gray-400">
+    <div className="w-full xl:w-80 h-[500px] hover:shadow-2xl hover:shadow-main-app-teal transition-shadow duration-150 flex flex-col p-4 border rounded-xl border-gray-400">
       <Image
         width={320}
         height={180}
         alt="image"
         src={image}
-        className="rounded-xl object-cover"
+        className="rounded-xl object-cover w-full"
       />
       <h1 className="font-bold text-2xl mt-2 truncate">
         {truncateText(text, 20)}
@@ -36,7 +36,7 @@ const MusicCard: React.FC<MusicCardProps> = ({
       <h3 className="text-main-app-teal truncate mt-1">
         Produced by: {truncateText(producers, 30)}
       </h3>
-      <p className="text-sm text-gray-500 mt-2 overflow-hidden">
+      <p className="text-sm text-gray-500 mt-2 pb-12 overflow-hidden">
         {truncateText(desc, 250)}
       </p>
       <div className="flex mt-auto">
