@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { usePathname } from "next/navigation";
 import Aydhiny from "../images/ay.png";
+import Link from "next/link";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -18,50 +19,50 @@ export default function Footer() {
       <nav>
         <ul className="flex justify-center">
           <li>
-            <a
+            <Link
               className={`mr-4 transition-colors duration-150 ${isActive("/")}`}
               href="/"
             >
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className={`mr-4 transition-colors duration-150 ${isActive(
                 "/blog"
               )}`}
               href="/blog"
             >
               Blog
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className={`mr-4 transition-colors duration-150 ${isActive(
                 "/projects"
               )}`}
               href="/projects"
             >
               Projects
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className={`mr-4 transition-colors duration-150 ${isActive(
                 "/about"
               )}`}
               href="/about"
             >
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className={`transition-colors duration-150 ${isActive("/email")}`}
               href="/email"
             >
               Email Me
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

@@ -5,7 +5,6 @@ import { FaDownload } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa6";
 import Profile from "../images/profile-pic.png";
 import Line from "../images/line-1.svg";
-import Line2 from "../images/line-2.svg";
 import { TiNotes } from "react-icons/ti";
 import { FaPenFancy } from "react-icons/fa";
 import { FaCodeBranch } from "react-icons/fa";

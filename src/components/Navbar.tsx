@@ -5,6 +5,7 @@ import { TiSocialInstagramCircular } from "react-icons/ti";
 import { SiBeatstars } from "react-icons/si";
 import { FaYoutube } from "react-icons/fa";
 import { FaHome, FaProjectDiagram, FaBlog, FaInfoCircle } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -24,72 +25,72 @@ export default function Navbar() {
               className={`mr-4 transition-colors duration-150 ${isActive("/")}`}
             >
               {/* Text on larger screens, Icon on smaller screens */}
-              <a href="/" className="block md:hidden">
+              <Link href="/" className="block md:hidden">
                 <FaHome className="text-white text-xl hover:text-main-app-purple transition-colors duration-150" />
-              </a>
-              <a href="/" className="hidden md:block">
+              </Link>
+              <Link href="/" className="hidden md:block">
                 Home
-              </a>
+              </Link>
             </li>
             <li
               className={`mr-4 transition-colors duration-150 ${isActive(
                 "/projects"
               )}`}
             >
-              <a href="/projects" className="block md:hidden">
+              <Link href="/projects" className="block md:hidden">
                 <FaProjectDiagram className="text-white text-xl hover:text-main-app-purple transition-colors duration-150" />
-              </a>
-              <a href="/projects" className="hidden md:block">
+              </Link>
+              <Link href="/projects" className="hidden md:block">
                 Projects
-              </a>
+              </Link>
             </li>
             <li
               className={`mr-4 transition-colors duration-150 ${isActive(
                 "/blog"
               )}`}
             >
-              <a href="/blog" className="block md:hidden">
+              <Link href="/blog" className="block md:hidden">
                 <FaBlog className="text-white text-xl hover:text-main-app-purple transition-colors duration-150" />
-              </a>
-              <a href="/blog" className="hidden md:block">
+              </Link>
+              <Link href="/blog" className="hidden md:block">
                 Blog
-              </a>
+              </Link>
             </li>
             <li
               className={`transition-colors duration-150 ${isActive("/about")}`}
             >
-              <a href="/about" className="block md:hidden">
+              <Link href="/about" className="block md:hidden">
                 <FaInfoCircle className="text-white text-xl hover:text-main-app-purple transition-colors duration-150" />
-              </a>
-              <a href="/about" className="hidden md:block">
+              </Link>
+              <Link href="/about" className="hidden md:block">
                 About
-              </a>
+              </Link>
             </li>
           </div>
 
           {/* Social Links */}
           <div className="flex items-center">
-            <a
+            <Link
               href="https://instagram.com/ajdinmehmedovix"
               target="_blank"
               rel="noopener noreferrer"
             >
               <TiSocialInstagramCircular className="text-white text-2xl ml-4 xl:inline hidden hover:text-main-app-purple transition-colors duration-150" />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://beatstars.com/aydhiny"
               target="_blank"
               rel="noopener noreferrer"
             >
               <SiBeatstars className="text-white text-2xl ml-4 hover:text-main-app-purple xl:inline hidden transition-colors duration-150" />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://youtube.com/Aydhiny"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaYoutube className="text-white text-2xl ml-4 hover:text-main-app-purple xl:inline hidden transition-colors duration-150" />
-            </a>
+            </Link>
           </div>
         </ul>
       </nav>

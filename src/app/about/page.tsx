@@ -2,6 +2,7 @@ import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { SiBeatstars } from "react-icons/si";
 import { FaInstagram } from "react-icons/fa6";
+import Link from "next/link";
 
 export default function page() {
   return (
@@ -35,30 +36,30 @@ export default function page() {
         on these links below:
       </p>
       <div className="flex py-4 justify-center">
-        <a
+        <Link
           className="mr-4 p-4 border-2 hover:border-main-app-purple hover:text-main-app-purple transition-all duration-150 border-gray-400 rounded-full"
           href="https://github.com/Aydhiny"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FaGithub className="size-12" />
-        </a>
-        <a
+        </Link>
+        <Link
           className="mr-4 p-4 border-2 hover:border-main-app-purple hover:text-main-app-purple transition-all duration-150 border-gray-400 rounded-full"
           href="https://www.beatstars.com/aydhiny"
           target="_blank"
           rel="noopener noreferrer"
         >
           <SiBeatstars className="size-12" />
-        </a>
-        <a
+        </Link>
+        <Link
           className="p-4 border-2 hover:border-main-app-purple hover:text-main-app-purple transition-all duration-150 border-gray-400 rounded-full"
           href="https://www.instagram.com/plansio_central"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FaInstagram className="size-12" />
-        </a>
+        </Link>
       </div>
     </div>
   );
