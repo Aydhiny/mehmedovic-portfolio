@@ -4,7 +4,7 @@ import React from "react";
 export default function page() {
   return (
     <div className="px-52 flex flex-col">
-      <h1 className="text-6xl font-bold">Projects</h1>
+      <h1 className="text-6xl font-bold">Github Repositories</h1>
       <div>
         <ProjectBox
           name="FIT-Faculty-Work"
@@ -19,16 +19,15 @@ export default function page() {
           color="green"
         />
         <ProjectBox
-          name="lamegames-dashboard"
-          description="LameGames is a Full-Stack React Gaming website that serves as a huge library of web games that consist of Slot machines, platformers, fighting games, etc."
+          name="filmatic-app"
+          description="🎬 A Next.js app for browsing and discovering movies with server-side rendering and dynamic search."
           tech="JavaScript"
           color="yellow"
         />
       </div>
       <p className="text-gray-400 font-semibold my-4 cursor-pointer">
-        See all projects --{">"}{" "}
+        See all repositories --{">"}{" "}
       </p>
-      <div className="my-2 border border-gray-500"></div>
     </div>
   );
 }

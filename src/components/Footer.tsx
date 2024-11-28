@@ -1,33 +1,67 @@
+"use client";
 import Image from "next/image";
 import React from "react";
+import { usePathname } from "next/navigation";
 import Aydhiny from "../images/ay.png";
+
 export default function Footer() {
+  const pathname = usePathname();
+
+  const isActive = (path: string) =>
+    pathname === path
+      ? "text-main-app-purple font-bold"
+      : "hover:text-main-app-purple";
+
   return (
     <div className="px-52 py-4">
+      <div className="mb-8 border border-gray-500"></div>
       <nav>
         <ul className="flex justify-center">
           <li>
-            <a className="mr-4" href="/">
+            <a
+              className={`mr-4 transition-colors duration-150 ${isActive("/")}`}
+              href="/"
+            >
               Home
             </a>
           </li>
           <li>
-            <a className="mr-4" href="/blog">
+            <a
+              className={`mr-4 transition-colors duration-150 ${isActive(
+                "/blog"
+              )}`}
+              href="/blog"
+            >
               Blog
             </a>
           </li>
           <li>
-            <a className="mr-4" href="/projects">
+            <a
+              className={`mr-4 transition-colors duration-150 ${isActive(
+                "/projects"
+              )}`}
+              href="/projects"
+            >
               Projects
             </a>
           </li>
           <li>
-            <a className="mr-4" href="/about">
+            <a
+              className={`mr-4 transition-colors duration-150 ${isActive(
+                "/about"
+              )}`}
+              href="/about"
+            >
               About
             </a>
           </li>
           <li>
-            <a href="/email">Email Me</a>
+            <a
+              className={`transition-colors duration-150 ${isActive("/email")}`}
+              href="/email"
+            >
+              Email Me
+            </a>
           </li>
         </ul>
       </nav>

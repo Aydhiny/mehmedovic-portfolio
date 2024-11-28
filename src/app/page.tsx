@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Navbar from "@/components/Navbar";
 import Featured from "@/app/pages/Featured/page";
 import Projects from "@/app/pages/Projects/page";
 import Chatbot from "@/components/Chatbot";
@@ -16,7 +15,6 @@ export default function Home() {
       <Header />
       <Featured />
       <Projects />
-      <Footer />
     </div>
   );
 }

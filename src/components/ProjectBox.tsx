@@ -3,17 +3,15 @@ import { FaCircle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 import { FaLink } from "react-icons/fa";
 
-// Define the type for props
 interface ProjectBoxProps {
-  name: string; // Name of the project
-  description: string; // Description of the project
-  tech: string; // Technologies used
-  color: string; // Color (if used for styling)
-  link?: string; // Optional project link
-  github?: string; // Optional GitHub link
+  name: string;
+  description: string;
+  tech: string;
+  color: string;
+  link?: string;
+  github?: string;
 }
 
-// Functional Component with TypeScript
 const ProjectBox: React.FC<ProjectBoxProps> = ({
   name,
   description,
