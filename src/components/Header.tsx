@@ -55,7 +55,7 @@ export default function Header() {
       <Image
         src={Line}
         alt="line-1"
-        className="fixed top-96 z-[-1] left-10"
+        className="fixed top-96 z-[-1] space-x-reverse w-full left-10"
         width={2000}
         height={2000}
       />
