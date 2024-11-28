@@ -25,10 +25,9 @@ const DesignCard: React.FC<DesignCardProps> = ({
     <div className="w-96 h-[600px] hover:shadow-2xl mx-4 hover:shadow-main-app-purple transition-shadow duration-150 flex flex-col p-4 border rounded-xl border-gray-400">
       <Image
         width={420}
-        height={180}
         alt="Design Thumbnail"
         src={image}
-        className="rounded-xl object-cover"
+        className="rounded-xl h-96 object-cover"
       />
       <h1 className="font-bold text-2xl mt-2 truncate">
         {truncateText(title, 50)}

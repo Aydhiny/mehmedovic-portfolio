@@ -3,7 +3,7 @@ import React from "react";
 
 export default function page() {
   return (
-    <div className="px-52 pb-52 justify-center cursor-default">
+    <div className="px-12 xl:px-52 pb-52 justify-center cursor-default">
       <div className="text-left">
         <h1 className="font-bold text-6xl">Featured Posts</h1>
         <p className="mb-12 text-gray-300">Newest blog posts and news</p>

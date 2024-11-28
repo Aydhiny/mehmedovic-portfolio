@@ -6,6 +6,8 @@ import Bread from "../../images/projects/bread.jpg";
 import Vozis from "../../images/projects/vozis.jpg";
 import Hanoi from "../../images/projects/hanoi.jpg";
 import FLS from "../../images/projects/fls.jpg";
+import Bliss from "../../images/projects/bliss.png";
+import Plansio from "../../images/projects/plansio.png";
 import DesignCard from "@/components/DesignCard";
 
 export default function Page() {
@@ -89,21 +91,23 @@ export default function Page() {
             image={FLS}
             title="Future Leaders Summit 2024"
             link="link"
-            category="Social Media Design"
-            desc="Future Leaders Summit"
+            category="Social Media Graphic Design"
+            desc="Futures Leaders Summit is an annual event for future leaders to help them rethink the present and reimagine the future by featuring world speakers, interactive workshops, and company visits.
+
+The running engine behind the event are the incredible scholars, alumni, volunteers, and staffers of the Foundation, supported by our mentors, donors, ambassadors, and many others that find our cause close to their hearts."
           />
           <DesignCard
-            image={FLS}
-            title="Future Leaders Summit 2024"
+            image={Bliss}
+            title="Eternal Bliss : Music Tips"
             link="link"
-            category="Social Media Design"
-            desc="Future Leaders Summit"
+            category="Social Media Graphic Design"
+            desc="Eternal Bliss is an instagram account ran by music producer Ediba Deville created for educating newer producers in the business."
           />
           <DesignCard
-            image={FLS}
-            title="Future Leaders Summit 2024"
+            image={Plansio}
+            title="Plansio : Marketing Agency"
             link="link"
-            category="Social Media Design"
+            category="Marketing, Social Media Design, Video Editing"
             desc="Future Leaders Summit"
           />
         </div>

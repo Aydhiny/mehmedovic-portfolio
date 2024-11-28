@@ -12,15 +12,15 @@ import { FaCodeBranch } from "react-icons/fa";
 
 export default function Header() {
   return (
-    <div className="flex p-24 justify-center text-center cursor-default">
+    <div className="flex p-12 xl:p-24 justify-center text-center cursor-default">
       <div className="text-left">
-        <div className="flex text-gray-50 text-center items-center">
-          <h1 className="font-bold text-6xl pb-2 pt-4 mr-4">
+        <div className="flex-col flex xl:flex-row text-gray-50 xl:text-center items-start xl:items-center">
+          <h1 className="font-bold text-6xl pb-2 pt-4 xl:mr-4">
             Ajdin Mehmedović
           </h1>
-          <FaCodeBranch className="size-10 mx-2" />
-          <TiNotes className="size-10 mx-2" />
-          <FaPenFancy className="size-10 mx-2" />
+          <FaCodeBranch className=" xl:inline hidden size-10 mx-2" />
+          <TiNotes className="xl:inline hidden size-10 mx-2" />
+          <FaPenFancy className="xl:inline hidden size-10 mx-2" />
         </div>
         <div className="flex">
           <div className="flex flex-col">
@@ -44,7 +44,7 @@ export default function Header() {
             </div>
           </div>
           <Image
-            className="cursor-pointer hover:opacity-65 bg-main-background-grey p-4 rounded-full shadow-2xl border-2 border-main-app-purple transition-all duration-300"
+            className="cursor-pointer w-64 xl:w-96 hover:opacity-65 bg-main-background-grey p-4 rounded-full shadow-2xl border-2 border-main-app-purple transition-all duration-300"
             src={Profile}
             alt="profile-pic"
             width={400}

@@ -3,7 +3,7 @@ import React from "react";
 
 export default function page() {
   return (
-    <div className="px-52 flex flex-col">
+    <div className="px-12 xl:px-52 flex flex-col">
       <h1 className="text-6xl font-bold">Github Repositories</h1>
       <div>
         <ProjectBox

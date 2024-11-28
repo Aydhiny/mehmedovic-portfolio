@@ -5,7 +5,7 @@ import { FaInstagram } from "react-icons/fa6";
 
 export default function page() {
   return (
-    <div className="mx-52 my-20 flex flex-col cursor-default">
+    <div className="mx-12 xl:mx-52 my-20 flex flex-col cursor-default">
       <h1 className="text-6xl font-bold">Ajdin Mehmedović</h1>
       <h4 className="text-4xl text-gray-500 py-4">
         Software Engineering Student, Music Producer, Graphic Designer
