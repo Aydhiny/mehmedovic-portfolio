@@ -11,8 +11,14 @@ export default {
       animation: {
         "slide-down": "slide-down 0.6s ease-in-out",
         "slide-up": "slide-up 0.6s ease-in-out",
+        "pulse-fast": "pulse 3s linear infinite",
+        "gradient-shift": "gradientShift 5s infinite alternate",
       },
       keyframes: {
+        gradientShift: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "100% 50%" },
+        },
         "slide-down": {
           "0%": { transform: "translateY(-100%)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },

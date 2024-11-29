@@ -19,9 +19,9 @@ export default function Navbar() {
       : "hover:text-main-app-purple";
 
   return (
-    <div className="p-4 text-lg shadow-2xl bg-gradient-to-tr from-main-background-grey  to-teal-950 lg:static sticky top-0 z-50">
+    <div className="p-4 shadow-2xl bg-gradient-to-tr from-main-background-grey  to-teal-950 lg:static sticky top-0 z-50">
       <nav>
-        <ul className="flex justify-between items-center">
+        <ul className="flex justify-between xl:justify-evenly items-center">
           {/* Logo */}
           <Link href="/" className="text-white font-bold text-xl">
             <Image alt="logo" src={Aydhiny} width={30} height={30} />

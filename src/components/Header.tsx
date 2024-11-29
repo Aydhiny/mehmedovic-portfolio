@@ -11,7 +11,7 @@ import { FaCodeBranch } from "react-icons/fa";
 
 export default function Header() {
   return (
-    <div className="flex flex-col xl:flex-row p-6 sm:p-12 xl:p-24 justify-center text-center cursor-default">
+    <div className="flex flex-col xl:flex-row p-6 sm:p-12 xl:p-24  justify-center text-center cursor-default">
       <div className="">
         {/* Header Section */}
         <div className="flex flex-col text-start items-center xl:items-center xl:flex-row text-gray-50 xl:text-center">
