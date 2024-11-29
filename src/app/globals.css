@@ -50,3 +50,13 @@ body {
   scrollbar-width: thin; /* For Firefox: thin scrollbar */
   scrollbar-color: #01fee1 #242424; /* For Firefox: thumb and track colors */
 }
+/* Global CSS for the custom cursors */
+.layout {
+  cursor: url("../images/cursor/cursor-default.svg"), auto;
+}
+
+a:hover,
+button:hover,
+.clickable:hover {
+  cursor: url("../images/cursor/cursor-pointer.svg"), pointer;
+}

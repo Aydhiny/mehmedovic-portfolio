@@ -1,35 +1,33 @@
 import React from "react";
-import {
-  FaReact,
-  FaHtml5,
-  FaCss3Alt,
-  FaNodeJs,
-  FaGithub,
-} from "react-icons/fa"; // Example tech icons
+import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
+import { DiDotnet } from "react-icons/di";
+import { FaReact, FaGithub } from "react-icons/fa";
 
 export default function Tech() {
   return (
     <div>
-      <h1 className="font-bold py-4 px-52 text-4xl sm:text-5xl xl:text-6xl">
+      <h1 className="font-bold px-12 py-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
         Tech Stack
       </h1>
       <div className="p-12 mb-12 bg-main-background-grey border-y shadow-2xl border-gray-700">
-        <h1 className="font-bold text-4xl sm:text-5xl xl:text-6xl pb-2 pt-4 xl:mr-4"></h1>
-        <div className="flex justify-around">
+        <div className="flex justify-evenly flex-wrap gap-8">
           <div className="tech-icon hover:scale-125 cursor-pointer transition-transform duration-300 ease-in-out">
-            <FaReact size={100} className="text-blue-500" />
+            <RiNextjsFill size={80} className="text-white sm:text-100" />
           </div>
           <div className="tech-icon hover:scale-125 cursor-pointer transition-transform duration-300 ease-in-out">
-            <FaHtml5 size={100} className="text-orange-500" />
+            <FaReact size={80} className="text-blue-600 sm:text-100" />
           </div>
           <div className="tech-icon hover:scale-125 cursor-pointer transition-transform duration-300 ease-in-out">
-            <FaCss3Alt size={100} className="text-blue-600" />
+            <RiTailwindCssFill
+              size={80}
+              className="text-blue-500 sm:text-100"
+            />
           </div>
           <div className="tech-icon hover:scale-125 cursor-pointer transition-transform duration-300 ease-in-out">
-            <FaNodeJs size={100} className="text-green-500" />
+            <DiDotnet size={80} className="text-sky-500 sm:text-100" />
           </div>
           <div className="tech-icon hover:scale-125 cursor-pointer transition-transform duration-300 ease-in-out">
-            <FaGithub size={100} className="text-gray-700" />
+            <FaGithub size={80} className="text-gray-700 sm:text-100" />
           </div>
         </div>
       </div>

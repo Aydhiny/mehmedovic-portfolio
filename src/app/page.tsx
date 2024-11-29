@@ -4,6 +4,7 @@ import Projects from "@/app/pages/Projects/page";
 import Chatbot from "@/components/Chatbot";
 import AcceptCookies from "@/components/AcceptCookies";
 import Tech from "@/components/Tech";
+import Clients from "@/components/Clients";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Featured />
       <Tech />
       <Projects />
+      <Clients />
     </div>
   );
 }
