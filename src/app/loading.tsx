@@ -1,5 +1,6 @@
 import React from "react";
 import Ripple from "../images/ripple.svg";
+import Image from "next/image";
 
 export default function Loading() {
   return (
@@ -11,7 +12,7 @@ export default function Loading() {
         height: "100vh",
       }}
     >
-      <img src={Ripple} alt="Loading..." />
+      <Image src={Ripple} alt="Loading..." />
     </div>
   );
 }

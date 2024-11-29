@@ -14,13 +14,13 @@ export default function Footer() {
       : "hover:text-main-app-purple";
 
   return (
-    <div className="px-52 py-4">
-      <div className="mb-8 border border-gray-500"></div>
+    <div className="px-4 py-6 md:px-16 lg:px-52">
+      <div className="mb-8 border-t border-gray-500"></div>
       <nav>
-        <ul className="flex justify-center">
+        <ul className="flex flex-wrap justify-center gap-4">
           <li>
             <Link
-              className={`mr-4 transition-colors duration-150 ${isActive("/")}`}
+              className={`transition-colors duration-150 ${isActive("/")}`}
               href="/"
             >
               Home
@@ -28,9 +28,7 @@ export default function Footer() {
           </li>
           <li>
             <Link
-              className={`mr-4 transition-colors duration-150 ${isActive(
-                "/blog"
-              )}`}
+              className={`transition-colors duration-150 ${isActive("/blog")}`}
               href="/blog"
             >
               Blog
@@ -38,7 +36,7 @@ export default function Footer() {
           </li>
           <li>
             <Link
-              className={`mr-4 transition-colors duration-150 ${isActive(
+              className={`transition-colors duration-150 ${isActive(
                 "/projects"
               )}`}
               href="/projects"
@@ -48,9 +46,7 @@ export default function Footer() {
           </li>
           <li>
             <Link
-              className={`mr-4 transition-colors duration-150 ${isActive(
-                "/about"
-              )}`}
+              className={`transition-colors duration-150 ${isActive("/about")}`}
               href="/about"
             >
               About
@@ -67,13 +63,13 @@ export default function Footer() {
         </ul>
       </nav>
 
-      <div className="flex flex-col p-4 text-center items-center">
-        <p className="text-gray-400">
-          Powered by <span className="text-main-app-purple">Nextjs</span> and{" "}
-          <span className="text-main-app-purple">Tailwindcss.</span> <br />{" "}
+      <div className="flex flex-col items-center mt-6 text-center">
+        <p className="text-gray-400 text-sm md:text-base">
+          Powered by <span className="text-main-app-purple">Next.js</span> and{" "}
+          <span className="text-main-app-purple">TailwindCSS.</span> <br />
           Hosted on Vercel @Plansio, Aydhiny Beats 2024
         </p>
-        <Image alt="ay-logo" className="p-2" src={Aydhiny} />
+        <Image alt="ay-logo" className="p-2 mt-4" src={Aydhiny} />
       </div>
     </div>
   );
