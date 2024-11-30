@@ -11,7 +11,7 @@ export default function Home() {
     <div>
       {/* Misc */}
       <Chatbot />
-      <AcceptCookies />
+      {/*<AcceptCookies /> */}
       {/* Pages */}
       <Header />
       <Featured />
