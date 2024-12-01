@@ -11,12 +11,9 @@ export default function Page() {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
-      className="mx-12 xl:mx-52 my-20 flex flex-col cursor-default"
+      className="mx-12 xl:mx-52 my-20 flex flex-col cursor-default text-center xl:text-start"
     >
-      <h1 className="text-6xl font-bold">Ajdin Mehmedović</h1>
-      <h4 className="text-4xl text-gray-500 py-4">
-        Software Engineering Student, Music Producer, Graphic Designer
-      </h4>
+      <h1 className="xl:text-6xl text-4xl font-bold mb-12">Ajdin Mehmedović</h1>
       <p className="text-2xl text-gray-400">
         Currently a student at the{" "}
         <span className="font-bold text-main-app-teal">

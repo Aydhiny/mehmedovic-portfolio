@@ -5,7 +5,7 @@ import { DiDotnet } from "react-icons/di";
 import { FaReact, FaGithub } from "react-icons/fa";
 import { motion, useInView } from "framer-motion";
 export default function Tech() {
-  const ref = useRef(null); // Create a reference to the component
+  const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   return (
     <motion.div
@@ -14,7 +14,7 @@ export default function Tech() {
       animate={isInView ? { y: 0, opacity: 1 } : {}}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <h1 className="font-bold px-12 py-4 mt-56 mb-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
+      <h1 className="font-bold px-12 py-4 mt-12 xl:mt-36 mb-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
         Tech Stack & Hackathons
       </h1>
       <div className="p-12 mb-12 bg-gradient-to-r from-zinc-800 to-main-background-grey border-y shadow-2xl border-gray-500">

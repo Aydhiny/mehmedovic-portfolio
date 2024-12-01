@@ -3,7 +3,7 @@ import React from "react";
 export default function Clients() {
   return (
     <div>
-      <div className="p-12 mb-56 bg-gradient-to-r from-zinc-800 to-main-background-grey shadow-2xl">
+      <div className="p-12 mb-12 xl:mb-36 bg-gradient-to-r from-zinc-800 to-main-background-grey shadow-2xl">
         <div className="flex justify-evenly flex-wrap gap-8">
           <div className="flex flex-col items-center text-center rotate-2 hover:scale-125 cursor-pointer transition-transform duration-300 ease-in-out">
             <p className="mt-4 text-xl font-semibold">

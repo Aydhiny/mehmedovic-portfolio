@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
-import { TiSocialInstagramCircular } from "react-icons/ti";
+import { GrInstagram } from "react-icons/gr";
 import { SiBeatstars } from "react-icons/si";
 import { FaYoutube } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
@@ -72,14 +72,14 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <TiSocialInstagramCircular className="text-white text-2xl ml-4 hover:text-main-app-purple transition-colors duration-150" />
+              <GrInstagram className="text-white text-2xl ml-4 size-5 hover:text-main-app-purple transition-colors duration-150" />
             </Link>
             <Link
               href="https://beatstars.com/aydhiny"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SiBeatstars className="text-white text-2xl ml-4 hover:text-main-app-purple transition-colors duration-150" />
+              <SiBeatstars className="text-white text-2xl ml-4 size-5 hover:text-main-app-purple transition-colors duration-150" />
             </Link>
             <Link
               href="https://youtube.com/Aydhiny"
@@ -93,7 +93,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <ul className="mt-4 bg-main-background-grey text-white text-center space-y-4 p-4 rounded-lg shadow-xl border border-gray-700 animate-slide-down">
+          <ul className="mt-4 bg-gradient-to-b from-[#242424] to-[rgba(38,23,102,0.7)] text-white text-center space-y-4 p-4 rounded-lg shadow-xl border border-gray-700 animate-slide-down">
             {/* Main Links */}
             <li
               className={`transition-all duration-200 border-b border-gray-700 pb-2 ${isActive(
@@ -135,14 +135,14 @@ export default function Navbar() {
             {/* Social Links */}
             <div className="mt-4 pt-2 border-t border-gray-700">
               <h3 className="text-md text-gray-400">Follow Me</h3>
-              <div className="flex justify-center space-x-4 mt-2">
+              <div className="flex justify-center items-center py-4 space-x-4 mt-2">
                 <Link
                   href="https://instagram.com/ajdinmehmedovix"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMenuOpen(false)}
                 >
-                  <TiSocialInstagramCircular className="text-3xl hover:text-main-app-purple transition duration-150" />
+                  <GrInstagram className="text-3xl size-5 hover:text-main-app-purple transition duration-150" />
                 </Link>
                 <Link
                   href="https://beatstars.com/aydhiny"
@@ -150,7 +150,7 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   onClick={() => setMenuOpen(false)}
                 >
-                  <SiBeatstars className="text-3xl hover:text-main-app-purple transition duration-150" />
+                  <SiBeatstars className="text-3xl size-5 hover:text-main-app-purple transition duration-150" />
                 </Link>
                 <Link
                   href="https://youtube.com/Aydhiny"
@@ -158,7 +158,7 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   onClick={() => setMenuOpen(false)}
                 >
-                  <FaYoutube className="text-3xl hover:text-main-app-purple transition duration-150" />
+                  <FaYoutube className="text-3xl size-5 hover:text-main-app-purple transition duration-150" />
                 </Link>
               </div>
             </div>

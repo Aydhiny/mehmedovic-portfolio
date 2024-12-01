@@ -14,7 +14,7 @@ export default function Page() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="px-12 xl:px-52 flex flex-col"
     >
-      <h1 className="text-6xl font-bold">Github Repositories</h1>
+      <h1 className="xl:text-6xl text-3xl font-bold">Github Repositories</h1>
       <div>
         <ProjectBox
           name="FIT-Faculty-Work"
