@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 export default function Page() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-400px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
   return (
     <motion.div
       ref={ref}

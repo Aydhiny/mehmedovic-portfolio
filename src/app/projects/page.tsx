@@ -12,7 +12,7 @@ import DesignCard from "@/components/DesignCard";
 
 export default function Page() {
   return (
-    <div className="px-4 sm:px-10 lg:px-52 my-10 lg:my-20 cursor-default">
+    <div className="px-4 xl:mt-0 mt-20 sm:px-10 lg:px-52 my-10 lg:my-20 cursor-default">
       <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl">
         My Projects
       </h1>
