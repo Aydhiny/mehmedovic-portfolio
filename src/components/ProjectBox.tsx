@@ -21,7 +21,7 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
   github,
 }) => {
   return (
-    <div className="p-12 my-4 flex border justify-between hover:shadow-2xl hover:shadow-main-app-purple transition-all duration-150 bg-gradient-to-t from-gray-800 to-main-background-grey rounded-md border-gray-600">
+    <div className="xl:p-12 p-4 my-4 flex border justify-between hover:shadow-2xl hover:shadow-main-app-purple transition-all duration-150 bg-gradient-to-t from-zinc-800 to-main-background-grey rounded-md border-gray-400">
       {/* Links Section */}
 
       {/* Project Details */}
@@ -34,9 +34,9 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
           <p>{tech}</p>
         </div>
       </div>
-      <div className="flex text-center items-center text-white">
+      <div className="flex flex-col lg:flex-row text-center items-center text-white">
         <a
-          className="p-4 mx-4 border border-gray-400 rounded-2xl"
+          className="p-4 mx-4 xl:my-0 my-4 border border-gray-400 rounded-2xl"
           href={github}
           target="_blank"
           rel="noopener noreferrer"

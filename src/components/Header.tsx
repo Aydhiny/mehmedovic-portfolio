@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 export default function Header() {
   return (
     <motion.div
-      className="flex flex-col xl:flex-row p-6 sm:p-12 xl:p-24 justify-center text-center cursor-default"
+      className="flex flex-col xl:flex-row p-6 sm:p-12 xl:p-24 mt-24 xl:m-0 justify-center text-center cursor-default"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -105,7 +105,7 @@ export default function Header() {
             transition={{ duration: 1, delay: 1.4 }}
           >
             <Image
-              className="w-52 sm:w-48 xl:w-96 hover:opacity-65 bg-main-background-grey p-2 sm:p-4 rounded-full shadow-xl border border-violet-500 transition-all duration-300"
+              className="w-52 border-b-8 border-b-white sm:w-48 xl:w-96 hover:opacity-65 bg-main-background-grey p-2 sm:p-4 rounded-full shadow-xl border-2 border-violet-500 transition-all duration-300"
               src={Profile}
               alt="profile-pic"
               width={400}
@@ -123,7 +123,7 @@ export default function Header() {
         <Image
           src={Line}
           alt="line-1"
-          className="fixed top-96 z-[-1] w-full left-10"
+          className="lg:fixed hidden top-96 z-[-1] w-full right-8 lg:right-0 lg:left-10"
           width={2000}
           height={2000}
         />

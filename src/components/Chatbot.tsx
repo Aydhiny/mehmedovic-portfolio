@@ -38,7 +38,7 @@ const Chatbot: React.FC = () => {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed z-50 bottom-4 right-4 bg-main-app-purple text-main-background-grey w-12 h-12 rounded-full shadow-md flex items-center justify-center transition-transform duration-300 hover:scale-110"
+        className="fixed z-50 bottom-10 right-4 bg-main-app-purple text-main-background-grey w-12 h-12 rounded-full shadow-md flex items-center justify-center transition-transform duration-300 hover:scale-110"
         style={{
           backgroundColor: "#9000FF",
           boxShadow: "0 4px 8px rgba(0,0,0,0.2)",

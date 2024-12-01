@@ -14,10 +14,10 @@ export default function Tech() {
       animate={isInView ? { y: 0, opacity: 1 } : {}}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <h1 className="font-bold px-12 py-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
-        Tech Stack
+      <h1 className="font-bold px-12 py-4 mt-56 mb-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
+        Tech Stack & Hackathons
       </h1>
-      <div className="p-12 mb-12 bg-gradient-to-t from-gray-800 to-main-background-grey border-y shadow-2xl border-violet-900">
+      <div className="p-12 mb-12 bg-gradient-to-r from-zinc-800 to-main-background-grey border-y shadow-2xl border-gray-500">
         <div className="flex justify-evenly flex-wrap gap-8">
           <div className="tech-icon hover:scale-125 cursor-pointer transition-transform duration-300 ease-in-out">
             <RiNextjsFill size={80} className="text-white sm:text-100" />

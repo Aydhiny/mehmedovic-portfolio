@@ -13,8 +13,13 @@ export default {
         "slide-up": "slide-up 0.6s ease-in-out",
         "pulse-fast": "pulse 3s linear infinite",
         "gradient-shift": "gradientShift 5s infinite alternate",
+        train: "move-train 5s linear infinite",
       },
       keyframes: {
+        "move-train": {
+          "0%": { transform: "translateX(-150%)" },
+          "100%": { transform: "translateX(2000%)" },
+        },
         gradientShift: {
           "0%": { backgroundPosition: "0% 50%" },
           "100%": { backgroundPosition: "100% 50%" },

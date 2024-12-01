@@ -15,7 +15,7 @@ export default function page() {
     >
       <div className="text-left">
         <h1 className="font-bold text-6xl">Featured Posts</h1>
-        <p className="mb-12 text-gray-300">Newest blog posts and news</p>
+        <p className="mb-12 text-gray-500">Newest blog posts and news.</p>
       </div>
       {/* Cards */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
