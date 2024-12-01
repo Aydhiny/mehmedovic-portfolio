@@ -1,12 +1,18 @@
+"use client";
 import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { SiBeatstars } from "react-icons/si";
 import { FaInstagram } from "react-icons/fa6";
 import Link from "next/link";
-
+import { motion } from "framer-motion";
 export default function Page() {
   return (
-    <div className="mx-12 xl:mx-52 my-20 flex flex-col cursor-default">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+      className="mx-12 xl:mx-52 my-20 flex flex-col cursor-default"
+    >
       <h1 className="text-6xl font-bold">Ajdin Mehmedović</h1>
       <h4 className="text-4xl text-gray-500 py-4">
         Software Engineering Student, Music Producer, Graphic Designer
@@ -61,6 +67,6 @@ export default function Page() {
           <FaInstagram className="size-12" />
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 }

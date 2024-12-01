@@ -1,3 +1,4 @@
+"use client";
 import MusicCard from "@/components/MusicCard";
 import ProjectBox from "@/components/ProjectBox";
 import React from "react";
@@ -9,7 +10,7 @@ import FLS from "../../images/projects/fls.jpg";
 import Bliss from "../../images/projects/bliss.png";
 import Plansio from "../../images/projects/plansio.png";
 import DesignCard from "@/components/DesignCard";
-
+import { motion } from "framer-motion";
 export default function Page() {
   return (
     <div className="px-4 mt-20 sm:px-10 lg:px-52 my-10 lg:my-20 cursor-default">
@@ -22,7 +23,12 @@ export default function Page() {
         <h4 className="py-2 font-bold text-2xl sm:text-3xl text-gray-400">
           Programming
         </h4>
-        <div className="flex flex-col space-y-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="flex flex-col space-y-6"
+        >
           <ProjectBox
             name="FIT-Faculty-Work"
             description="Faculty of Information Technologies Repository. Used for professional Faculty work in various programming technologies such as C++, C#, DOTNET, SQL and others"
@@ -41,7 +47,7 @@ export default function Page() {
             tech="JavaScript"
             color="yellow"
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* MUSIC PRODUCTION */}

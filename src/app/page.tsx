@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Featured from "@/app/pages/Featured/page";
 import Projects from "@/app/pages/Projects/page";
 import Chatbot from "@/components/Chatbot";
+import "./globals.css";
 {
   /* import AcceptCookies from "@/components/AcceptCookies"; */
 }
