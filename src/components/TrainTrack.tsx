@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function TrainTrack() {
   return (
-    <div className="mt-36 mb-56 xl:mb-36 relative w-full h-32 overflow-hidden bg-gradient-to-t from-gray-800 to-main-background-grey">
+    <div className="mt-36 mb-56 shadow-2xl xl:mb-36 relative w-full h-32 overflow-hidden bg-gradient-to-t from-gray-800 to-main-background-grey">
       {/* Train Animation */}
       <div className="absolute top-0 animate-train">
         <Image src={Train} alt="train" className="w-36 h-auto transform" />

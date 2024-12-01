@@ -1,5 +1,4 @@
 import React from "react";
-import { FaUserFriends, FaBook, FaClock, FaTrophy } from "react-icons/fa";
 
 export default function Clients() {
   return (

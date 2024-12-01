@@ -4,7 +4,7 @@ import { SiBeatstars } from "react-icons/si";
 import { FaInstagram } from "react-icons/fa6";
 import Link from "next/link";
 
-export default function page() {
+export default function Page() {
   return (
     <div className="mx-12 xl:mx-52 my-20 flex flex-col cursor-default">
       <h1 className="text-6xl font-bold">Ajdin Mehmedović</h1>
