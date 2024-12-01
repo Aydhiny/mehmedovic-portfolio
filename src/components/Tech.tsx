@@ -9,7 +9,7 @@ export default function Tech() {
       <h1 className="font-bold px-12 py-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
         Tech Stack
       </h1>
-      <div className="p-12 mb-12 bg-main-background-grey border-y shadow-2xl border-gray-700">
+      <div className="p-12 mb-12 bg-gradient-to-bl from-purple-950 to-main-background-grey border-y shadow-2xl border-violet-900">
         <div className="flex justify-evenly flex-wrap gap-8">
           <div className="tech-icon hover:scale-125 cursor-pointer transition-transform duration-300 ease-in-out">
             <RiNextjsFill size={80} className="text-white sm:text-100" />

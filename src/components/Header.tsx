@@ -34,13 +34,13 @@ export default function Header() {
               Graphic Designer
             </p>
             <div className="flex flex-col sm:flex-row sm:space-x-4 mt-4 sm:mt-6">
-              <div className="flex cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center rounded-xl text-center px-4 py-2 bg-main-app-purple text-white mb-4 sm:mb-0">
+              <div className="flex border-b-4 cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center rounded-xl text-center px-4 py-2 bg-main-app-purple text-white mb-4 sm:mb-0">
                 <Link className="pr-2" href="">
                   Download CV
                 </Link>
                 <FaDownload className="size-5" />
               </div>
-              <div className="flex font-bold cursor-pointer items-center justify-center rounded-xl border px-4 py-2 hover:text-main-app-purple hover:border-main-app-purple hover:bg-main-background-grey transition-all duration-150 border-white text-center">
+              <div className="flex border-b-4 font-bold cursor-pointer items-center justify-center rounded-xl border px-4 py-2 hover:text-main-app-purple hover:border-main-app-purple hover:bg-main-background-grey transition-all duration-150 border-white text-center">
                 <Link className="pr-2" href="https://github.com/Aydhiny">
                   Github
                 </Link>
