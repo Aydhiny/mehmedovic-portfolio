@@ -19,7 +19,7 @@ export default function Navbar() {
       : "hover:text-main-app-purple";
 
   return (
-    <div className="p-4 shadow-sm border-b border-opacity-50 border-violet-400 bg-gradient-to-r from-[rgba(139,92,246,0.55)] to-[rgba(56,48,163,0.34)] backdrop-blur-md lg:static sticky top-0 z-50">
+    <div className="p-4 shadow-sm border-b border-opacity-50 border-violet-400 bg-gradient-to-r from-[#9000ff8f] to-[rgba(60,37,160,0.34)] backdrop-blur-md lg:static sticky top-0 z-50">
       <nav>
         <ul className="flex justify-between xl:justify-evenly items-center">
           {/* Logo */}

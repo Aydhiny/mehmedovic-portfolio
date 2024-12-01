@@ -1,9 +1,18 @@
+"use client";
 import BlogCard from "@/components/BlogCard";
-import React from "react";
-
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 export default function page() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-400px" });
   return (
-    <div className="px-12 xl:px-52 justify-center cursor-default">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="px-12 xl:px-52 justify-center cursor-default"
+    >
       <div className="text-left">
         <h1 className="font-bold text-6xl">Featured Posts</h1>
         <p className="mb-12 text-gray-300">Newest blog posts and news</p>
@@ -62,6 +71,6 @@ export default function page() {
       <p className="text-gray-400 font-semibold my-4 cursor-pointer">
         Read all posts --{">"}{" "}
       </p>
-    </div>
+    </motion.div>
   );
 }

@@ -21,7 +21,7 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
   github,
 }) => {
   return (
-    <div className="p-12 my-4 flex border justify-between hover:shadow-2xl hover:shadow-main-app-purple transition-all duration-150 bg-main-background-grey rounded-md border-gray-400">
+    <div className="p-12 my-4 flex border justify-between hover:shadow-2xl hover:shadow-main-app-purple transition-all duration-150 bg-gradient-to-t from-gray-800 to-main-background-grey rounded-md border-gray-600">
       {/* Links Section */}
 
       {/* Project Details */}

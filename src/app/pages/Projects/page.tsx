@@ -1,9 +1,19 @@
+"use client";
 import ProjectBox from "@/components/ProjectBox";
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 export default function page() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-400px" });
   return (
-    <div className="px-12 xl:px-52 flex flex-col">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="px-12 xl:px-52 flex flex-col"
+    >
       <h1 className="text-6xl font-bold">Github Repositories</h1>
       <div>
         <ProjectBox
@@ -28,6 +38,6 @@ export default function page() {
       <p className="text-gray-400 font-semibold my-4 cursor-pointer">
         See all repositories --{">"}{" "}
       </p>
-    </div>
+    </motion.div>
   );
 }
