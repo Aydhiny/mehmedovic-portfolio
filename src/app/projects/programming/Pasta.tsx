@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import one from "../../../images/pasta/s1.png";
-import two from "../../../images/pasta/s2.png";
-import three from "../../../images/pasta/s3.png";
-import four from "../../../images/pasta/s4.png";
-import pasta from "../../../images/pasta/logo.svg";
+import one from "@images/pasta/s1.png";
+import two from "@images/pasta/s2.png";
+import three from "@images/pasta/s3.png";
+import four from "@images/pasta/s4.png";
+import pasta from "@images/pasta/logo.svg";
 import Link from "next/link";
 
 export default function Page() {
