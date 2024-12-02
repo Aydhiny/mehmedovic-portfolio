@@ -49,28 +49,34 @@ export default function Navbar() {
             >
               <Link href="/">Home</Link>
             </li>
-            <li className="relative group mr-4">
+            <li className="relative mr-4">
               <button
-                className={`relative transition-colors duration-150 ${isActive(
+                onClick={toggleProjectsMenu}
+                className={`flex items-center transition-colors duration-150 ${isActive(
                   "/projects"
                 )}`}
               >
                 Projects
-                {/* Line Indicator */}
-                <span className="absolute bottom-[-6px] left-1/2 transform -translate-x-1/2 w-4 h-[2px] bg-main-app-purple group-hover:w-6 transition-all duration-200"></span>
+                <MdKeyboardArrowDown
+                  className={`ml-2 transform transition-transform duration-200 ${
+                    projectsOpen ? "rotate-180" : ""
+                  }`}
+                />
               </button>
               {/* Dropdown Menu */}
-              <ul className="absolute hidden group-hover:block bg-main-background-grey transition-all duration-150 text-gray-100 rounded shadow-md mt-2 z-10">
-                <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
-                  <Link href="/projects/programming">Programming</Link>
-                </li>
-                <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
-                  <Link href="/projects/music">Music</Link>
-                </li>
-                <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
-                  <Link href="/projects/design">Design</Link>
-                </li>
-              </ul>
+              {projectsOpen && (
+                <ul className="absolute bg-main-background-grey text-gray-100 rounded shadow-md mt-2 z-10 w-48">
+                  <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
+                    <Link href="/projects/programming">Programming</Link>
+                  </li>
+                  <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
+                    <Link href="/projects/music">Music</Link>
+                  </li>
+                  <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
+                    <Link href="/projects/design">Design</Link>
+                  </li>
+                </ul>
+              )}
             </li>
 
             <li
@@ -79,6 +85,20 @@ export default function Navbar() {
               )}`}
             >
               <Link href="/blog">Blog</Link>
+            </li>
+            <li
+              className={`mr-4 transition-colors duration-150 ${isActive(
+                "/journey"
+              )}`}
+            >
+              <Link href="/journey">Journey</Link>
+            </li>
+            <li
+              className={`mr-4 border-opacity-50 border-violet-400 bg-gradient-to-t from-[#9000ff8f] to-[rgba(114,90,219,0.62)] px-4 p-1 border rounded-full hover:text-main-background-grey shadow-xl text-white transition-colors duration-150 ${isActive(
+                "/next-big-thing"
+              )}`}
+            >
+              <Link href="/next-big-thing">Next Big Thing</Link>
             </li>
             <li
               className={`transition-colors duration-150 ${isActive("/about")}`}
@@ -180,6 +200,24 @@ export default function Navbar() {
             >
               <Link href="/blog" onClick={() => setMenuOpen(false)}>
                 Blog
+              </Link>
+            </li>
+            <li
+              className={`transition-all duration-200 border-b border-gray-700 pb-2 ${isActive(
+                "/journey"
+              )}`}
+            >
+              <Link href="/journey" onClick={() => setMenuOpen(false)}>
+                Journey
+              </Link>
+            </li>
+            <li
+              className={`transition-all duration-200 border-b border-gray-700 pb-2 ${isActive(
+                "/next-big-thing"
+              )}`}
+            >
+              <Link href="/next-big-thing" onClick={() => setMenuOpen(false)}>
+                Next Big Thing
               </Link>
             </li>
             <li
