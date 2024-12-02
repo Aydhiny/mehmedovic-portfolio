@@ -8,10 +8,15 @@ import { HiMenu, HiX } from "react-icons/hi";
 import Link from "next/link";
 import Image from "next/image";
 import Aydhiny from "../images/ay.png";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [projectsOpen, setProjectsOpen] = useState(false);
+  const toggleProjectsMenu = () => {
+    setProjectsOpen(!projectsOpen);
+  };
 
   const isActive = (path: string) =>
     pathname === path
@@ -44,13 +49,30 @@ export default function Navbar() {
             >
               <Link href="/">Home</Link>
             </li>
-            <li
-              className={`mr-4 transition-colors duration-150 ${isActive(
-                "/projects"
-              )}`}
-            >
-              <Link href="/projects">Projects</Link>
+            <li className="relative group mr-4">
+              <button
+                className={`relative transition-colors duration-150 ${isActive(
+                  "/projects"
+                )}`}
+              >
+                Projects
+                {/* Line Indicator */}
+                <span className="absolute bottom-[-6px] left-1/2 transform -translate-x-1/2 w-4 h-[2px] bg-main-app-purple group-hover:w-6 transition-all duration-200"></span>
+              </button>
+              {/* Dropdown Menu */}
+              <ul className="absolute hidden group-hover:block bg-main-background-grey transition-all duration-150 text-gray-100 rounded shadow-md mt-2 z-10">
+                <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
+                  <Link href="/projects/programming">Programming</Link>
+                </li>
+                <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
+                  <Link href="/projects/music">Music</Link>
+                </li>
+                <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
+                  <Link href="/projects/design">Design</Link>
+                </li>
+              </ul>
             </li>
+
             <li
               className={`mr-4 transition-colors duration-150 ${isActive(
                 "/blog"
@@ -105,13 +127,51 @@ export default function Navbar() {
               </Link>
             </li>
             <li
-              className={`transition-all duration-200 border-b border-gray-700 pb-2 ${isActive(
-                "/projects"
-              )}`}
+              className={`transition-all duration-200 border-b border-gray-700 pb-2 relative`}
             >
-              <Link href="/projects" onClick={() => setMenuOpen(false)}>
+              <button
+                className="w-full text-center flex justify-center items-center transition-colors duration-150"
+                onClick={toggleProjectsMenu}
+              >
                 Projects
-              </Link>
+                <span
+                  className={`transform transition-transform pr-2 duration-200 ${
+                    projectsOpen ? "rotate-180" : ""
+                  }`}
+                >
+                  <MdKeyboardArrowDown className="ml-2" />
+                </span>
+              </button>
+
+              {/* Nested Mini-Menu */}
+              {projectsOpen && (
+                <ul className="bg-gradient-to-b from-[#1f1f1f] to-[rgba(20,10,50,0.7)] text-white rounded mt-2 space-y-2 pl-4">
+                  <li className="hover:bg-gray-700 px-2 py-2 rounded">
+                    <Link
+                      href="/projects/programming"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Programming
+                    </Link>
+                  </li>
+                  <li className="hover:bg-gray-700 px-2 py-2 rounded">
+                    <Link
+                      href="/projects/music"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Music
+                    </Link>
+                  </li>
+                  <li className="hover:bg-gray-700 px-2 py-2 rounded">
+                    <Link
+                      href="/projects/design"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Design
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
             <li
               className={`transition-all duration-200 border-b border-gray-700 pb-2 ${isActive(
