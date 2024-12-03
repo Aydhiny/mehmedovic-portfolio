@@ -26,7 +26,7 @@ export default function Page() {
     <div
       className="h-screen max-w-screen w-auto bg-cover bg-center flex items-center justify-center"
       style={{ backgroundImage: `url(${Sequel.src})` }}
-      ref={containerRef} // Attach the ref to the container
+      ref={containerRef}
     >
       {/* Confetti Component */}
       {confettiTriggered && (
