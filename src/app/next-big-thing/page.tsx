@@ -35,7 +35,7 @@ export default function Page() {
       )}
 
       <motion.div
-        className="flex flex-col md:flex-row items-center text-center gap-6 p-4 border border-opacity-50 border-violet-400 bg-gradient-to-r from-[#9000ff8f] to-[rgba(60,37,160,0.34)] backdrop-blur-sm rounded-lg shadow-lg"
+        className="flex flex-col hover:p-8 transition-all duration-150 cursor-pointer md:flex-row items-center text-center gap-6 p-4 border border-opacity-50 border-violet-400 bg-gradient-to-r from-[#9000ff8f] to-[rgba(60,37,160,0.34)] backdrop-blur-sm rounded-lg shadow-lg"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}

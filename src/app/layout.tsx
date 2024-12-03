@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-
+import ScrollProgressBar from "@/components/ProgressBar";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -24,13 +24,14 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
 
-  const hideFooterPages = ["/next-big-thing"];
+  const hideFooterPages = ["/next-big-thing", "/projects/music"];
 
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ScrollProgressBar />
         <Navbar />
         {children}
         {!hideFooterPages.includes(pathname) && <Footer />}
