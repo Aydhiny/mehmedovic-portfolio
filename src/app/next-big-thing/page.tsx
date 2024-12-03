@@ -8,25 +8,26 @@ import Confetti from "react-confetti";
 
 export default function Page() {
   const [confettiTriggered, setConfettiTriggered] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [containerHeight, setContainerHeight] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setConfettiTriggered(true);
-  }, []);
 
-  const containerWidth = containerRef.current
-    ? containerRef.current.offsetWidth
-    : window.innerWidth;
-  const containerHeight = containerRef.current
-    ? containerRef.current.offsetHeight
-    : window.innerHeight;
+    // Check if we are in the client-side and containerRef is available
+    if (typeof window !== "undefined" && containerRef.current) {
+      setContainerWidth(containerRef.current.offsetWidth);
+      setContainerHeight(containerRef.current.offsetHeight);
+    }
+  }, []); // Empty dependency array ensures this effect runs only once, after component mounts
 
   return (
     <div
       className="h-screen max-w-screen w-auto bg-cover bg-center flex items-center justify-center"
       style={{ backgroundImage: `url(${Sequel.src})` }}
-      ref={containerRef}
+      ref={containerRef} // Attach the ref to the container
     >
       {/* Confetti Component */}
       {confettiTriggered && (
