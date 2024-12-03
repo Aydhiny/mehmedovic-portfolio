@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import one from "@images/pasta/s1.png";
-import two from "@images/pasta/s2.png";
-import three from "@images/pasta/s3.png";
-import four from "@images/pasta/s4.png";
+import one from "@images/pasta/pastaone.png";
+import two from "@images/pasta/pastatwo.png";
+import three from "@images/pasta/pastathree.png";
+import four from "@images/pasta/pastafour.png";
 import pasta from "@images/pasta/logo.svg";
 import Link from "next/link";
 
