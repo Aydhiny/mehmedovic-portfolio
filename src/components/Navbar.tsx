@@ -70,10 +70,10 @@ export default function Navbar() {
                     <Link href="/projects/programming">Programming</Link>
                   </li>
                   <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
-                    <Link href="/projects/music">Music</Link>
+                    <Link href="/projects/music">Music Production</Link>
                   </li>
                   <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
-                    <Link href="/projects/design">Design</Link>
+                    <Link href="/projects/design">Design & Marketing</Link>
                   </li>
                 </ul>
               )}
@@ -179,7 +179,7 @@ export default function Navbar() {
                       href="/projects/music"
                       onClick={() => setMenuOpen(false)}
                     >
-                      Music
+                      Music Production
                     </Link>
                   </li>
                   <li className="hover:bg-gray-700 px-2 py-2 rounded">
@@ -187,7 +187,7 @@ export default function Navbar() {
                       href="/projects/design"
                       onClick={() => setMenuOpen(false)}
                     >
-                      Design
+                      Design & Marketing
                     </Link>
                   </li>
                 </ul>

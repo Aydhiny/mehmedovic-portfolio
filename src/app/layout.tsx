@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
 
-  const hideFooterPages = ["/next-big-thing", "/projects/music"];
+  const hideFooterPages = ["/next-big-thing", "/projects/music", "/journey"];
 
   return (
     <html lang="en">
