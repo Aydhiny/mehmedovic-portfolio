@@ -108,9 +108,9 @@ export default function Journey() {
             <div className="text-center sm:text-left">
               <h3 className="text-2xl font-semibold mb-2">Hunter Mouse</h3>
               <p className="text-gray-300">
-                My first major game project! "HUNTER MOUSE" is a testament to
-                how passion and collaboration can create something magical.
-                Combining all of my skills into one big game project.
+                My first major game project! &quot;HUNTER MOUSE&quot; is a
+                testament to how passion and collaboration can create something
+                magical. Combining all of my skills into one big game project.
               </p>
             </div>
           </motion.div>
