@@ -37,11 +37,21 @@ export default function Footer() {
           <li>
             <Link
               className={`transition-colors duration-150 ${isActive(
-                "/projects"
+                "/journey"
               )}`}
-              href="/projects"
+              href="/journey"
             >
-              Projects
+              Journey
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={`transition-colors duration-150 ${isActive(
+                "/next-big-thing"
+              )}`}
+              href="/next-big-thing"
+            >
+              Next Big Thing
             </Link>
           </li>
           <li>

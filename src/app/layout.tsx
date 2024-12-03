@@ -1,4 +1,6 @@
-import type { Metadata } from "next";
+"use client";
+import { usePathname } from "next/navigation";
+
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -15,17 +17,15 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Ajdin Mehmedović",
-  description:
-    "Ajdin Mehmedovic portfolio website created using Nextjs, Tailwind and Vercel.",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+
+  const hideFooterPages = ["/next-big-thing"];
+
   return (
     <html lang="en">
       <body
@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
-        <Footer />
+        {!hideFooterPages.includes(pathname) && <Footer />}
       </body>
     </html>
   );

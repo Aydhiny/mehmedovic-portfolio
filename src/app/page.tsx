@@ -3,6 +3,13 @@ import Featured from "@/app/pages/Featured/page";
 import Projects from "@/app/pages/Projects/page";
 import Chatbot from "@/components/Chatbot";
 import "./globals.css";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ajdin Mehmedović",
+  description:
+    "Ajdin Mehmedovic portfolio website created using Nextjs, Tailwind and Vercel.",
+};
 {
   /* import AcceptCookies from "@/components/AcceptCookies"; */
 }

@@ -23,7 +23,7 @@ export default function Page() {
   };
 
   return (
-    <div className="px-4 sm:px-8 md:px-12 xl:px-24 py-32 md:py-16">
+    <div className="px-4 sm:px-8 md:px-12 xl:px-24 pt-32 pb-12 xl:py-32 md:py-16">
       {/* THE HUNTER MOUSE */}
       <div className="grid md:grid-cols-2 gap-8 items-center">
         {/* Left Column */}
