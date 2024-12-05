@@ -151,8 +151,9 @@ export default function Page() {
           Want to Collaborate?
         </h2>
         <p className="text-gray-400 mb-8 px-4">
-          Whether you're an artist or a producer, join our network and create
-          something extraordinary. Let's make the next big hit together!
+          Whether you&apos;re an artist or a producer, join our network and
+          create something extraordinary. Let&apos;s make the next big hit
+          together!
         </p>
         <Link
           className="cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center rounded-xl text-center px-8 py-2 bg-main-app-purple text-white mb-4 sm:mb-0"
