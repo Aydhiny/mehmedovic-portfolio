@@ -2,6 +2,7 @@
 import ProjectBox from "@/components/ProjectBox";
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 
 export default function Page() {
   const ref = useRef(null);
@@ -35,9 +36,11 @@ export default function Page() {
           color="yellow"
         />
       </div>
-      <p className="text-gray-400 font-semibold my-4 cursor-pointer">
-        See all repositories --{">"}{" "}
-      </p>
+      <Link href="https://github.com/Aydhiny" passHref>
+        <p className="text-gray-400 font-semibold my-4 cursor-pointer">
+          See all repositories --{">"}{" "}
+        </p>
+      </Link>
     </motion.div>
   );
 }

@@ -5,8 +5,11 @@ import Bona from "@images/projects/2bona.jpg";
 import Bread from "@images/projects/bread.jpg";
 import Vozis from "@images/projects/vozis.jpg";
 import Hanoi from "@images/projects/hanoi.jpg";
+import Candy from "@images/music/candy.jpg";
 import ClientCard from "./ClientCard";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30, scale: 0.9 },
@@ -27,30 +30,6 @@ const sectionVariants = {
   },
 };
 
-const buttonVariants = {
-  hover: {
-    scale: 1.1,
-    backgroundColor: "#4a1b85",
-    transition: { duration: 0.3 },
-  },
-  tap: { scale: 0.95, backgroundColor: "#8e44ad" },
-};
-
-const glowVariants = {
-  hidden: { opacity: 0.5 },
-  visible: { opacity: 1, transition: { yoyo: Infinity, duration: 1.5 } },
-};
-
-const rotatingDiscVariants = {
-  initial: { scale: 0.8, opacity: 0 },
-  animate: {
-    scale: 1,
-    opacity: 1,
-    rotate: [0, 360],
-    transition: { duration: 10, repeat: Infinity, ease: "linear" },
-  },
-};
-
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
@@ -65,7 +44,7 @@ export default function Page() {
       className="bg-[url('/music.svg')]"
       style={{
         backgroundRepeat: "repeat",
-        backgroundSize: "300px auto",
+        backgroundSize: "100px auto",
       }}
     >
       <Header />
@@ -137,22 +116,32 @@ export default function Page() {
         </motion.div>
 
         <motion.div
-          className="mt-12"
+          className="mt-12 flex flex-col items-center justify-center"
           initial="hidden"
           animate="visible"
           variants={sectionVariants}
         >
-          <h1 className="py-4 font-bold text-2xl sm:text-3xl text-white">
+          <h1 className="font-bold text-2xl sm:text-3xl text-white">
             Biggest Hit:
           </h1>
           <h4 className="text-gray-300 text-xl">
             CANDY - Aydhiny x Call Me G x Nikola Tracks
           </h4>
+          <h1 className="w-full m-4 p-4 text-6xl font-bold border-y border-opacity-50 border-violet-400 bg-main-background-grey">
+            1.3 MILLION+ VIEWS
+          </h1>
+          <Image
+            alt="candy"
+            src={Candy}
+            className="border-opacity-50 border-violet-400 rounded-2xl border p-4
+          bg-gradient-to-t from-[#9000ff8f] to-[rgba(60,37,160,0.34)] shadow-xl hover:shadow-2xl 
+          transition-all duration-150"
+          />
         </motion.div>
       </motion.div>
 
       <motion.div
-        className="mt-24 py-16 bg-main-background-grey border-y border-opacity-50 border-violet-500 bg-opacity-80 text-white text-center"
+        className="mt-8 py-16 bg-main-background-grey border-y border-opacity-50 border-violet-500 bg-opacity-80 text-white text-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -165,43 +154,12 @@ export default function Page() {
           Whether you're an artist or a producer, join our network and create
           something extraordinary. Let's make the next big hit together!
         </p>
-        <motion.button
-          className="px-8 py-4 bg-gradient-to-r from-main-app-purple to-purple-700 rounded-full text-white font-semibold"
-          variants={buttonVariants}
-          whileHover="hover"
-          whileTap="tap"
+        <Link
+          className="cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center rounded-xl text-center px-8 py-2 bg-main-app-purple text-white mb-4 sm:mb-0"
+          href="https://instagram.com/aydhiny_beatz"
         >
           Get in Touch
-        </motion.button>
-      </motion.div>
-
-      {/* Scroll-Triggered Animated Section with Spin Animation */}
-      <motion.div
-        className="relative py-16 bg-gradient-to-tr from-violet-950 via-neutral-900 to-main-background-grey text-white text-center overflow-hidden"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={sectionVariants}
-      >
-        {/* Rotating Disc */}
-        <motion.div
-          className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-48 h-48 bg-gradient-to-r from-violet-500 to-purple-700 rounded-full shadow-lg border-4 border-gray-800"
-          variants={rotatingDiscVariants}
-          initial="initial"
-          animate="animate"
-        />
-
-        <h3 className="relative z-10 text-xl sm:text-3xl font-semibold mb-4">
-          Fun Fact About Music:
-        </h3>
-        <p className="relative z-10 text-gray-400">
-          Did you know that a single song can contain over 1,000 different
-          elements? From layered vocals to complex drum patterns, music is a
-          beautiful puzzle!
-        </p>
-
-        {/* Dynamic Glow Effect */}
-        <motion.div className="absolute inset-0 bg-gradient-to-t from-main-background-grey via-transparent to-neutral-800 opacity-50 pointer-events-none" />
+        </Link>
       </motion.div>
     </div>
   );

@@ -2,6 +2,7 @@
 import BlogCard from "@/components/BlogCard";
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 export default function Page() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -68,9 +69,11 @@ export default function Page() {
           views={"53"}
         />
       </div>
-      <p className="text-gray-400 font-semibold my-4 cursor-pointer">
-        Read all posts --{">"}{" "}
-      </p>
+      <Link href="/blog">
+        <p className="text-gray-400 font-semibold my-4 cursor-pointer">
+          Read all posts --{">"}{" "}
+        </p>
+      </Link>
     </motion.div>
   );
 }

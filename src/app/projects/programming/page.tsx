@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Mouse from "../programming/Mouse";
 import Pasta from "../programming/Pasta";
 import ProjectBox from "@/components/ProjectBox";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -50,9 +51,11 @@ export default function Page() {
           tech="JavaScript"
           color="yellow"
         />
-        <p className="text-gray-400 font-semibold my-4 cursor-pointer">
-          See all repositories --{">"}{" "}
-        </p>
+        <Link href="https://github.com/Aydhiny" passHref>
+          <p className="text-gray-400 font-semibold my-4 cursor-pointer">
+            See all repositories --{">"}{" "}
+          </p>
+        </Link>
       </div>
     </div>
   );
