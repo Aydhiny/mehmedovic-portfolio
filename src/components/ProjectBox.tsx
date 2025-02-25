@@ -36,7 +36,7 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
       </div>
       <div className="flex flex-col lg:flex-row text-center items-center text-white">
         <a
-          className="p-4 mx-4 xl:my-0 my-4 border border-gray-400 rounded-2xl"
+          className="p-4 mx-4 cursor-pointer xl:my-0 my-4 border border-gray-400 rounded-2xl"
           href={github}
           target="_blank"
           rel="noopener noreferrer"
@@ -44,7 +44,7 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({
           <FaGithub className="size-5" />
         </a>
         <a
-          className="p-4 border border-gray-400 rounded-2xl"
+          className="p-4 border cursor-pointer border-gray-400 rounded-2xl"
           href={link}
           target="_blank"
           rel="noopener noreferrer"

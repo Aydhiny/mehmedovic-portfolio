@@ -22,18 +22,24 @@ export default function Page() {
           description="Faculty of Information Technologies Repository. Used for professional Faculty work in various programming technologies such as C++, C#, DOTNET, SQL and others"
           tech="TSQL"
           color="orange"
+          link="https://github.com/Aydhiny/FIT-Faculty-Work"
+          github="https://github.com/Aydhiny/FIT-Faculty-Work"
         />
         <ProjectBox
           name="unity-hunter-mouse"
           description="Embark on a thrilling adventure through vibrant worlds and challenging obstacles in this meticulously crafted 3D platformer, handcrafted from scratch using Unity."
           tech="C#"
           color="green"
+          link="https://gamejolt.com/games/huntermouse/902524"
+          github="https://github.com/Aydhiny/unity-hunter-mouse"
         />
         <ProjectBox
           name="filmatic-app"
           description="🎬 A Next.js app for browsing and discovering movies with server-side rendering and dynamic search."
           tech="JavaScript"
           color="yellow"
+          link="https://filmatic-app.vercel.app/"
+          github="https://github.com/Aydhiny/filmatic-app"
         />
       </div>
       <Link href="https://github.com/Aydhiny" passHref>

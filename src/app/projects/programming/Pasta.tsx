@@ -79,14 +79,8 @@ export default function Page() {
           </p>
           <div className="flex gap-4 mt-8 xl:mx-0 mx-auto">
             <Link
-              className="flex border-b-4 border-b-white items-center justify-center text-sm md:text-base px-4 py-2 sm:px-6 sm:py-3 rounded-lg bg-main-app-purple text-white font-bold hover:bg-white hover:text-main-background-grey transition-all duration-150"
-              href="https://gamejolt.com/games/huntermouse/902524"
-            >
-              Github Page
-            </Link>
-            <Link
               className="flex border-b-4 border-b-white items-center justify-center text-sm md:text-base px-4 py-2 sm:px-6 sm:py-3 rounded-lg bg-main-app-teal text-main-background-grey font-bold hover:bg-white hover:text-main-background-grey transition-all duration-150"
-              href="https://www.linkedin.com/posts/ajdin-mehmedovic_hunter-mouse-gameplay-trailer-dive-activity-7195486411205046272-nEZg?utm_source=share&utm_medium=member_desktop"
+              href="https://tjestenina-lejla-website.vercel.app/"
             >
               Vercel Link
             </Link>

@@ -63,12 +63,12 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <Link
+            <a
               className={`transition-colors duration-150 ${isActive("/email")}`}
-              href="/email"
+              href="mailto:ajdin.mehmedovic@edu.fit.ba"
             >
               Email Me
-            </Link>
+            </a>
           </li>
         </ul>
       </nav>

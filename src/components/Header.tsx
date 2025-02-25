@@ -80,22 +80,24 @@ export default function Header() {
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 1 }}
               >
-                <Link className="pr-2" href="">
-                  Download CV
-                </Link>
-                <FaDownload className="size-5" />
+            <Link className="pr-2 flex" href="/ajdin_mehmedovic_cv.pdf" target="_blank" rel="noopener noreferrer">
+              Download CV
+                <FaDownload className="size-5 ml-2" />
+            </Link>
               </motion.div>
+              <Link className="pr-2 text-center items-center justify-center" href="https://github.com/Aydhiny">
               <motion.div
-                className="flex border-b-4 font-bold cursor-pointer items-center justify-center rounded-xl border px-4 py-2 hover:text-main-app-purple hover:border-main-app-purple hover:bg-main-background-grey transition-all duration-150 border-white text-center"
+                className="flex border-b-4 font-bold items-center justify-center cursor-pointer rounded-xl border px-4 py-2 hover:text-main-app-purple hover:border-main-app-purple hover:bg-main-background-grey transition-all duration-150 border-white text-center"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 1.2 }}
               >
-                <Link className="pr-2" href="https://github.com/Aydhiny">
+
                   Github
-                </Link>
-                <FaGithub className="size-5" />
+
+                <FaGithub className="size-5 ml-2" />
               </motion.div>
+              </Link>
             </div>
           </div>
           <motion.div

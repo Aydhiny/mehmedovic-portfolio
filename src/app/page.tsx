@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Featured from "@/app/pages/Featured/page";
 import Projects from "@/app/pages/Projects/page";
 import Chatbot from "@/components/Chatbot";
 import "./globals.css";
@@ -28,7 +27,6 @@ export default function Home() {
       <Header />
       <Lines />
       <TrainTrack />
-      <Featured />
       <Tech />
       <Clients />
       <Projects />

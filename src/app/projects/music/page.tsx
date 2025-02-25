@@ -75,28 +75,28 @@ export default function Page() {
             {[
               {
                 text: "2Bona - Candy",
-                link: "link",
+                link: "https://www.youtube.com/watch?app=desktop&v=GMIQ8ZWRQXo&t=0s",
                 image: Bona,
                 desc: "2BONA - Candy, a music project crafted by the talented trio of Aydhiny, Call Me G, and Nikola Tracks. With its irresistible beat and sugary-sweet melodies, Candy is sure to leave you wanting more. 🎶🍬",
                 producers: "Aydhiny x Call Me G x Nikola Tracks",
               },
               {
                 text: "Shark Puppet x YBN NAHMIR - Gettin Bread",
-                link: "link",
+                link: "https://www.youtube.com/watch?v=dEqu-7yvzhk",
                 image: Bread,
                 desc: "A playful and energetic track with unique flavor and iconic vibes.",
                 producers: "Aydhiny x Call Me G",
               },
               {
                 text: "Danči - Voziš",
-                link: "link",
+                link: "https://www.youtube.com/watch?v=f6zvcjW95cs",
                 image: Vozis,
                 desc: "Catchy and compelling, Voziš is a showcase of true musical artistry.",
                 producers: "Aydhiny",
               },
               {
                 text: "Hanoi Capital - Charles & Panda",
-                link: "link",
+                link: "https://www.youtube.com/watch?v=iYK4cKJC0QQ",
                 image: Hanoi,
                 desc: "An experimental and futuristic sound that pushes boundaries.",
                 producers: "Aydhiny x Call Me G x Nikola Tracks",
