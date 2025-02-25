@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaEye } from "react-icons/fa";
@@ -20,7 +21,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   return (
     <div className="p-[1px] rounded-lg shadow-xl bg-gradient-to-r from-main-app-teal to-main-app-purple">
       <div className="bg-gradient-to-t from-gray-800 to-main-background-grey h-full cursor-pointer transition-all duration-100 hover:shadow-2xl hover:shadow-main-app-teal rounded-lg flex flex-col p-4">
-        <img
+        <Image
           src={image || "/placeholder-image.jpg"}
           alt={name}
           className="rounded-md mb-4 h-40 object-cover w-full"

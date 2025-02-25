@@ -41,6 +41,7 @@ export default function Page() {
         setStatus("Failed to send message.");
       }
     } catch (error) {
+      console.error(error); // Log the error for debugging
       setStatus("An error occurred.");
     }
   };
@@ -57,7 +58,7 @@ export default function Page() {
         Passionate Software Engineering Student | Music Producer (Aydhiny) | Graphic & UI Designer
       </p>
       <p className="text-lg text-gray-300 mb-6">
-        I'm currently pursuing my studies at the{" "}
+        I&apos;m currently pursuing my studies at the{" "}
         <span className="font-bold text-main-app-teal">
           Faculty of Information Technologies in Mostar
         </span>, with a primary focus on Software Engineering. With over 6 years of experience in music production, I go by the name{" "}
@@ -68,7 +69,7 @@ export default function Page() {
         <span className="font-bold text-main-app-teal">Plansio</span>, where I create engaging social media content and user-friendly applications.
       </p>
       <p className="text-lg text-gray-300 mb-6">
-        I’m always looking to collaborate on innovative projects. Feel free to reach out via LinkedIn or explore my work through the links below.
+        I&apos;m always looking to collaborate on innovative projects. Feel free to reach out via LinkedIn or explore my work through the links below.
       </p>
 
       <p className="text-2xl py-4 text-gray-200 mb-6">Explore my work:</p>
