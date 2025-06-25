@@ -70,3 +70,16 @@ body {
 .animate-jump {
   animation: jump 0.5s ease-in-out;
 }
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 0 0 5px #facc15, 0 0 10px #facc15, 0 0 15px #facc15;
+  }
+  50% {
+    text-shadow: 0 0 10px #facc15, 0 0 20px #facc15, 0 0 30px #facc15;
+  }
+}
+
+.glow-text {
+  animation: glow 2s infinite ease-in-out;
+}

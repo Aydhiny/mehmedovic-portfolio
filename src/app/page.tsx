@@ -16,6 +16,7 @@ import Tech from "@/components/Tech";
 import Clients from "@/components/Clients";
 import TrainTrack from "@/components/TrainTrack";
 import Lines from "@/components/Lines";
+import SuccessShowcase from "@/components/SuccessShowcase";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <Header />
       <Lines />
       <TrainTrack />
+      <SuccessShowcase />
       <Tech />
       <Clients />
       <Projects />
