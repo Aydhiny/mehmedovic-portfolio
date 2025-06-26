@@ -3,12 +3,9 @@ import ProjectShowcase from "./ProjectShowcase";
 import {
   FaDownload,
   FaPlay,
-  FaGlobe,
-  FaExternalLinkAlt,
   FaUnity,
   FaReact,
   FaMapMarkedAlt,
-  FaHeart,
   FaFilm,
   FaRunning,
   FaGamepad,
@@ -138,7 +135,7 @@ export default function Page() {
         </h2>
         <p className="text-gray-400 max-w-4xl mx-auto text-lg">
           <FaGamepad className="inline text-main-app-purple mr-2" />
-          The biggest game project I've ever taken on. Featuring improved
+          The biggest game project I&apos;ve ever taken on. Featuring improved
           graphics, deeper levels, and refined gameplay. Powered by Unity,
           driven by pure passion.
         </p>
@@ -180,8 +177,9 @@ export default function Page() {
         description={
           <>
             <FaRunning className="inline text-main-app-purple mr-2" />
-            Official website for one of the region's most respected Taekwondo
-            clubs. Event info, achievements, and a clean online presence.
+            Official website for one of the region&apos;s most respected
+            Taekwondo clubs. Event info, achievements, and a clean online
+            presence.
           </>
         }
         hashtags={["React", "Sports", "Community"]}
