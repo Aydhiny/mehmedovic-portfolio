@@ -3,6 +3,9 @@ import React from "react";
 export default function Clients() {
   return (
     <div>
+      <h1 className="font-bold px-12 py-4 mt-12 xl:mt-36 mb-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
+        Competitions
+      </h1>
       <div className="p-6 sm:p-8 md:p-12 mb-12 xl:mb-36 bg-gradient-to-r from-zinc-800 to-main-background-grey shadow-2xl">
         <div className="flex justify-center flex-wrap gap-6 sm:gap-8">
           {/* Card 1 */}

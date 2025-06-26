@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
+import { FaUnity } from "react-icons/fa6";
 import { DiDotnet } from "react-icons/di";
 import { FaReact, FaGithub } from "react-icons/fa";
 import { SiAngular, SiBootstrap, SiAzuredevops } from "react-icons/si";
@@ -21,6 +22,7 @@ export default function Tech() {
       label: "Tailwind",
     },
     { icon: <DiDotnet size={80} className="text-sky-500" />, label: ".NET" },
+    { icon: <FaUnity size={80} className="text-white" />, label: "Unity" },
     { icon: <FaGithub size={80} className="text-gray-700" />, label: "GitHub" },
     {
       icon: <SiAngular size={80} className="text-red-600" />,
@@ -44,7 +46,7 @@ export default function Tech() {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <h1 className="font-bold px-12 py-4 mt-12 xl:mt-36 mb-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
-        Tech Stack & Hackathons
+        Tech Stack
       </h1>
       <div className="p-8 mb-12 bg-gradient-to-r from-zinc-800 to-main-background-grey border-y shadow-2xl border-gray-500 overflow-hidden">
         {/* Subtle horizontal motion */}

@@ -50,7 +50,7 @@ export default function HunterMouseShowcase() {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="relative mx-auto w-full max-w-6xl rounded-2xl overflow-hidden border-1 border-violet-500 shadow-2xl"
+        className="relative mx-auto w-full max-w-6xl border-b-8 overflow-hidden border border-violet-500"
       >
         <Plyr source={videoSources} />
       </motion.div>
@@ -64,10 +64,11 @@ export default function HunterMouseShowcase() {
         className="text-gray-300 p-8 bg-main-background-grey text-lg md:text-xl space-y-6 max-w-4xl mx-auto"
       >
         <p>
-          Embark on an epic collectathon adventure where platforming,
-          puzzle-solving, and exploration collide. In **Hunter Mouse 2**, you
-          play as the determined little mouse navigating vast, colorful worlds
-          filled with secrets, enemies, and challenges.
+          Enter Jungle Scapes, where worlds impress & adventure awaits. Your
+          journey is to retrieve thunderbolts, so you can once and for all stop
+          and defeat the traitor of the mice -{" "}
+          <span className="text-white font-bold">Reuf.</span> ⚡ Explore various
+          insanely detailed worlds & defeat the enemy!
         </p>
 
         {/* FEATURES */}
@@ -79,20 +80,19 @@ export default function HunterMouseShowcase() {
                 Full Indie Production
               </h3>
               <p>
-                Designed, coded, and produced entirely solo — a true indie
-                project built with passion.
+                Coded, designed & implemented entirely solo — a true indie
+                project built with passion. Custom game mechanics, music & UI
+                design
               </p>
             </div>
           </div>
           <div className="flex items-start gap-4">
             <FaPuzzlePiece className="text-yellow-400 text-3xl mt-1" />
             <div>
-              <h3 className="text-white font-bold text-lg">
-                Challenging Puzzles
-              </h3>
+              <h3 className="text-white font-bold text-lg">Vibrant Worlds</h3>
               <p>
-                Solve brain-bending puzzles that block your path and uncover
-                hidden secrets.
+                Explore 7 unique worlds, each with its own theme and challenges,
+                from lush jungles to icy peaks.
               </p>
             </div>
           </div>
@@ -104,7 +104,8 @@ export default function HunterMouseShowcase() {
               </h3>
               <p>
                 A fully composed soundtrack crafted to enhance every moment of
-                your journey.
+                your journey. 10+ tracks of original music to immerse you in the
+                game.
               </p>
             </div>
           </div>
@@ -129,7 +130,7 @@ export default function HunterMouseShowcase() {
         viewport={{ once: true }}
       >
         <Link href="/next-big-thing">
-          <button className="px-10 py-4 bg-violet-600 hover:bg-violet-800 text-white font-bold rounded-xl text-xl transition-colors shadow-lg">
+          <button className="px-10 py-4 bg-violet-600 hover:bg-white hover:text-violet-600 text-white font-bold rounded-full text-xl transition-colors border-b-2 border-white">
             Explore the Game
           </button>
         </Link>

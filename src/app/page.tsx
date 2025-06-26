@@ -30,8 +30,8 @@ export default function Home() {
       <Lines />
       <TrainTrack />
       <SuccessShowcase />
-      <HunterMouseShowcase />
       <Tech />
+      <HunterMouseShowcase />
       <Clients />
       <Projects />
     </div>

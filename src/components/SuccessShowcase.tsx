@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Confetti from "react-confetti";
@@ -55,29 +55,36 @@ export default function SuccessShowcase() {
 
   const { width, height } = useWindowSize();
   const [showConfetti, setShowConfetti] = useState(false);
+  const aboutMeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const aboutMe = document.getElementById("about-me");
-      if (aboutMe) {
-        const rect = aboutMe.getBoundingClientRect();
-        setShowConfetti(rect.top >= 0 && rect.bottom <= window.innerHeight);
-      }
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowConfetti(entry.isIntersecting),
+      { threshold: 0.5 } // Trigger when 50% visible
+    );
+
+    if (aboutMeRef.current) observer.observe(aboutMeRef.current);
+
+    return () => {
+      if (aboutMeRef.current) observer.unobserve(aboutMeRef.current);
     };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="p-8 xl:p-16 mt-16 space-y-16 relative overflow-hidden">
-      {/* CONFETTI */}
+    <div className="p-8 xl:p-16 mt-16 space-y-8 relative overflow-hidden">
       {showConfetti && (
-        <Confetti width={width} height={height} numberOfPieces={200} />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+        >
+          <Confetti width={width} height={height} numberOfPieces={200} />
+        </motion.div>
       )}
 
       {/* ABOUT ME SECTION */}
       <motion.div
+        ref={aboutMeRef}
         id="about-me"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -91,9 +98,8 @@ export default function SuccessShowcase() {
         <p className="text-gray-300 text-lg md:text-xl mb-6">
           Hey there! I&apos;m a software engineering student, game developer,
           music producer, designer, and tech enthusiast. I love building stuff
-          in general &amp; that passion lead me to create amazing projects in
-          all these fields. You can browse through my work below and see what
-          I&apos;ve been up to!
+          in general & that passion led me to create amazing projects across
+          these fields. Browse my work below and see what I&apos;ve been up to!
         </p>
         <div className="flex justify-center gap-6 text-3xl text-white">
           <a
@@ -142,7 +148,7 @@ export default function SuccessShowcase() {
       {/* SUCCESS SHOWCASE */}
       <div>
         <h2 className="text-3xl md:text-5xl text-white font-bold text-center mb-12">
-          Overview
+          Achievements
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           {successes.map((success, index) => (
@@ -175,6 +181,7 @@ export default function SuccessShowcase() {
                     alt={success.title}
                     layout="fill"
                     objectFit="cover"
+                    className="w-full h-full"
                   />
                 </div>
                 <div className="p-6">
