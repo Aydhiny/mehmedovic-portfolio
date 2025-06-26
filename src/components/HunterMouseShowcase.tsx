@@ -13,7 +13,7 @@ import {
 
 export default function HunterMouseShowcase() {
   const videoSources = {
-    type: "video",
+    type: "video" as const,
     sources: [
       {
         src: "/videos/huntermouse2.mp4",
