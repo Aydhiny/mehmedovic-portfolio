@@ -17,6 +17,7 @@ import Clients from "@/components/Clients";
 import TrainTrack from "@/components/TrainTrack";
 import Lines from "@/components/Lines";
 import SuccessShowcase from "@/components/SuccessShowcase";
+import HunterMouseShowcase from "@/components/HunterMouseShowcase";
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
       <Lines />
       <TrainTrack />
       <SuccessShowcase />
+      <HunterMouseShowcase />
       <Tech />
       <Clients />
       <Projects />
