@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Plyr from "plyr-react";
+import { PlyrSource } from "plyr-react";
 import "plyr-react/plyr.css";
 import {
   FaGamepad,
@@ -10,10 +10,13 @@ import {
   FaMusic,
   FaMousePointer,
 } from "react-icons/fa";
+import dynamic from "next/dynamic";
+
+const Plyr = dynamic(() => import("plyr-react"), { ssr: false });
 
 export default function HunterMouseShowcase() {
-  const videoSources = {
-    type: "video" as const,
+  const videoSources: PlyrSource = {
+    type: "video",
     sources: [
       {
         src: "/videos/huntermouse2.mp4",
