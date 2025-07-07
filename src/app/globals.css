@@ -51,10 +51,24 @@ body {
   scrollbar-width: thin; /* For Firefox: thin scrollbar */
   scrollbar-color: #01fee1 #242424;
 }
-html,
-body {
-  cursor: url("../images/cursor/cursor-default.svg"), default;
+
+* {
+  cursor: none !important;
 }
+
+@media (pointer: coarse), (max-width: 768px) {
+  * {
+    cursor: auto !important;
+  }
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  html,
+  body {
+    cursor: auto !important;
+  }
+}
+
 @keyframes jump {
   0% {
     transform: translateY(0);

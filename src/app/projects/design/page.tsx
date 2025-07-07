@@ -56,21 +56,36 @@ export default function Page() {
             image={FLS}
             title="Future Leaders Summit 2024"
             link="link"
-            category={<><FaPaintBrush className="inline text-main-app-purple mr-2"/> Social Media Graphic Design</>}
+            category={
+              <>
+                <FaPaintBrush className="inline text-main-app-purple mr-2" />{" "}
+                Social Media Graphic Design
+              </>
+            }
             desc="Futures Leaders Summit is an annual event for future leaders to help them rethink the present and reimagine the future by featuring world speakers, interactive workshops, and company visits."
           />
           <DesignCard
             image={Bliss}
             title="Eternal Bliss : Music Tips"
             link="link"
-            category={<><FaBullhorn className="inline text-main-app-purple mr-2"/> Social Media Graphic Design</>}
+            category={
+              <>
+                <FaBullhorn className="inline text-main-app-purple mr-2" />{" "}
+                Social Media Graphic Design
+              </>
+            }
             desc="Eternal Bliss is an Instagram account run by music producer Ediba Deville for educating new producers."
           />
           <DesignCard
             image={Plansio}
             title="Plansio : Design & Marketing Agency"
             link="link"
-            category={<><FaVideo className="inline text-main-app-purple mr-2"/> Marketing, Social Media Design, Video Editing</>}
+            category={
+              <>
+                <FaVideo className="inline text-main-app-purple mr-2" />{" "}
+                Marketing, Social Media Design, Video Editing
+              </>
+            }
             desc="Marketing and social media agency work for various clients."
           />
         </motion.div>
