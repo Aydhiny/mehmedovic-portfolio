@@ -12,6 +12,10 @@ export default function CustomCursor() {
   const [poof, setPoof] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
 
+  // Hooks must always be called
+  const x = useMotionValue(-100);
+  const y = useMotionValue(-100);
+
   // Detect touch device
   useEffect(() => {
     const checkTouch = () => {
@@ -24,10 +28,6 @@ export default function CustomCursor() {
 
   // Don't render on touch devices
   if (isTouch) return null;
-
-  // Smooth position
-  const x = useMotionValue(-100);
-  const y = useMotionValue(-100);
 
   useEffect(() => {
     const move = (e: any) => {
