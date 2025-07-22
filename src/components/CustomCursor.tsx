@@ -12,7 +12,6 @@ export default function CustomCursor() {
   const [poof, setPoof] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
 
-  // Hooks must always be called
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
 
@@ -25,9 +24,6 @@ export default function CustomCursor() {
     window.addEventListener("resize", checkTouch);
     return () => window.removeEventListener("resize", checkTouch);
   }, []);
-
-  // Don't render on touch devices
-  if (isTouch) return null;
 
   useEffect(() => {
     const move = (e: any) => {
@@ -68,6 +64,9 @@ export default function CustomCursor() {
       window.removeEventListener("mousedown", handleClick);
     };
   }, [x, y]);
+
+  // Only return null after all hooks
+  if (isTouch) return null;
 
   return (
     <motion.div
