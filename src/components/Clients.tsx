@@ -3,7 +3,7 @@ import React from "react";
 export default function Clients() {
   return (
     <div>
-      <h1 className="font-bold px-12 py-4 mt-12 xl:mt-36 mb-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
+      <h1 className="font-bold px-12 py-4 mt-4 xl:mt-4 mb-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
         Competitions
       </h1>
       <div className="p-6 sm:p-8 md:p-12 mb-12 xl:mb-36 bg-gradient-to-r from-zinc-800 to-main-background-grey shadow-2xl">
@@ -25,9 +25,7 @@ export default function Clients() {
           <div className="flex mx-4 flex-col items-center text-center hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out">
             <p className="mt-4 text-2xl sm:text-4xl font-semibold">
               FIT Coding Challenge 2025 -{" "}
-              <span className="font-bold text-yellow-500 animate-pulse glow-text">
-                FIRST PLACE
-              </span>
+              <span className="font-bold text-violet-500">FIRST PLACE</span>
             </p>
             <p className="text-lg sm:text-xl text-gray-200">
               Collectathon Adventure Game - Hunter Mouse 2

@@ -2,7 +2,6 @@
 import React from "react";
 import Train from "../images/train.gif";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useState } from "react";
 export default function TrainTrack() {
   const [isJumping, setIsJumping] = useState(false);
@@ -18,19 +17,9 @@ export default function TrainTrack() {
           Catch the car by clicking it.
         </h1>
       </div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="mb-12 shadow-2xl xl:mb-36 relative w-full h-32 overflow-hidden bg-gradient-to-t from-gray-800 to-main-background-grey"
-      >
+      <div className="mb-12 shadow-2xl xl:mb-36 relative w-full h-32 overflow-hidden bg-gradient-to-t from-gray-800 to-main-background-grey">
         {/* Train Animation */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute top-0 animate-train"
-        >
+        <div className="absolute top-0 animate-train">
           <Image
             src={Train}
             alt="train"
@@ -39,7 +28,7 @@ export default function TrainTrack() {
             }`}
             onClick={handleClick}
           />
-        </motion.div>
+        </div>
 
         {/* Track */}
         <div className="absolute bottom-0 w-full h-8 bg-gradient-to-r from-gray-800 to-main-background-grey border-t-2 border-b-2 border-purple-950">
@@ -52,7 +41,7 @@ export default function TrainTrack() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

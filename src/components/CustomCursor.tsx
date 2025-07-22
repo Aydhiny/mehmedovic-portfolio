@@ -10,6 +10,20 @@ export default function CustomCursor() {
   const cursorRef = useRef(null);
   const [hovered, setHovered] = useState(false);
   const [poof, setPoof] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+
+  // Detect touch device
+  useEffect(() => {
+    const checkTouch = () => {
+      setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+    };
+    checkTouch();
+    window.addEventListener("resize", checkTouch);
+    return () => window.removeEventListener("resize", checkTouch);
+  }, []);
+
+  // Don't render on touch devices
+  if (isTouch) return null;
 
   // Smooth position
   const x = useMotionValue(-100);

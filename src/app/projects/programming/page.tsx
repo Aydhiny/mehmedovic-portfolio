@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Projects from "@/app/pages/Projects/page";
 import ProjectShowcase from "./ProjectShowcase";
 import {
   FaDownload,
@@ -205,6 +206,8 @@ export default function Page() {
         button1Link="https://tjestenina-lejla-website.vercel.app/"
         reverse
       />
+
+      <Projects />
     </div>
   );
 }

@@ -13,12 +13,7 @@ import { motion } from "framer-motion";
 
 export default function Header() {
   return (
-    <motion.div
-      className="flex flex-col xl:flex-row p-6 sm:p-12 xl:p-24 mt-24 xl:m-0 justify-center text-center cursor-default"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
-    >
+    <div className="flex flex-col xl:flex-row p-6 sm:p-12 xl:p-24 mt-24 xl:m-0 justify-center text-center cursor-default">
       <div>
         {/* Header Section */}
         <motion.div
@@ -74,29 +69,35 @@ export default function Header() {
               Graphic Designer
             </motion.p>
             <div className="flex flex-col sm:flex-row sm:space-x-4 mt-4 sm:mt-6">
-              <motion.div
-                className="flex border-b-4 cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center rounded-xl text-center px-4 py-2 bg-main-app-purple text-white mb-4 sm:mb-0"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5, delay: 1 }}
+              <Link
+                className="pr-2 flex"
+                href="/ajdin_mehmedovic_cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-            <Link className="pr-2 flex" href="/ajdin_mehmedovic_cv.pdf" target="_blank" rel="noopener noreferrer">
-              Download CV
-                <FaDownload className="size-5 ml-2" />
-            </Link>
-              </motion.div>
-              <Link className="pr-2 text-center items-center justify-center" href="https://github.com/Aydhiny">
-              <motion.div
-                className="flex border-b-4 font-bold items-center justify-center cursor-pointer rounded-xl border px-4 py-2 hover:text-main-app-purple hover:border-main-app-purple hover:bg-main-background-grey transition-all duration-150 border-white text-center"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.2 }}
+                <motion.div
+                  className="flex border-b-4 cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center rounded-xl text-center px-4 py-2 bg-main-app-purple text-white mb-4 sm:mb-0"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                >
+                  Download CV
+                  <FaDownload className="size-5 ml-2" />
+                </motion.div>
+              </Link>
+              <Link
+                className="pr-2 text-center items-center justify-center"
+                href="https://github.com/Aydhiny"
               >
-
+                <motion.div
+                  className="flex border-b-4 font-bold items-center justify-center cursor-pointer rounded-xl border px-4 py-2 hover:text-main-app-purple hover:border-main-app-purple hover:bg-main-background-grey transition-all duration-150 border-white text-center"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.5, delay: 1.2 }}
+                >
                   Github
-
-                <FaGithub className="size-5 ml-2" />
-              </motion.div>
+                  <FaGithub className="size-5 ml-2" />
+                </motion.div>
               </Link>
             </div>
           </div>
@@ -104,6 +105,12 @@ export default function Header() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 1.4 }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 8px 32px 0 rgba(144,0,255,0.25)",
+            }}
+            whileTap={{ scale: 0.97 }}
+            className="overflow-hidden"
           >
             <Image
               className="w-52 border-b-8 border-b-white sm:w-48 xl:w-96 hover:opacity-65 bg-main-background-grey p-2 sm:p-4 rounded-full shadow-xl border-2 border-violet-500 transition-all duration-300"
@@ -111,10 +118,11 @@ export default function Header() {
               alt="profile-pic"
               width={400}
               height={400}
+              draggable={false}
             />
           </motion.div>
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 }

@@ -18,6 +18,7 @@ import TrainTrack from "@/components/TrainTrack";
 import Lines from "@/components/Lines";
 import SuccessShowcase from "@/components/SuccessShowcase";
 import HunterMouseShowcase from "@/components/HunterMouseShowcase";
+import Foundation from "@/components/Foundation";
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
       <HunterMouseShowcase />
       <Clients />
       <Projects />
+      <Foundation />
     </div>
   );
 }
