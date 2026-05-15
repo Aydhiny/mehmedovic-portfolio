@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        garamond: ["Cormorant Garamond", "Georgia", "serif"],
+      },
       animation: {
         "slide-down": "slide-down 0.6s ease-in-out",
         "slide-up": "slide-up 0.6s ease-in-out",
