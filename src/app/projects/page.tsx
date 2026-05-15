@@ -12,27 +12,44 @@ import Plansio from "../../images/projects/plansio.png";
 import DesignCard from "@/components/DesignCard";
 import { motion } from "framer-motion";
 
+function SectionHeader({ tag, title }: { tag: string; title: string }) {
+  return (
+    <div className="mb-8">
+      <p className="label-tag mb-2">{tag}</p>
+      <h2 className="text-3xl sm:text-4xl font-bold text-white">{title}</h2>
+      <div className="mt-4 h-px bg-[var(--border)]" />
+    </div>
+  );
+}
+
 export default function Page() {
   return (
-    <div className="px-4 mt-20 sm:px-10 lg:px-52 my-10 lg:my-20 cursor-default">
-      <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl">
-        My Projects
-      </h1>
+    <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-28 pb-20">
+
+      <motion.div
+        className="mb-16"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+      >
+        <p className="label-tag mb-4">Work</p>
+        <h1 className="text-5xl sm:text-6xl font-bold text-white leading-tight">
+          My <span className="font-garamond italic text-[var(--accent)]">Projects</span>
+        </h1>
+      </motion.div>
 
       {/* PROGRAMMING */}
-      <div className="mt-10">
-        <h4 className="py-2 font-bold text-2xl sm:text-3xl text-gray-400">
-          Programming
-        </h4>
+      <section className="mb-20">
+        <SectionHeader tag="Code" title="Programming" />
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="flex flex-col space-y-6"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="flex flex-col gap-4"
         >
           <ProjectBox
             name="FIT-Faculty-Work"
-            description="Faculty of Information Technologies Repository. Used for professional Faculty work in various programming technologies such as C++, C#, DOTNET, SQL and others"
+            description="Faculty of Information Technologies Repository — professional work in C++, C#, .NET, SQL, and others."
             tech="TSQL"
             color="orange"
             github="https://github.com/Aydhiny/FIT-Faculty-Work"
@@ -40,7 +57,7 @@ export default function Page() {
           />
           <ProjectBox
             name="unity-hunter-mouse"
-            description="Embark on a thrilling adventure through vibrant worlds and challenging obstacles in this meticulously crafted 3D platformer, handcrafted from scratch using Unity."
+            description="Thrilling 3D platformer adventure built from scratch in Unity — the award-winning indie game."
             tech="C#"
             color="green"
             github="https://github.com/Aydhiny/unity-hunter-mouse"
@@ -48,21 +65,24 @@ export default function Page() {
           />
           <ProjectBox
             name="filmatic-app"
-            description="A Next.js app for browsing and discovering movies with server-side rendering and dynamic search."
+            description="A Next.js movie discovery app with server-side rendering and dynamic search."
             tech="JavaScript"
             color="yellow"
             github="https://github.com/Aydhiny/filmatic-app"
-            link="https://github.com/Aydhiny/filmatic-app"
+            link="https://filmatic-app.vercel.app/"
           />
         </motion.div>
-      </div>
+      </section>
 
-      {/* MUSIC PRODUCTION */}
-      <div className="mt-16">
-        <h4 className="py-4 font-bold text-2xl sm:text-3xl text-gray-400">
-          Music Production
-        </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* MUSIC */}
+      <section className="mb-20">
+        <SectionHeader tag="Sound" title="Music Production" />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+        >
           <MusicCard
             text="2Bona - Candy"
             link="https://www.youtube.com/watch?v=GMIQ8ZWRQXo"
@@ -81,48 +101,52 @@ export default function Page() {
             text="Danči - Voziš"
             link="https://www.youtube.com/results?search_query=Danci+Vozis"
             image={Vozis}
-            desc="Voziš is a regional hit featuring smooth production by Aydhiny. A blend of regional trap and melodic rap tailored for the Balkan market."
+            desc="Regional hit featuring smooth production by Aydhiny. A blend of regional trap and melodic rap for the Balkan market."
             producers="Aydhiny"
           />
           <MusicCard
             text="Hanoi Capital - Charles & Panda"
             link="https://www.youtube.com/results?search_query=Hanoi+Capital+Charles+Panda"
             image={Hanoi}
-            desc="A creative collab with Hanoi Capital — moody, atmospheric production crafted by Aydhiny, Call Me G, and Nikola Tracks."
+            desc="Moody, atmospheric production crafted by Aydhiny, Call Me G, and Nikola Tracks in collaboration with Hanoi Capital."
             producers="Aydhiny x Call Me G x Nikola Tracks"
           />
-        </div>
-      </div>
+        </motion.div>
+      </section>
 
       {/* DESIGN */}
-      <div className="mt-16">
-        <h4 className="py-4 font-bold text-2xl sm:text-3xl text-gray-400">
-          Graphic Design
-        </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section>
+        <SectionHeader tag="Visual" title="Graphic Design" />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
           <DesignCard
             image={FLS}
             title="Future Leaders Summit 2024"
             link="https://bhfuturesfoundation.org/"
             category="Social Media Graphic Design"
-            desc="Futures Leaders Summit is an annual event for future leaders to help them rethink the present and reimagine the future — featuring world speakers, interactive workshops, and company visits."
+            desc="Designed every visual element for the Futures Leaders Summit — from branding to all promotional materials."
           />
           <DesignCard
             image={Bliss}
             title="Eternal Bliss : Music Tips"
             link="https://www.instagram.com/eternal_bliss_official/"
             category="Social Media Graphic Design"
-            desc="Eternal Bliss is an Instagram account run by music producer Ediba Deville, created for educating newer producers in the business."
+            desc="Instagram brand for music producer Ediba Deville, educating newer producers in the business."
           />
           <DesignCard
             image={Plansio}
             title="Plansio : Marketing Agency"
             link="https://www.instagram.com/plansio_central"
             category="Marketing, Social Media Design, Video Editing"
-            desc="Full digital marketing and branding work for Plansio — social media content creation, video editing, and user-facing design across multiple campaigns."
+            desc="Full digital marketing and branding work for Plansio — social media content, video editing, and design campaigns."
           />
-        </div>
-      </div>
+        </motion.div>
+      </section>
+
     </div>
   );
 }

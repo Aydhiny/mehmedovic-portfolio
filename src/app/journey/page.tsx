@@ -6,130 +6,153 @@ import ChaosImage from "@images/game/1.png";
 import MusicImage from "@images/music/aydhiny.jpg";
 import CodeImage from "@images/code.png";
 
+const milestones = [
+  {
+    year: "2018",
+    title: "The Sound",
+    subtitle: "Music Production Begins",
+    description:
+      "My love for music started it all. Producing beats and melodies taught me the power of creativity and perseverance. Six years later, over 5 million streams worldwide.",
+    image: MusicImage,
+    accent: "text-[var(--accent-teal)]",
+    border: "border-[var(--accent-teal)]/30",
+  },
+  {
+    year: "2021",
+    title: "The Code",
+    subtitle: "Discovering Software Engineering",
+    description:
+      "Coding opened a new world. The ability to bring ideas to life through logic and creativity has been transformative — from web apps to full-stack systems.",
+    image: CodeImage,
+    accent: "text-[var(--accent)]",
+    border: "border-[var(--accent)]/30",
+  },
+  {
+    year: "2024",
+    title: "The Game",
+    subtitle: "Hunter Mouse 2 — First Place",
+    description:
+      'My biggest project yet. "Hunter Mouse 2" combines all disciplines — code, music, and design — into one indie collectathon that won First Place at FIT Coding Challenge v18.',
+    image: ChaosImage,
+    accent: "text-yellow-400",
+    border: "border-yellow-400/30",
+  },
+];
+
 export default function Journey() {
   return (
-    <div className="bg-gradient-to-b from-purple-900 via-black to-gray-900 text-gray-100 min-h-screen overflow-hidden">
-      {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center h-screen px-6">
-        <motion.h1
-          className="text-4xl sm:text-6xl font-bold mb-4"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          From Dreamer to Doer
-        </motion.h1>
+    <div className="min-h-screen bg-[var(--bg)] text-white">
+
+      {/* Hero */}
+      <section className="relative flex flex-col items-center justify-center text-center min-h-[80vh] px-5 sm:px-8 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent)]/5 via-transparent to-transparent pointer-events-none" />
+
         <motion.p
-          className="text-lg sm:text-xl max-w-3xl"
+          className="label-tag mb-5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          The Story
+        </motion.p>
+
+        <motion.h1
+          className="text-5xl sm:text-7xl font-bold mb-4 leading-tight"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9 }}
+        >
+          From
+          <span className="font-garamond italic text-[var(--accent)] ml-3">Dreamer</span>
+          <br />
+          to <span className="font-garamond italic text-[var(--accent-teal)]">Doer</span>
+        </motion.h1>
+
+        <motion.p
+          className="text-[var(--fg-2)] text-lg sm:text-xl max-w-2xl leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
           A journey of passion, creativity, and relentless pursuit of growth.
-          Discover how music, coding, and design merge to create something
-          extraordinary.
+          How music, coding, and design merged into something extraordinary.
         </motion.p>
+
         <motion.div
-          className="mt-8 w-full h-2 bg-gray-700 rounded-xl relative overflow-hidden"
-          initial={{ width: "0%" }}
-          animate={{ width: "100%" }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-        >
-          <div className="absolute top-0 left-0 h-full bg-indigo-500 w-full animate-pulse"></div>
-        </motion.div>
+          className="mt-10 w-32 h-px bg-[var(--accent)] mx-auto"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.2, delay: 0.5, ease: "easeInOut" }}
+        />
       </section>
 
-      {/* Milestones Section */}
-      <section className="relative py-16 px-6">
-        <motion.div
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.5 }}
-        >
-          <div className="bg-gradient-to-b from-gray-800 to-black opacity-30 rounded-full h-[500px] w-[500px] mx-auto"></div>
-        </motion.div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
-          The Milestones
-        </h2>
-        <div className="flex flex-col space-y-12">
-          {/* Milestone 1 */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center sm:space-x-8"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Image
-              src={MusicImage}
-              alt="Music Journey"
-              className="w-48 sm:w-60 rounded-lg shadow-lg"
-            />
-            <div className="text-center sm:text-left">
-              <h3 className="text-2xl font-semibold mb-2">Early Days</h3>
-              <p className="text-gray-300">
-                My love for music started it all. Producing beats and melodies
-                taught me the power of creativity and perseverance.
-              </p>
-            </div>
-          </motion.div>
-          {/* Milestone 2 */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center sm:space-x-8"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Image
-              src={CodeImage}
-              alt="Coding Journey"
-              className="w-48 sm:w-60 rounded-lg shadow-lg"
-            />
-            <div className="text-center sm:text-left">
-              <h3 className="text-2xl font-semibold mb-2">Discovering Code</h3>
-              <p className="text-gray-300">
-                Coding opened a new world. The ability to bring ideas to life
-                through logic and creativity has been transformative.
-              </p>
-            </div>
-          </motion.div>
-          {/* Milestone 3 */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center sm:space-x-8"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Image
-              src={ChaosImage}
-              alt="Hunter Mouse"
-              className="w-48 sm:w-60 rounded-lg shadow-lg"
-            />
-            <div className="text-center sm:text-left">
-              <h3 className="text-2xl font-semibold mb-2">Hunter Mouse</h3>
-              <p className="text-gray-300">
-                My first major game project! &quot;HUNTER MOUSE&quot; is a
-                testament to how passion and collaboration can create something
-                magical. Combining all of my skills into one big game project.
-              </p>
-            </div>
-          </motion.div>
+      {/* Milestones */}
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 py-20">
+        <div className="space-y-24">
+          {milestones.map((m, i) => (
+            <motion.div
+              key={m.year}
+              className={`flex flex-col ${i % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-12 lg:gap-20`}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7 }}
+            >
+              {/* Image */}
+              <div className={`flex-1 relative rounded-2xl overflow-hidden border ${m.border}`}>
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)]/60 to-transparent z-10" />
+                <Image
+                  src={m.image}
+                  alt={m.title}
+                  width={600}
+                  height={400}
+                  className="w-full h-64 sm:h-80 object-cover"
+                />
+              </div>
+
+              {/* Text */}
+              <div className="flex-1 text-center lg:text-left">
+                <p className={`text-7xl font-bold ${m.accent} opacity-20 leading-none mb-2 font-garamond italic`}>
+                  {m.year}
+                </p>
+                <p className="label-tag mb-3">{m.subtitle}</p>
+                <h2 className="text-4xl sm:text-5xl font-bold text-white mb-5">
+                  {m.title.split(" ").map((word, wi) =>
+                    wi === 1 ? (
+                      <span key={wi} className={`font-garamond italic ${m.accent}`}> {word}</span>
+                    ) : (
+                      word + (wi === 0 ? " " : "")
+                    )
+                  )}
+                </h2>
+                <p className="text-[var(--fg-2)] leading-relaxed">{m.description}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Path Ahead Section */}
-      <section className="py-16 px-6 text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-8">The Path Ahead</h2>
-        <motion.p
-          className="text-lg sm:text-xl max-w-3xl mx-auto text-gray-300"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+      {/* Path Ahead */}
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 py-20 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="glass rounded-2xl p-12"
         >
-          The journey continues as I explore new horizons, blending the power of
-          code, design, and sound to make a difference in the world.
-        </motion.p>
+          <p className="label-tag mb-4">What&apos;s Next</p>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            The Path <span className="font-garamond italic text-[var(--accent)]">Ahead</span>
+          </h2>
+          <p className="text-[var(--fg-2)] text-lg max-w-2xl mx-auto leading-relaxed">
+            The journey continues as I explore new horizons, blending the power of
+            code, design, and sound to build things that matter — and make a difference
+            in the world.
+          </p>
+        </motion.div>
       </section>
+
     </div>
   );
 }

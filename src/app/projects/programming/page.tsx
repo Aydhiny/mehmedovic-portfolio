@@ -122,9 +122,8 @@ export default function Page() {
         <Image
           src="/images/banner.png"
           alt="Hunter Mouse 2 Banner"
-          layout="fill"
-          objectFit="cover"
-          className="w-full h-full"
+          fill
+          className="object-cover"
           priority
         />
       </div>
