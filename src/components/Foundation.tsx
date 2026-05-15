@@ -10,87 +10,76 @@ import { motion } from "framer-motion";
 export default function Foundation() {
   return (
     <motion.section
-      className="w-full max-w-6xl mx-auto px-2 sm:px-8 py-16 text-white mt-20 mb-20 flex flex-col items-center"
-      initial={{ opacity: 0, y: 40 }}
+      className="px-5 sm:px-8 py-20 max-w-7xl mx-auto"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7 }}
     >
-      {/* Logo at the top */}
-      <div className="w-full flex justify-center mb-10">
-        <Image
-          src={BhfLogo}
-          alt="BH Futures Foundation Logo"
-          width={260}
-          height={260}
-          className="drop-shadow-xl"
-          priority
-        />
-      </div>
+      <div className="flex flex-col lg:flex-row items-center gap-16">
 
-      {/* Main Content */}
-      <div className="flex flex-col-reverse lg:flex-row items-center justify-between w-full gap-14">
-        {/* Text Content */}
+        {/* Text */}
         <div className="flex-1 w-full">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-3 tracking-tight text-center lg:text-left">
+          <div className="mb-8">
+            <Image
+              src={BhfLogo}
+              alt="BH Futures Foundation Logo"
+              width={160}
+              height={160}
+              className="brightness-90"
+            />
+          </div>
+
+          <p className="label-tag mb-3">Fellowship</p>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-2 tracking-tight">
             BH Futures Foundation
           </h2>
-          <p className="text-main-app-purple text-xl font-semibold mb-4 text-center lg:text-left">
+          <p className="text-[var(--accent)] text-base font-semibold mb-5">
             Senior Scholar & Marketing Team Member
           </p>
-          <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-2xl text-center lg:text-left mx-auto lg:mx-0">
+          <p className="text-[var(--fg-2)] text-base leading-relaxed mb-8 max-w-xl">
             As a proud Senior Scholar and active member of the marketing team at{" "}
-            <span className="font-semibold text-white">
+            <span className="text-white font-medium">
               Bosnia & Herzegovina Futures Foundation
             </span>
             , I help empower youth, promote STEM education, and build a brighter
-            future for Bosnia and Herzegovina. My work includes digital
-            campaigns, event promotion, and community engagement, collaborating
-            with an inspiring network of scholars and professionals. I am
-            dedicated to making a positive impact and supporting the next
-            generation of leaders in Bosnia and Herzegovina through innovative
-            outreach and teamwork.
+            future for Bosnia and Herzegovina through digital campaigns, event
+            promotion, and community engagement.
           </p>
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 mt-6">
-            <Link
-              href="https://bhfuturesfoundation.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex border-b-4 cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center text-center px-5 py-3 bg-main-app-purple text-white"
-            >
-              <FaGlobe className="text-xl mr-2" />
-              Website
-            </Link>
-            <Link
-              href="https://www.linkedin.com/company/bhfuturesfoundation/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex border-b-4 cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center text-center px-5 py-3 bg-main-app-purple text-white"
-            >
-              <FaLinkedin className="text-xl mr-2" />
-              LinkedIn
-            </Link>
-            <Link
-              href="https://instagram.com/bhfuturesfoundation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex border-b-4 cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center text-center px-5 py-3 bg-main-app-purple text-white"
-            >
-              <FaInstagram className="text-xl mr-2" />
-              Instagram
-            </Link>
+
+          <div className="flex flex-wrap gap-3">
+            {[
+              { href: "https://bhfuturesfoundation.org/", icon: <FaGlobe />, label: "Website" },
+              { href: "https://www.linkedin.com/company/bhfuturesfoundation/", icon: <FaLinkedin />, label: "LinkedIn" },
+              { href: "https://instagram.com/bhfuturesfoundation", icon: <FaInstagram />, label: "Instagram" },
+            ].map(({ href, icon, label }) => (
+              <Link
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border-2)] text-[var(--fg-2)] hover:border-[var(--accent)] hover:text-white text-sm font-medium transition-colors duration-150"
+              >
+                {icon}
+                {label}
+              </Link>
+            ))}
           </div>
         </div>
-        {/* Scholar Image */}
-        <div className="flex-1 flex justify-center items-center mb-10 lg:mb-0">
-          <Image
-            src={ScholarImg}
-            alt="BH Futures Foundation Scholar"
-            width={540}
-            height={540}
-            className="shadow-2xl object-cover w-full max-w-lg h-auto"
-          />
+
+        {/* Image */}
+        <div className="flex-1 flex justify-center lg:justify-end">
+          <div className="relative w-full max-w-md overflow-hidden rounded-2xl border border-[var(--border)]">
+            <Image
+              src={ScholarImg}
+              alt="BH Futures Foundation Scholar"
+              width={540}
+              height={540}
+              className="object-cover w-full h-auto"
+            />
+          </div>
         </div>
+
       </div>
     </motion.section>
   );

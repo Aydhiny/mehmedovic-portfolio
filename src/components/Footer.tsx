@@ -5,82 +5,60 @@ import { usePathname } from "next/navigation";
 import Aydhiny from "../images/ay.png";
 import Link from "next/link";
 
+const links = [
+  { label: "Home", href: "/" },
+  { label: "Blog", href: "/blog" },
+  { label: "Journey", href: "/journey" },
+  { label: "Next Big Thing", href: "/next-big-thing" },
+  { label: "About", href: "/about" },
+];
+
 export default function Footer() {
   const pathname = usePathname();
 
-  const isActive = (path: string) =>
-    pathname === path
-      ? "text-main-app-purple font-bold"
-      : "hover:text-main-app-purple";
-
   return (
-    <div className="px-4 py-6 md:px-16 lg:px-52">
-      <div className="mb-8 border-t border-gray-500"></div>
-      <nav>
-        <ul className="flex flex-wrap justify-center gap-4">
-          <li>
-            <Link
-              className={`transition-colors duration-150 ${isActive("/")}`}
-              href="/"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={`transition-colors duration-150 ${isActive("/blog")}`}
-              href="/blog"
-            >
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={`transition-colors duration-150 ${isActive(
-                "/journey"
-              )}`}
-              href="/journey"
-            >
-              Journey
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={`transition-colors duration-150 ${isActive(
-                "/next-big-thing"
-              )}`}
-              href="/next-big-thing"
-            >
-              Next Big Thing
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={`transition-colors duration-150 ${isActive("/about")}`}
-              href="/about"
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <a
-              className={`transition-colors duration-150 ${isActive("/email")}`}
-              href="mailto:ajdin.mehmedovic@edu.fit.ba"
-            >
-              Email Me
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <footer className="border-t border-[var(--border)] mt-10">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 py-10">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
 
-      <div className="flex flex-col items-center mt-6 text-center">
-        <p className="text-gray-400 text-sm md:text-base">
-          Powered by <span className="text-main-app-purple">Next.js</span> and{" "}
-          <span className="text-main-app-purple">TailwindCSS.</span> <br />
-          Hosted on Vercel @Plansio, Aydhiny Beats 2024
-        </p>
-        <Image alt="ay-logo" className="p-2 mt-4" src={Aydhiny} width={40} height={40} />
+          <div className="flex items-center gap-2.5">
+            <Image alt="Aydhiny logo" src={Aydhiny} width={24} height={24} className="opacity-70" />
+            <span className="text-sm text-[var(--fg-3)] font-medium">Ajdin Mehmedović</span>
+          </div>
+
+          <nav>
+            <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2">
+              {links.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className={`text-sm transition-colors duration-150 ${
+                      pathname === href
+                        ? "text-white font-medium"
+                        : "text-[var(--fg-3)] hover:text-[var(--fg-2)]"
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <a
+                  href="mailto:ajdin.mehmedovic@edu.fit.ba"
+                  className="text-sm text-[var(--fg-3)] hover:text-[var(--fg-2)] transition-colors duration-150"
+                >
+                  Email
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <p className="text-xs text-[var(--fg-3)]">
+            © {new Date().getFullYear()} Aydhiny
+          </p>
+
+        </div>
       </div>
-    </div>
+    </footer>
   );
 }

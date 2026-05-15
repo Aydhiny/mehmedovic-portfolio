@@ -1,79 +1,98 @@
+"use client";
 import React from "react";
+import { motion } from "framer-motion";
+
+const competitions = [
+  {
+    place: "1st Place",
+    title: "FIT Coding Challenge v18 · 2025",
+    project: "Hunter Mouse 2 — Collectathon Adventure Game",
+    tags: ["Game Development", "Music Production", "Design"],
+    highlight: true,
+  },
+  {
+    place: "2nd Place",
+    title: "FIT Coding Challenge v17",
+    project: "Hunter Mouse — Linear Platformer Game",
+    tags: ["Game Development", "Music Production", "Design"],
+    highlight: false,
+  },
+  {
+    place: "2nd Place",
+    title: "HackAtHome Mostar · 2022",
+    project: "Smart Parking System Solution",
+    tags: ["Frontend Development", "Graphic Design"],
+    highlight: false,
+  },
+  {
+    place: "Certificate",
+    title: "Sarajevo Telemach Good Hackathon · 2022",
+    project: "Kubos Documents — Mobile E-Municipality Solution",
+    tags: ["Web Development", "UI Design"],
+    highlight: false,
+  },
+  {
+    place: "Participant",
+    title: "EVONA Hackathon · 2023",
+    project: "Full-Stack in 24 Hours — Leaderboard App",
+    tags: ["Web Development", "Frontend"],
+    highlight: false,
+  },
+];
 
 export default function Clients() {
   return (
-    <div>
-      <h1 className="font-bold px-12 py-4 mt-4 xl:mt-4 mb-4 sm:px-52 text-4xl sm:text-5xl xl:text-6xl">
-        Competitions
-      </h1>
-      <div className="p-6 sm:p-8 md:p-12 mb-12 xl:mb-36 bg-gradient-to-r from-zinc-800 to-main-background-grey shadow-2xl">
-        <div className="flex justify-center flex-wrap gap-6 sm:gap-8">
-          {/* Card 1 */}
-          <div className="flex flex-col items-center text-center hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out">
-            <p className="mt-4 text-lg sm:text-xl font-semibold">
-              HackAtHome Mostar 2022 Second Place
-            </p>
-            <p className="text-md sm:text-lg text-gray-200">
-              Smart Parking System Solution
-            </p>
-            <p className="text-sm sm:text-md text-gray-500">
-              Frontend Development, Graphic Design
-            </p>
-          </div>
+    <div className="px-5 sm:px-8 py-20 max-w-7xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mb-10"
+      >
+        <p className="label-tag mb-3">Competitions</p>
+        <h2 className="text-4xl sm:text-5xl font-bold text-white">Awards & Hackathons</h2>
+      </motion.div>
 
-          {/* Card 2 */}
-          <div className="flex mx-4 flex-col items-center text-center hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out">
-            <p className="mt-4 text-2xl sm:text-4xl font-semibold">
-              FIT Coding Challenge 2025 -{" "}
-              <span className="font-bold text-violet-500">FIRST PLACE</span>
-            </p>
-            <p className="text-lg sm:text-xl text-gray-200">
-              Collectathon Adventure Game - Hunter Mouse 2
-            </p>
-            <p className="text-md sm:text-lg text-gray-500">
-              Game Development, Music Production & Design
-            </p>
-          </div>
-
-          {/* Card 3 */}
-          <div className="flex flex-col items-center text-center hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out">
-            <p className="mt-4 text-lg sm:text-xl font-semibold">
-              FIT Coding Challenge v17 Second Place Winner
-            </p>
-            <p className="text-md sm:text-lg text-gray-200">
-              Linear Platformer Game - Hunter Mouse
-            </p>
-            <p className="text-md sm:text-lg text-gray-500">
-              Game Development, Music Production & Design
-            </p>
-          </div>
-
-          {/* Card 4 */}
-          <div className="flex flex-col items-center text-center hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out">
-            <p className="mt-4 text-lg sm:text-xl font-semibold">
-              Sarajevo Telemach Good Hackathon 2022 Certificate
-            </p>
-            <p className="text-md sm:text-lg text-gray-200">
-              Kubos Documents - Mobile E-Municipality Solution
-            </p>
-            <p className="text-md sm:text-lg text-gray-500">
-              Web Development, UI Design
-            </p>
-          </div>
-
-          {/* Card 5 */}
-          <div className="flex flex-col items-center text-center hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out">
-            <p className="mt-4 text-lg sm:text-xl font-semibold">
-              EVONA Hackathon 2023
-            </p>
-            <p className="text-md sm:text-lg text-gray-200">
-              Full-Stack in 24 Hours - Leaderboard App
-            </p>
-            <p className="text-md sm:text-lg text-gray-500">
-              Web Development, Frontend
-            </p>
-          </div>
-        </div>
+      <div className="space-y-3">
+        {competitions.map((comp, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: i * 0.07 }}
+            className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 px-5 py-4 rounded-xl border transition-colors duration-150 ${
+              comp.highlight
+                ? "border-[var(--accent)] bg-[var(--accent-muted)]"
+                : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--border-2)]"
+            }`}
+          >
+            <span
+              className={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap self-start sm:self-auto ${
+                comp.highlight
+                  ? "bg-[var(--accent)] text-white"
+                  : "bg-[var(--surface-2)] text-[var(--fg-2)]"
+              }`}
+            >
+              {comp.place}
+            </span>
+            <div className="flex-1 min-w-0">
+              <p className="text-white text-sm font-semibold">{comp.title}</p>
+              <p className="text-[var(--fg-2)] text-sm">{comp.project}</p>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {comp.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-xs text-[var(--fg-3)] border border-[var(--border)] rounded-md px-2 py-0.5"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
