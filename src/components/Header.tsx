@@ -2,128 +2,102 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaDownload } from "react-icons/fa6";
-import { FaGithub } from "react-icons/fa6";
+import { FaDownload, FaGithub } from "react-icons/fa6";
 import Profile from "../images/profile-pic.png";
-import { TiNotes } from "react-icons/ti";
-import { FaPenFancy } from "react-icons/fa";
-import { FaCodeBranch } from "react-icons/fa";
-import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 
 export default function Header() {
   return (
-    <div className="flex flex-col xl:flex-row p-6 sm:p-12 xl:p-24 mt-24 xl:m-0 justify-center text-center cursor-default">
-      <div>
-        {/* Header Section */}
-        <motion.div
-          className="flex flex-col text-start items-center xl:items-center xl:flex-row text-gray-50 xl:text-center"
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <motion.div
-            className="font-bold text-4xl sm:text-5xl xl:text-6xl pb-2 pt-4 xl:mr-4"
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-          >
-            <Typewriter
-              words={["Ajdin Mehmedović"]}
-              loop
-              cursor
-              cursorStyle="|"
-              typeSpeed={100}
-              deleteSpeed={80}
-              delaySpeed={1000}
-            />
-          </motion.div>
-          <motion.div
-            className="hidden xl:flex"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            <FaCodeBranch className="size-10 mx-2" />
-            <TiNotes className="size-10 mx-2" />
-            <FaPenFancy className="size-10 mx-2" />
-          </motion.div>
-        </motion.div>
+    <section className="min-h-screen flex items-center justify-center px-5 sm:px-8 pt-16">
+      <div className="max-w-7xl w-full mx-auto">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-16 py-20">
 
-        {/* Content Section */}
-        <motion.div
-          className="flex flex-col p-0 sm:flex-row items-center sm:items-start"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-        >
-          <div className="flex flex-col items-center sm:items-start mb-6 sm:mb-0 sm:mr-6">
+          {/* Text */}
+          <motion.div
+            className="flex-1 text-center lg:text-left"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <motion.p
-              className="text-gray-300 text-sm sm:text-base text-center sm:text-left"
+              className="label-tag mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.8 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
             >
-              Software Engineering Student, Music Producer,{" "}
-              <br className="hidden sm:block" />
-              Graphic Designer
+              Portfolio
             </motion.p>
-            <div className="flex flex-col sm:flex-row sm:space-x-4 mt-4 sm:mt-6">
+
+            <motion.h1
+              className="text-5xl sm:text-6xl xl:text-7xl font-bold tracking-tight text-white leading-[1.05] mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+            >
+              Ajdin
+              <br />
+              <span className="text-[var(--accent)]">Mehmedović</span>
+            </motion.h1>
+
+            <motion.p
+              className="text-[var(--fg-2)] text-base sm:text-lg mb-10 max-w-md mx-auto lg:mx-0 leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.7 }}
+            >
+              Software Engineer · Music Producer · Game Developer · Graphic Designer
+            </motion.p>
+
+            <motion.div
+              className="flex flex-wrap gap-3 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65, duration: 0.6 }}
+            >
               <Link
-                className="pr-2 flex"
                 href="/ajdin_mehmedovic_cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-semibold transition-colors duration-150 glow-button"
               >
-                <motion.div
-                  className="flex border-b-4 cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center rounded-xl text-center px-4 py-2 bg-main-app-purple text-white mb-4 sm:mb-0"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1 }}
-                >
-                  Download CV
-                  <FaDownload className="size-5 ml-2" />
-                </motion.div>
+                Download CV
+                <FaDownload className="size-3.5" />
               </Link>
               <Link
-                className="pr-2 text-center items-center justify-center"
                 href="https://github.com/Aydhiny"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[var(--border-2)] text-[var(--fg-2)] hover:border-[var(--accent)] hover:text-white text-sm font-semibold transition-colors duration-150"
               >
-                <motion.div
-                  className="flex border-b-4 font-bold items-center justify-center cursor-pointer rounded-xl border px-4 py-2 hover:text-main-app-purple hover:border-main-app-purple hover:bg-main-background-grey transition-all duration-150 border-white text-center"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.2 }}
-                >
-                  Github
-                  <FaGithub className="size-5 ml-2" />
-                </motion.div>
+                GitHub
+                <FaGithub className="size-3.5" />
               </Link>
-            </div>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 1.4 }}
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 8px 32px 0 rgba(144,0,255,0.25)",
-            }}
-            whileTap={{ scale: 0.97 }}
-            className="overflow-hidden"
-          >
-            <Image
-              className="w-52 border-b-8 border-b-white sm:w-48 xl:w-96 hover:opacity-65 bg-main-background-grey p-2 sm:p-4 rounded-full shadow-xl border-2 border-violet-500 transition-all duration-300"
-              src={Profile}
-              alt="Ajdin Mehmedović profile photo"
-              width={400}
-              height={400}
-              priority
-              draggable={false}
-            />
+            </motion.div>
           </motion.div>
-        </motion.div>
+
+          {/* Profile image */}
+          <motion.div
+            className="flex-shrink-0"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.9, ease: "easeOut" }}
+          >
+            <div className="relative">
+              <div className="absolute inset-0 rounded-full bg-[var(--accent)] opacity-20 blur-3xl scale-110" />
+              <Image
+                src={Profile}
+                alt="Ajdin Mehmedović profile photo"
+                width={340}
+                height={340}
+                priority
+                draggable={false}
+                className="relative rounded-full border border-[var(--border)] object-cover w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80"
+              />
+            </div>
+          </motion.div>
+
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
