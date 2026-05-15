@@ -2,17 +2,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { PlyrSource } from "plyr-react";
-import "plyr-react/plyr.css";
 import {
   FaGamepad,
   FaPuzzlePiece,
   FaMusic,
   FaMousePointer,
 } from "react-icons/fa";
-import dynamic from "next/dynamic";
-
-const Plyr = dynamic(() => import("plyr-react"), { ssr: false });
 
 const features = [
   {
@@ -38,14 +33,6 @@ const features = [
 ];
 
 export default function HunterMouseShowcase() {
-  const videoSources: PlyrSource = {
-    type: "video",
-    sources: [
-      { src: "/videos/huntermouse2.mp4", type: "video/mp4", size: 1080 },
-      { src: "/videos/huntermouse2.mp4", type: "video/mp4", size: 720 },
-    ],
-  };
-
   return (
     <div className="px-5 sm:px-8 py-20 max-w-7xl mx-auto">
 
@@ -58,19 +45,28 @@ export default function HunterMouseShowcase() {
       >
         <p className="label-tag mb-3">Showcase</p>
         <h2 className="text-4xl sm:text-5xl font-bold text-white">
-          Hunter Mouse 2 — Official Trailer
+          Hunter Mouse 2
+          <span className="font-garamond italic text-[var(--accent)] ml-3 text-4xl sm:text-5xl">
+            Official Trailer
+          </span>
         </h2>
       </motion.div>
 
-      {/* Video */}
+      {/* YouTube Video */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="rounded-2xl overflow-hidden border border-[var(--border)] mb-12"
+        className="rounded-2xl overflow-hidden border border-[var(--border)] mb-12 aspect-video"
       >
-        <Plyr source={videoSources} />
+        <iframe
+          src="https://www.youtube.com/embed/Glwv6vjXREs?rel=0&modestbranding=1"
+          title="Hunter Mouse 2 Official Trailer 4K"
+          className="w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
       </motion.div>
 
       {/* Description */}
@@ -89,7 +85,7 @@ export default function HunterMouseShowcase() {
       </motion.p>
 
       {/* Features */}
-      <div className="grid sm:grid-cols-2 gap-5 mb-12">
+      <div className="grid sm:grid-cols-2 gap-4 mb-12">
         {features.map(({ icon, title, desc }, i) => (
           <motion.div
             key={title}
@@ -97,7 +93,7 @@ export default function HunterMouseShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: i * 0.08 }}
-            className="flex gap-4 p-5 rounded-xl bg-[var(--surface)] border border-[var(--border)]"
+            className="glass flex gap-4 p-5 rounded-xl"
           >
             {icon}
             <div>
