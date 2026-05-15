@@ -12,17 +12,13 @@ export default {
         "slide-down": "slide-down 0.6s ease-in-out",
         "slide-up": "slide-up 0.6s ease-in-out",
         "pulse-fast": "pulse 3s linear infinite",
-        "gradient-shift": "gradientShift 5s infinite alternate",
         train: "move-train 5s linear infinite",
+        marquee: "marquee 35s linear infinite",
       },
       keyframes: {
         "move-train": {
           "0%": { transform: "translateX(-150%)" },
           "100%": { transform: "translateX(2000%)" },
-        },
-        gradientShift: {
-          "0%": { backgroundPosition: "0% 50%" },
-          "100%": { backgroundPosition: "100% 50%" },
         },
         "slide-down": {
           "0%": { transform: "translateY(-100%)", opacity: "0" },
@@ -32,16 +28,23 @@ export default {
           "0%": { transform: "translateY(0)", opacity: "1" },
           "100%": { transform: "translateY(-100%)", opacity: "0" },
         },
-      },
-      backgroundImage: {
-        "site-pattern": "url('/src/images/pattern.svg')",
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        "main-background-grey": "#242424",
-        "main-app-teal": "#01FEE1",
-        "main-app-purple": "#9000FF",
+        background: "var(--bg)",
+        surface: "var(--surface)",
+        "surface-2": "var(--surface-2)",
+        border: "var(--border)",
+        foreground: "var(--fg)",
+        "text-2": "var(--fg-2)",
+        "text-3": "var(--fg-3)",
+        // Legacy aliases kept so existing Tailwind classes compile unchanged
+        "main-background-grey": "#070707",
+        "main-app-teal": "#00cfb4",
+        "main-app-purple": "#7c3aed",
       },
     },
   },
