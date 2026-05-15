@@ -26,7 +26,7 @@ export default function CustomCursor() {
   }, []);
 
   useEffect(() => {
-    const move = (e: any) => {
+    const move = (e: MouseEvent) => {
       animate(x, e.clientX - CURSOR_SIZE / 2, {
         type: "spring",
         stiffness: 500,
@@ -41,11 +41,13 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", move);
 
     // Hover logic
-    const addHover = (e: any) => {
-      if (e.target.closest("a, button, .cursor-hover")) setHovered(true);
+    const addHover = (e: MouseEvent) => {
+      if ((e.target as Element).closest("a, button, .cursor-hover"))
+        setHovered(true);
     };
-    const removeHover = (e: any) => {
-      if (e.target.closest("a, button, .cursor-hover")) setHovered(false);
+    const removeHover = (e: MouseEvent) => {
+      if ((e.target as Element).closest("a, button, .cursor-hover"))
+        setHovered(false);
     };
     window.addEventListener("mouseover", addHover);
     window.addEventListener("mouseout", removeHover);

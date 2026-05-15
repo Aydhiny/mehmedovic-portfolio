@@ -15,6 +15,7 @@ import {
   FaSearchPlus,
   FaTimes,
 } from "react-icons/fa";
+import { StaticImageData } from "next/image";
 import Logo from "@images/sequel/logo.png";
 import Screenshot1 from "@images/sequel/screenshot1.png";
 import Screenshot2 from "@images/sequel/screenshot2.png";
@@ -26,7 +27,13 @@ import World1 from "@images/sequel/world1.png";
 import World2 from "@images/sequel/world2.png";
 import SoundtrackCover from "@images/sequel/soundtrack.png";
 
-const Lightbox = ({ src, alt, onClose }: any) => {
+interface LightboxProps {
+  src: StaticImageData | null;
+  alt: string;
+  onClose: () => void;
+}
+
+const Lightbox = ({ src, alt, onClose }: LightboxProps) => {
   if (!src) return null;
 
   return (
@@ -49,11 +56,9 @@ const Lightbox = ({ src, alt, onClose }: any) => {
         <Image
           src={src}
           alt={alt}
-          layout="intrinsic"
           width={1200}
           height={800}
-          objectFit="contain"
-          className="rounded-lg"
+          className="rounded-lg object-contain"
         />
         <button
           className="absolute top-4 right-4 text-white hover:text-violet-400 transition-colors duration-200"
@@ -72,10 +77,12 @@ export default function Page() {
   const worlds = [World1, World2];
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState(null);
+  const [currentImage, setCurrentImage] = useState<StaticImageData | null>(
+    null
+  );
   const [currentAlt, setCurrentAlt] = useState("");
 
-  const openLightbox = (imageSrc: any, imageAlt: any) => {
+  const openLightbox = (imageSrc: StaticImageData, imageAlt: string) => {
     setCurrentImage(imageSrc);
     setCurrentAlt(imageAlt);
     setLightboxOpen(true);

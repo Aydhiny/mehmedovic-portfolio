@@ -79,7 +79,7 @@ export default function Footer() {
           <span className="text-main-app-purple">TailwindCSS.</span> <br />
           Hosted on Vercel @Plansio, Aydhiny Beats 2024
         </p>
-        <Image alt="ay-logo" className="p-2 mt-4" src={Aydhiny} />
+        <Image alt="ay-logo" className="p-2 mt-4" src={Aydhiny} width={40} height={40} />
       </div>
     </div>
   );

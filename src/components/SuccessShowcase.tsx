@@ -49,7 +49,7 @@ export default function SuccessShowcase() {
         "Designed every visual element for the entire Futures Leaders Summit, from branding to promotional materials.",
       image: "/images/success/fls_design.png",
       icon: <FaPaintBrush className="text-green-400 text-4xl" />,
-      link: "https://your-futures-summit-link.com",
+      link: "https://bhfuturesfoundation.org/",
     },
   ];
 
@@ -179,9 +179,8 @@ export default function SuccessShowcase() {
                   <Image
                     src={success.image}
                     alt={success.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="w-full h-full"
+                    fill
+                    className="object-cover"
                   />
                 </div>
                 <div className="p-6">
