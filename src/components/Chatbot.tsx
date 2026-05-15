@@ -38,13 +38,15 @@ const Chatbot: React.FC = () => {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? "Close chat" : "Open chat"}
+        aria-expanded={isOpen}
         className="fixed z-50 bottom-2 right-4 bg-main-app-purple text-main-background-grey w-12 h-12 rounded-full shadow-md flex items-center justify-center transition-transform duration-300 hover:scale-110"
         style={{
           backgroundColor: "#9000FF",
           boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
         }}
       >
-        <TbMessageChatbotFilled className="size-6 z-50" />
+        <TbMessageChatbotFilled className="size-6 z-50" aria-hidden="true" />
       </button>
 
       {/* Chatbox */}

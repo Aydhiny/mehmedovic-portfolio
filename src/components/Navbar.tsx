@@ -36,9 +36,15 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
               className="text-white text-2xl"
             >
-              {menuOpen ? <HiX /> : <HiMenu />}
+              {menuOpen ? (
+                <HiX aria-hidden="true" />
+              ) : (
+                <HiMenu aria-hidden="true" />
+              )}
             </button>
           </div>
 
@@ -113,22 +119,25 @@ export default function Navbar() {
               href="https://instagram.com/ajdinmehmedovix"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Instagram"
             >
-              <GrInstagram className="text-white text-2xl ml-4 size-5 hover:text-main-app-purple transition-colors duration-150" />
+              <GrInstagram className="text-white text-2xl ml-4 size-5 hover:text-main-app-purple transition-colors duration-150" aria-hidden="true" />
             </Link>
             <Link
               href="https://beatstars.com/aydhiny"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="BeatStars"
             >
-              <SiBeatstars className="text-white text-2xl ml-4 size-5 hover:text-main-app-purple transition-colors duration-150" />
+              <SiBeatstars className="text-white text-2xl ml-4 size-5 hover:text-main-app-purple transition-colors duration-150" aria-hidden="true" />
             </Link>
             <Link
               href="https://youtube.com/Aydhiny"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="YouTube"
             >
-              <FaYoutube className="text-white text-2xl ml-4 hover:text-main-app-purple transition-colors duration-150" />
+              <FaYoutube className="text-white text-2xl ml-4 hover:text-main-app-purple transition-colors duration-150" aria-hidden="true" />
             </Link>
           </div>
         </ul>
