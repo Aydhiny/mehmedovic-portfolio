@@ -63,9 +63,9 @@ export default function Journey() {
           transition={{ duration: 0.9 }}
         >
           From
-          <span className="font-garamond italic text-[var(--accent)] ml-3">Dreamer</span>
+          <span className="font-garamond font-bold italic text-[var(--accent)] ml-3 text-6xl sm:text-8xl">Dreamer</span>
           <br />
-          to <span className="font-garamond italic text-[var(--accent-teal)]">Doer</span>
+          to <span className="font-garamond font-bold italic text-[var(--accent-teal)] text-6xl sm:text-8xl">Doer</span>
         </motion.h1>
 
         <motion.p
@@ -119,7 +119,7 @@ export default function Journey() {
                 <h2 className="text-4xl sm:text-5xl font-bold text-white mb-5">
                   {m.title.split(" ").map((word, wi) =>
                     wi === 1 ? (
-                      <span key={wi} className={`font-garamond italic ${m.accent}`}> {word}</span>
+                      <span key={wi} className={`font-garamond font-bold italic ${m.accent} text-5xl sm:text-6xl`}> {word}</span>
                     ) : (
                       word + (wi === 0 ? " " : "")
                     )
@@ -143,7 +143,7 @@ export default function Journey() {
         >
           <p className="label-tag mb-4">What&apos;s Next</p>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            The Path <span className="font-garamond italic text-[var(--accent)]">Ahead</span>
+            The Path <span className="font-garamond font-bold italic text-[var(--accent)] text-5xl sm:text-6xl">Ahead</span>
           </h2>
           <p className="text-[var(--fg-2)] text-lg max-w-2xl mx-auto leading-relaxed">
             The journey continues as I explore new horizons, blending the power of

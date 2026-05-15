@@ -1,167 +1,247 @@
 "use client";
-import Header from "./Header";
+import Image from "next/image";
 import MusicCard from "@/components/MusicCard";
 import Bona from "@images/projects/2bona.jpg";
 import Bread from "@images/projects/bread.jpg";
 import Vozis from "@images/projects/vozis.jpg";
 import Hanoi from "@images/projects/hanoi.jpg";
 import Candy from "@images/music/candy.jpg";
-import ClientCard from "./ClientCard";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.8, ease: "easeOut" },
+const tracks = [
+  {
+    text: "2Bona - Candy",
+    link: "https://www.youtube.com/watch?v=GMIQ8ZWRQXo",
+    image: Bona,
+    desc: "An irresistible beat with sugary-sweet melodies — over 5 million plays worldwide.",
+    producers: "Aydhiny x Call Me G x Nikola Tracks",
   },
-};
-
-const sectionVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 1, ease: "easeInOut" },
+  {
+    text: "Shark Puppet x YBN NAHMIR - Gettin Bread",
+    link: "https://www.youtube.com/watch?v=dEqu-7yvzhk",
+    image: Bread,
+    desc: "A high-energy hip-hop collab featuring Shark Puppet and YBN NAHMIR.",
+    producers: "Aydhiny x Call Me G",
   },
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.3, delayChildren: 0.2 },
+  {
+    text: "Danči - Voziš",
+    link: "https://www.youtube.com/watch?v=f6zvcjW95cs",
+    image: Vozis,
+    desc: "Regional hit blending Balkan trap with melodic rap production.",
+    producers: "Aydhiny",
   },
-};
+  {
+    text: "Hanoi Capital - Charles & Panda",
+    link: "https://www.youtube.com/watch?v=iYK4cKJC0QQ",
+    image: Hanoi,
+    desc: "Moody, atmospheric production crafted in collaboration with Hanoi Capital.",
+    producers: "Aydhiny x Call Me G x Nikola Tracks",
+  },
+];
 
-export default function Page() {
+const stats = [
+  { value: "5M+", label: "Total Streams" },
+  { value: "6+", label: "Years Producing" },
+  { value: "50+", label: "Beats Released" },
+  { value: "10+", label: "Artists Featured" },
+];
+
+export default function MusicPage() {
   return (
-    <div
-      className="bg-[url('/music.svg')]"
-      style={{
-        backgroundRepeat: "repeat",
-        backgroundSize: "100px auto",
-      }}
-    >
-      <Header />
-      <motion.div
-        className="text-center items-center"
-        initial="hidden"
-        animate="visible"
-        variants={sectionVariants}
-      >
-        <ClientCard />
-        <motion.h4
-          className="py-4 my-8 font-bold text-2xl sm:text-3xl text-white"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+    <div className="min-h-screen bg-[var(--bg)] text-white">
+
+      {/* Hero */}
+      <section className="relative flex flex-col items-center justify-center text-center min-h-[75vh] px-5 sm:px-8 overflow-hidden pt-28">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[var(--accent)]/10 blur-[120px] rounded-full" />
+          <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[var(--accent-teal)]/8 blur-[100px] rounded-full" />
+        </div>
+
+        <motion.p
+          className="label-tag mb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
         >
-          Music Production Projects
-        </motion.h4>
+          Sound
+        </motion.p>
+
+        <motion.h1
+          className="mb-6 leading-none"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9 }}
+        >
+          <span className="block text-2xl font-light tracking-[0.22em] uppercase text-[var(--fg-3)]">
+            Music
+          </span>
+          <span className="block font-garamond font-bold italic text-[5rem] sm:text-[7rem] lg:text-[8rem] text-[var(--accent)] leading-[0.9]">
+            Production
+          </span>
+        </motion.h1>
+
+        <motion.p
+          className="text-[var(--fg-2)] text-lg max-w-xl leading-relaxed mb-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          Six years crafting beats under the alias <strong className="text-white">Aydhiny</strong> — from bedroom studio to millions of streams worldwide.
+        </motion.p>
 
         <motion.div
-          className="flex items-center justify-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
+          className="flex gap-4 justify-center"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                text: "2Bona - Candy",
-                link: "https://www.youtube.com/watch?app=desktop&v=GMIQ8ZWRQXo&t=0s",
-                image: Bona,
-                desc: "2BONA - Candy, a music project crafted by the talented trio of Aydhiny, Call Me G, and Nikola Tracks. With its irresistible beat and sugary-sweet melodies, Candy is sure to leave you wanting more. 🎶🍬",
-                producers: "Aydhiny x Call Me G x Nikola Tracks",
-              },
-              {
-                text: "Shark Puppet x YBN NAHMIR - Gettin Bread",
-                link: "https://www.youtube.com/watch?v=dEqu-7yvzhk",
-                image: Bread,
-                desc: "A playful and energetic track with unique flavor and iconic vibes.",
-                producers: "Aydhiny x Call Me G",
-              },
-              {
-                text: "Danči - Voziš",
-                link: "https://www.youtube.com/watch?v=f6zvcjW95cs",
-                image: Vozis,
-                desc: "Catchy and compelling, Voziš is a showcase of true musical artistry.",
-                producers: "Aydhiny",
-              },
-              {
-                text: "Hanoi Capital - Charles & Panda",
-                link: "https://www.youtube.com/watch?v=iYK4cKJC0QQ",
-                image: Hanoi,
-                desc: "An experimental and futuristic sound that pushes boundaries.",
-                producers: "Aydhiny x Call Me G x Nikola Tracks",
-              },
-            ].map((project, index) => (
-              <motion.div key={index} variants={cardVariants}>
-                <MusicCard
-                  text={project.text}
-                  link={project.link}
-                  image={project.image}
-                  desc={project.desc}
-                  producers={project.producers}
-                />
-              </motion.div>
-            ))}
+          <Link
+            href="https://instagram.com/aydhiny_beatz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-btn flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold"
+          >
+            <FaInstagram className="size-4" /> Follow
+          </Link>
+          <Link
+            href="https://www.youtube.com/Aydhiny"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-btn flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold"
+          >
+            <FaYoutube className="size-4" /> YouTube
+          </Link>
+        </motion.div>
+      </section>
+
+      {/* Stats */}
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16">
+        <motion.div
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          {stats.map((s) => (
+            <div key={s.label} className="glass rounded-2xl p-6 text-center">
+              <p className="font-garamond font-bold italic text-4xl text-[var(--accent)] leading-none mb-1">{s.value}</p>
+              <p className="text-[var(--fg-3)] text-xs uppercase tracking-widest">{s.label}</p>
+            </div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* Biggest Hit */}
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 py-8">
+        <motion.div
+          className="glass rounded-2xl overflow-hidden border border-[var(--accent)]/20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex flex-col lg:flex-row">
+            <div className="relative h-64 lg:h-auto lg:w-80 xl:w-96 flex-shrink-0">
+              <Image
+                src={Candy}
+                alt="2Bona - Candy"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#0d0d0d] via-[#0d0d0d]/40 to-transparent" />
+            </div>
+            <div className="p-8 lg:p-12 flex flex-col justify-center min-h-[280px]">
+              <p className="label-tag mb-3">Biggest Hit</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-1 leading-tight">
+                2Bona — <span className="font-garamond font-bold italic text-[var(--accent)] text-4xl sm:text-5xl">Candy</span>
+              </h2>
+              <p className="text-[var(--fg-3)] text-sm mb-6">Aydhiny x Call Me G x Nikola Tracks</p>
+              <div className="flex items-center gap-6 mb-6">
+                <div>
+                  <p className="font-garamond font-bold italic text-5xl text-[var(--accent-teal)] leading-none">5M+</p>
+                  <p className="text-[var(--fg-3)] text-xs uppercase tracking-widest mt-1">Streams Worldwide</p>
+                </div>
+              </div>
+              <Link
+                href="https://www.youtube.com/watch?v=GMIQ8ZWRQXo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-semibold transition-colors w-fit"
+              >
+                <FaYoutube className="size-4" /> Watch on YouTube
+              </Link>
+            </div>
           </div>
         </motion.div>
+      </section>
 
+      {/* Track Grid */}
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16">
         <motion.div
-          className="mt-12 flex flex-col items-center justify-center"
-          initial="hidden"
-          animate="visible"
-          variants={sectionVariants}
+          className="mb-10"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h1 className="font-bold text-2xl sm:text-3xl text-white">
-            Biggest Hit:
-          </h1>
-          <h4 className="text-gray-300 text-xl">
-            CANDY - Aydhiny x Call Me G x Nikola Tracks
-          </h4>
-          <h1 className="w-full m-4 p-4 text-6xl font-bold border-y border-opacity-50 border-violet-400 bg-main-background-grey">
-            1.3 MILLION+ VIEWS
-          </h1>
-          <Image
-            alt="candy"
-            src={Candy}
-            className="border-opacity-50 border-violet-400 rounded-2xl border p-4
-          bg-gradient-to-t from-[#9000ff8f] to-[rgba(60,37,160,0.34)] shadow-xl hover:shadow-2xl 
-          transition-all duration-150"
-          />
+          <p className="label-tag mb-2">Discography</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            Production <span className="font-garamond font-bold italic text-[var(--accent)] text-4xl sm:text-5xl">Projects</span>
+          </h2>
+          <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
-      </motion.div>
 
-      <motion.div
-        className="mt-8 py-16 bg-main-background-grey border-y border-opacity-50 border-violet-500 bg-opacity-80 text-white text-center"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={sectionVariants}
-      >
-        <h2 className="text-2xl sm:text-4xl font-bold mb-4">
-          Want to Collaborate?
-        </h2>
-        <p className="text-gray-400 mb-8 px-4">
-          Whether you&apos;re an artist or a producer, join our network and
-          create something extraordinary. Let&apos;s make the next big hit
-          together!
-        </p>
-        <Link
-          className="cursor-pointer hover:bg-white hover:text-main-background-grey transition-all duration-150 font-bold items-center justify-center rounded-xl text-center px-8 py-2 bg-main-app-purple text-white mb-4 sm:mb-0"
-          href="https://instagram.com/aydhiny_beatz"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {tracks.map((track, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              <MusicCard
+                text={track.text}
+                link={track.link}
+                image={track.image}
+                desc={track.desc}
+                producers={track.producers}
+              />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Collab CTA */}
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 pb-24">
+        <motion.div
+          className="glass rounded-2xl p-10 sm:p-14 text-center border border-[var(--border-2)]"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
         >
-          Get in Touch
-        </Link>
-      </motion.div>
+          <p className="label-tag mb-4">Collaborate</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            Let&apos;s Make Something <span className="font-garamond font-bold italic text-[var(--accent)] text-4xl sm:text-5xl">Extraordinary</span>
+          </h2>
+          <p className="text-[var(--fg-2)] max-w-xl mx-auto mb-8 leading-relaxed">
+            Whether you&apos;re an artist or a producer — reach out and let&apos;s build the next big track together.
+          </p>
+          <Link
+            href="https://instagram.com/aydhiny_beatz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold transition-colors"
+          >
+            <FaInstagram className="size-4" /> Get in Touch
+          </Link>
+        </motion.div>
+      </section>
+
     </div>
   );
 }

@@ -46,7 +46,7 @@ export default function HunterMouseShowcase() {
         <p className="label-tag mb-3">Showcase</p>
         <h2 className="text-4xl sm:text-5xl font-bold text-white">
           Hunter Mouse 2
-          <span className="font-garamond italic text-[var(--accent)] ml-3 text-4xl sm:text-5xl">
+          <span className="font-garamond font-bold italic text-[var(--accent)] ml-3 text-5xl sm:text-6xl">
             Official Trailer
           </span>
         </h2>

@@ -155,6 +155,50 @@ body {
   animation: spin-slow 25s linear infinite;
 }
 
+/* ─── Moving border button (Aceternity style) ───────────── */
+.moving-border-btn {
+  background: transparent;
+  padding: 1.5px;
+}
+.moving-border-inner {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--moving-border-angle, 0deg),
+    transparent 20%,
+    #7c3aed 40%,
+    #00cfb4 60%,
+    transparent 80%
+  );
+  animation: moving-border-spin 3s linear infinite;
+}
+@property --moving-border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes moving-border-spin {
+  to { --moving-border-angle: 360deg; }
+}
+
+/* Fallback for browsers without @property */
+@supports not (background: conic-gradient(from 0deg, red, blue)) {
+  .moving-border-inner {
+    background: linear-gradient(90deg, #7c3aed, #00cfb4);
+    animation: none;
+  }
+}
+
+/* ─── Spotlight beam animation ──────────────────────────── */
+@keyframes spotlight-pulse {
+  0%, 100% { opacity: 0.18; }
+  50%       { opacity: 0.28; }
+}
+.spotlight-pulse {
+  animation: spotlight-pulse 6s ease-in-out infinite;
+}
+
 /* Marquee — pause on hover */
 .marquee-track {
   display: flex;

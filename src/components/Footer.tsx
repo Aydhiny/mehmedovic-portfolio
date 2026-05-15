@@ -37,7 +37,7 @@ export default function Footer() {
             <Image alt="Aydhiny logo" src={Aydhiny} width={24} height={24} className="opacity-70" />
             <div>
               <span className="text-sm text-white font-medium">Ajdin </span>
-              <span className="font-garamond italic text-[var(--accent)] text-base">Mehmedović</span>
+              <span className="font-garamond font-bold italic text-[var(--accent)] text-xl">Mehmedović</span>
             </div>
           </div>
 
