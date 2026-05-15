@@ -115,9 +115,10 @@ export default function Header() {
             <Image
               className="w-52 border-b-8 border-b-white sm:w-48 xl:w-96 hover:opacity-65 bg-main-background-grey p-2 sm:p-4 rounded-full shadow-xl border-2 border-violet-500 transition-all duration-300"
               src={Profile}
-              alt="profile-pic"
+              alt="Ajdin Mehmedović profile photo"
               width={400}
               height={400}
+              priority
               draggable={false}
             />
           </motion.div>

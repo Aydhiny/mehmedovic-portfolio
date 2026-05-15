@@ -12,7 +12,8 @@ export default function Foundation() {
     <motion.section
       className="w-full max-w-6xl mx-auto px-2 sm:px-8 py-16 text-white mt-20 mb-20 flex flex-col items-center"
       initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.7 }}
     >
       {/* Logo at the top */}

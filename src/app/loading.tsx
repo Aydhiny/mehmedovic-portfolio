@@ -12,7 +12,7 @@ export default function Loading() {
         height: "100vh",
       }}
     >
-      <Image src={Ripple} alt="Loading..." />
+      <Image src={Ripple} alt="Loading..." width={200} height={200} />
     </div>
   );
 }
