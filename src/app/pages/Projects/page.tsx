@@ -20,7 +20,6 @@ const LANG_COLORS: Record<string, string> = {
   "C++": "red",
   TSQL: "orange",
   Python: "blue",
-  // Add more as needed
 };
 
 export default function Page() {
@@ -28,12 +27,22 @@ export default function Page() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [repos, setRepos] = useState<Repo[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetch("https://api.github.com/users/Aydhiny/repos?sort=updated&per_page=6")
-      .then((res) => res.json())
-      .then((data) => {
+      .then((res) => {
+        if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
+        return res.json();
+      })
+      .then((data: Repo[]) => {
         setRepos(data);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch GitHub repos:", err);
+        setError(true);
+      })
+      .finally(() => {
         setLoading(false);
       });
   }, []);
@@ -53,7 +62,20 @@ export default function Page() {
         {loading && (
           <p className="text-gray-400 mb-4">Loading repositories...</p>
         )}
-        {!loading && repos.length === 0 && (
+        {error && (
+          <p className="text-gray-400 mb-4">
+            Couldn&apos;t load repositories.{" "}
+            <Link
+              href="https://github.com/Aydhiny"
+              className="text-main-app-teal underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View them on GitHub →
+            </Link>
+          </p>
+        )}
+        {!loading && !error && repos.length === 0 && (
           <p className="text-gray-400 mb-4">No repositories found.</p>
         )}
         {repos.map((repo) => (
@@ -71,8 +93,8 @@ export default function Page() {
         ))}
       </div>
       <Link href="https://github.com/Aydhiny" passHref>
-        <p className="text-gray-400 font-semibold my-4 cursor-pointer">
-          See all repositories --&gt;
+        <p className="text-gray-400 font-semibold my-4 cursor-pointer hover:text-main-app-teal transition-colors duration-150">
+          See all repositories →
         </p>
       </Link>
     </motion.div>
