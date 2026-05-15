@@ -1,277 +1,254 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { GrInstagram } from "react-icons/gr";
 import { SiBeatstars } from "react-icons/si";
 import { FaYoutube } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
+import { MdKeyboardArrowDown } from "react-icons/md";
 import Link from "next/link";
 import Image from "next/image";
 import Aydhiny from "../images/ay.png";
-import { MdKeyboardArrowDown } from "react-icons/md";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
-  const toggleProjectsMenu = () => {
-    setProjectsOpen(!projectsOpen);
-  };
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const isActive = (path: string) =>
-    pathname === path
-      ? "text-main-app-purple font-bold"
-      : "hover:text-main-app-purple";
+    pathname === path ? "text-white" : "text-[var(--fg-2)] hover:text-white";
 
   return (
-    <div className="p-4 shadow-sm border-b border-opacity-50 border-violet-400 bg-gradient-to-r from-[#9000ff8f] to-[rgba(60,37,160,0.34)] backdrop-blur-md lg:static fixed w-full top-0 z-50">
-      <nav>
-        <ul className="flex justify-between xl:justify-evenly items-center">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled || menuOpen
+          ? "bg-[#070707]/90 backdrop-blur-2xl border-b border-[var(--border)]"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+        <nav className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="text-white font-bold text-xl">
-            <Image alt="logo" src={Aydhiny} width={30} height={30} />
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <Image
+              alt="Ajdin Mehmedović"
+              src={Aydhiny}
+              width={28}
+              height={28}
+              className="opacity-90 group-hover:opacity-100 transition-opacity"
+            />
+            <span className="text-sm font-semibold text-white tracking-tight hidden sm:block">
+              Ajdin Mehmedović
+            </span>
           </Link>
 
-          {/* Hamburger Menu for Mobile */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={menuOpen}
-              className="text-white text-2xl"
-            >
-              {menuOpen ? (
-                <HiX aria-hidden="true" />
-              ) : (
-                <HiMenu aria-hidden="true" />
-              )}
-            </button>
-          </div>
+          {/* Desktop links */}
+          <ul className="hidden md:flex items-center gap-1">
+            {[
+              { label: "Home", href: "/" },
+              { label: "Blog", href: "/blog" },
+              { label: "Journey", href: "/journey" },
+              { label: "About", href: "/about" },
+            ].map(({ label, href }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className={`px-3 py-1.5 rounded-lg text-sm transition-colors duration-150 ${isActive(href)}`}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
 
-          {/* Main Links for Larger Screens */}
-          <div className="hidden md:flex items-center">
-            <li
-              className={`mr-4 transition-colors duration-150 ${isActive("/")}`}
-            >
-              <Link href="/">Home</Link>
-            </li>
-            <li className="relative mr-4">
+            {/* Projects dropdown */}
+            <li className="relative">
               <button
-                onClick={toggleProjectsMenu}
-                className={`flex items-center transition-colors duration-150 ${isActive(
-                  "/projects"
-                )}`}
+                onClick={() => setProjectsOpen((p) => !p)}
+                className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm transition-colors duration-150 ${isActive("/projects")}`}
               >
                 Projects
                 <MdKeyboardArrowDown
-                  className={`ml-2 transform transition-transform duration-200 ${
-                    projectsOpen ? "rotate-180" : ""
-                  }`}
+                  aria-hidden="true"
+                  className={`transition-transform duration-200 ${projectsOpen ? "rotate-180" : ""}`}
                 />
               </button>
-              {/* Dropdown Menu */}
               {projectsOpen && (
-                <ul className="absolute bg-main-background-grey text-gray-100 rounded shadow-md mt-2 z-10 w-48">
-                  <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
-                    <Link href="/projects/programming">Programming</Link>
-                  </li>
-                  <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
-                    <Link href="/projects/music">Music Production</Link>
-                  </li>
-                  <li className="px-4 cursor-pointer py-2 hover:bg-neutral-900">
-                    <Link href="/projects/design">Design & Marketing</Link>
-                  </li>
+                <ul className="absolute top-full left-0 mt-2 w-52 bg-[var(--surface)] border border-[var(--border)] rounded-xl shadow-2xl shadow-black/50 overflow-hidden">
+                  {[
+                    { label: "Programming", href: "/projects/programming" },
+                    { label: "Music Production", href: "/projects/music" },
+                    { label: "Design & Marketing", href: "/projects/design" },
+                  ].map(({ label, href }) => (
+                    <li key={href}>
+                      <Link
+                        href={href}
+                        onClick={() => setProjectsOpen(false)}
+                        className="block px-4 py-2.5 text-sm text-[var(--fg-2)] hover:text-white hover:bg-[var(--surface-2)] transition-colors duration-150"
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               )}
             </li>
 
-            <li
-              className={`mr-4 transition-colors duration-150 ${isActive(
-                "/blog"
-              )}`}
-            >
-              <Link href="/blog">Blog</Link>
+            <li>
+              <Link
+                href="/next-big-thing"
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors duration-150 ${
+                  pathname === "/next-big-thing"
+                    ? "border-[var(--accent)] text-white bg-[var(--accent-muted)]"
+                    : "border-[var(--border-2)] text-[var(--fg-2)] hover:border-[var(--accent)] hover:text-white"
+                }`}
+              >
+                Next Big Thing
+              </Link>
             </li>
-            <li
-              className={`mr-4 transition-colors duration-150 ${isActive(
-                "/journey"
-              )}`}
-            >
-              <Link href="/journey">Journey</Link>
-            </li>
-            <li
-              className={`mr-4 border-opacity-50 border-violet-400 bg-gradient-to-t from-[#9000ff8f] to-[rgba(114,90,219,0.62)] px-4 p-1 border rounded-full hover:text-main-background-grey shadow-xl text-white transition-colors duration-150 ${isActive(
-                "/next-big-thing"
-              )}`}
-            >
-              <Link href="/next-big-thing">Next Big Thing</Link>
-            </li>
-            <li
-              className={`transition-colors duration-150 ${isActive("/about")}`}
-            >
-              <Link href="/about">About</Link>
-            </li>
-          </div>
+          </ul>
 
-          {/* Social Links for Larger Screens */}
-          <div className="hidden md:flex items-center">
+          {/* Desktop social + CTA */}
+          <div className="hidden md:flex items-center gap-3">
             <Link
               href="https://instagram.com/ajdinmehmedovix"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
+              className="text-[var(--fg-2)] hover:text-white transition-colors duration-150"
             >
-              <GrInstagram className="text-white text-2xl ml-4 size-5 hover:text-main-app-purple transition-colors duration-150" aria-hidden="true" />
+              <GrInstagram aria-hidden="true" className="size-4" />
             </Link>
             <Link
               href="https://beatstars.com/aydhiny"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="BeatStars"
+              className="text-[var(--fg-2)] hover:text-white transition-colors duration-150"
             >
-              <SiBeatstars className="text-white text-2xl ml-4 size-5 hover:text-main-app-purple transition-colors duration-150" aria-hidden="true" />
+              <SiBeatstars aria-hidden="true" className="size-4" />
             </Link>
             <Link
               href="https://youtube.com/Aydhiny"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube"
+              className="text-[var(--fg-2)] hover:text-white transition-colors duration-150"
             >
-              <FaYoutube className="text-white text-2xl ml-4 hover:text-main-app-purple transition-colors duration-150" aria-hidden="true" />
+              <FaYoutube aria-hidden="true" className="size-4" />
+            </Link>
+            <Link
+              href="/about"
+              className="ml-2 px-4 py-1.5 rounded-lg bg-[var(--accent)] text-white text-sm font-semibold hover:bg-[var(--accent-hover)] transition-colors duration-150"
+            >
+              Contact
             </Link>
           </div>
-        </ul>
 
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <ul className="mt-4 bg-gradient-to-b from-[#242424] to-[rgba(38,23,102,0.7)] text-white text-center space-y-4 p-4 rounded-lg shadow-xl border border-gray-700 animate-slide-down">
-            {/* Main Links */}
-            <li
-              className={`transition-all duration-200 border-b border-gray-700 pb-2 ${isActive(
-                "/"
-              )}`}
-            >
-              <Link href="/" onClick={() => setMenuOpen(false)}>
-                Home
-              </Link>
-            </li>
-            <li
-              className={`transition-all duration-200 border-b border-gray-700 pb-2 relative`}
-            >
-              <button
-                className="w-full text-center flex justify-center items-center transition-colors duration-150"
-                onClick={toggleProjectsMenu}
-              >
-                Projects
-                <span
-                  className={`transform transition-transform pr-2 duration-200 ${
-                    projectsOpen ? "rotate-180" : ""
-                  }`}
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden text-[var(--fg-2)] hover:text-white transition-colors p-1"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? (
+              <HiX aria-hidden="true" className="size-5" />
+            ) : (
+              <HiMenu aria-hidden="true" className="size-5" />
+            )}
+          </button>
+        </nav>
+      </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden border-t border-[var(--border)] bg-[#070707]/95 backdrop-blur-2xl animate-slide-down">
+          <ul className="px-5 py-4 space-y-1">
+            {[
+              { label: "Home", href: "/" },
+              { label: "Blog", href: "/blog" },
+              { label: "Journey", href: "/journey" },
+              { label: "About", href: "/about" },
+            ].map(({ label, href }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`block px-3 py-2.5 rounded-lg text-sm transition-colors ${isActive(href)}`}
                 >
-                  <MdKeyboardArrowDown className="ml-2" />
-                </span>
+                  {label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <button
+                className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-[var(--fg-2)] hover:text-white transition-colors"
+                onClick={() => setProjectsOpen((p) => !p)}
+              >
+                <span>Projects</span>
+                <MdKeyboardArrowDown
+                  aria-hidden="true"
+                  className={`transition-transform duration-200 ${projectsOpen ? "rotate-180" : ""}`}
+                />
               </button>
-
-              {/* Nested Mini-Menu */}
               {projectsOpen && (
-                <ul className="bg-gradient-to-b from-[#1f1f1f] to-[rgba(20,10,50,0.7)] text-white rounded mt-2 space-y-2 pl-4">
-                  <li className="hover:bg-gray-700 px-2 py-2 rounded">
-                    <Link
-                      href="/projects/programming"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Programming
-                    </Link>
-                  </li>
-                  <li className="hover:bg-gray-700 px-2 py-2 rounded">
-                    <Link
-                      href="/projects/music"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Music Production
-                    </Link>
-                  </li>
-                  <li className="hover:bg-gray-700 px-2 py-2 rounded">
-                    <Link
-                      href="/projects/design"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Design & Marketing
-                    </Link>
-                  </li>
+                <ul className="ml-4 mt-1 space-y-1 border-l border-[var(--border)] pl-4">
+                  {[
+                    { label: "Programming", href: "/projects/programming" },
+                    { label: "Music Production", href: "/projects/music" },
+                    { label: "Design & Marketing", href: "/projects/design" },
+                  ].map(({ label, href }) => (
+                    <li key={href}>
+                      <Link
+                        href={href}
+                        onClick={() => setMenuOpen(false)}
+                        className="block py-2 text-sm text-[var(--fg-2)] hover:text-white transition-colors"
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               )}
             </li>
-            <li
-              className={`transition-all duration-200 border-b border-gray-700 pb-2 ${isActive(
-                "/blog"
-              )}`}
-            >
-              <Link href="/blog" onClick={() => setMenuOpen(false)}>
-                Blog
-              </Link>
-            </li>
-            <li
-              className={`transition-all duration-200 border-b border-gray-700 pb-2 ${isActive(
-                "/journey"
-              )}`}
-            >
-              <Link href="/journey" onClick={() => setMenuOpen(false)}>
-                Journey
-              </Link>
-            </li>
-            <li
-              className={`transition-all duration-200 border-b border-gray-700 pb-2 ${isActive(
-                "/next-big-thing"
-              )}`}
-            >
-              <Link href="/next-big-thing" onClick={() => setMenuOpen(false)}>
+            <li>
+              <Link
+                href="/next-big-thing"
+                onClick={() => setMenuOpen(false)}
+                className="block px-3 py-2.5 text-sm text-[var(--fg-2)] hover:text-white transition-colors"
+              >
                 Next Big Thing
               </Link>
             </li>
-            <li
-              className={`transition-all duration-200 pb-2 ${isActive(
-                "/about"
-              )}`}
-            >
-              <Link href="/about" onClick={() => setMenuOpen(false)}>
-                About
-              </Link>
-            </li>
-
-            {/* Social Links */}
-            <div className="mt-4 pt-2 border-t border-gray-700">
-              <h3 className="text-md text-gray-400">Follow Me</h3>
-              <div className="flex justify-center items-center py-4 space-x-4 mt-2">
-                <Link
-                  href="https://instagram.com/ajdinmehmedovix"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <GrInstagram className="text-3xl size-5 hover:text-main-app-purple transition duration-150" />
-                </Link>
-                <Link
-                  href="https://beatstars.com/aydhiny"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <SiBeatstars className="text-3xl size-5 hover:text-main-app-purple transition duration-150" />
-                </Link>
-                <Link
-                  href="https://youtube.com/Aydhiny"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <FaYoutube className="text-3xl size-5 hover:text-main-app-purple transition duration-150" />
-                </Link>
-              </div>
-            </div>
           </ul>
-        )}
-      </nav>
-    </div>
+          <div className="px-5 pb-5 pt-2 border-t border-[var(--border)] flex items-center gap-5">
+            {[
+              { label: "Instagram", href: "https://instagram.com/ajdinmehmedovix", icon: <GrInstagram aria-hidden="true" className="size-4" /> },
+              { label: "BeatStars", href: "https://beatstars.com/aydhiny", icon: <SiBeatstars aria-hidden="true" className="size-4" /> },
+              { label: "YouTube", href: "https://youtube.com/Aydhiny", icon: <FaYoutube aria-hidden="true" className="size-4" /> },
+            ].map(({ label, href, icon }) => (
+              <Link
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                onClick={() => setMenuOpen(false)}
+                className="text-[var(--fg-2)] hover:text-white transition-colors"
+              >
+                {icon}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </header>
   );
 }
