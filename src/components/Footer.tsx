@@ -17,13 +17,28 @@ export default function Footer() {
   const pathname = usePathname();
 
   return (
-    <footer className="border-t border-[var(--border)] mt-10">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 py-10">
+    <footer className="relative border-t border-[var(--border)] mt-10 overflow-hidden">
+
+      {/* Spinning watermark logo */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+        <Image
+          src={Aydhiny}
+          alt=""
+          width={360}
+          height={360}
+          className="opacity-[0.025] animate-spin-slow"
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-12">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
 
           <div className="flex items-center gap-2.5">
             <Image alt="Aydhiny logo" src={Aydhiny} width={24} height={24} className="opacity-70" />
-            <span className="text-sm text-[var(--fg-3)] font-medium">Ajdin Mehmedović</span>
+            <div>
+              <span className="text-sm text-white font-medium">Ajdin </span>
+              <span className="font-garamond italic text-[var(--accent)] text-base">Mehmedović</span>
+            </div>
           </div>
 
           <nav>
