@@ -51,6 +51,7 @@ export default function Page() {
   };
 
   return (
+    <div className="min-h-screen bg-[var(--bg)] text-white">
     <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-28 pb-20">
 
       {/* Hero */}
@@ -63,7 +64,7 @@ export default function Page() {
         <p className="label-tag mb-4">About</p>
         <h1 className="text-5xl sm:text-6xl font-bold text-white mb-2 tracking-tight leading-none">
           Ajdin{" "}
-          <span className="font-garamond font-bold italic text-[var(--accent)] text-6xl sm:text-7xl">Mehmedović</span>
+          <span className="font-garamond font-bold italic text-6xl sm:text-7xl g-text">Mehmedović</span>
         </h1>
         <p className="text-[var(--fg-2)] text-lg mt-4 max-w-2xl leading-relaxed">
           Software Engineering Student · Music Producer (Aydhiny) · Graphic & UI Designer
@@ -140,7 +141,7 @@ export default function Page() {
         >
           <p className="text-xs text-[var(--fg-3)] uppercase tracking-widest mb-6">Get in touch</p>
           <h2 className="text-3xl font-bold text-white mb-8">
-            Contact <span className="font-garamond font-bold italic text-[var(--accent)] text-4xl">Me</span>
+            Contact <span className="font-garamond font-bold italic text-4xl g-text">Me</span>
           </h2>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -220,6 +221,7 @@ export default function Page() {
         </motion.div>
 
       </div>
+    </div>
     </div>
   );
 }

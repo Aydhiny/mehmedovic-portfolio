@@ -4,102 +4,50 @@ import React from "react";
 export default function Spotlight() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      {/* SVG spotlight beams */}
+      {/* Strong background gradient — always visible even without SVG */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 85% 70% at 50% -10%, rgba(124,58,237,0.32) 0%, transparent 65%),
+            radial-gradient(ellipse 50% 45% at 10% 55%, rgba(0,207,180,0.14) 0%, transparent 60%),
+            radial-gradient(ellipse 40% 35% at 90% 30%, rgba(124,58,237,0.18) 0%, transparent 55%),
+            radial-gradient(ellipse 30% 25% at 80% 80%, rgba(0,207,180,0.06) 0%, transparent 50%)
+          `,
+        }}
+      />
+
+      {/* SVG spotlight ellipses */}
       <svg
         className="absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <filter id="blur-heavy">
-            <feGaussianBlur stdDeviation="60" />
+          <filter id="blur-heavy" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="55" />
           </filter>
-          <filter id="blur-medium">
-            <feGaussianBlur stdDeviation="35" />
-          </filter>
-          <filter id="blur-light">
-            <feGaussianBlur stdDeviation="20" />
+          <filter id="blur-medium" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="30" />
           </filter>
         </defs>
 
-        {/* Large purple ambient glow — top center */}
-        <ellipse
-          cx="50%"
-          cy="-5%"
-          rx="45%"
-          ry="55%"
-          fill="rgba(124,58,237,0.18)"
-          filter="url(#blur-heavy)"
-        />
-
-        {/* Teal accent — upper left */}
-        <ellipse
-          cx="10%"
-          cy="20%"
-          rx="30%"
-          ry="40%"
-          fill="rgba(0,207,180,0.08)"
-          filter="url(#blur-heavy)"
-        />
-
-        {/* Bright purple beam — top right diagonal */}
-        <ellipse
-          cx="80%"
-          cy="0%"
-          rx="20%"
-          ry="30%"
-          fill="rgba(124,58,237,0.22)"
-          filter="url(#blur-medium)"
-        />
-
-        {/* Narrow teal beam — right side */}
-        <ellipse
-          cx="95%"
-          cy="35%"
-          rx="12%"
-          ry="25%"
-          fill="rgba(0,207,180,0.12)"
-          filter="url(#blur-medium)"
-        />
+        {/* Main purple ambient glow */}
+        <ellipse cx="50%" cy="-8%" rx="50%" ry="60%" fill="rgba(124,58,237,0.22)" filter="url(#blur-heavy)" />
+        {/* Teal left glow */}
+        <ellipse cx="8%"  cy="25%" rx="28%" ry="35%" fill="rgba(0,207,180,0.12)"  filter="url(#blur-heavy)" />
+        {/* Purple right accent */}
+        <ellipse cx="88%" cy="10%" rx="22%" ry="28%" fill="rgba(124,58,237,0.20)" filter="url(#blur-medium)" />
+        {/* Teal right lower */}
+        <ellipse cx="92%" cy="60%" rx="15%" ry="22%" fill="rgba(0,207,180,0.10)" filter="url(#blur-medium)" />
       </svg>
 
-      {/* CSS diagonal beam lines — Midnight Riches style */}
-      <div
-        className="absolute top-0 left-1/4 w-px h-3/4 opacity-[0.07]"
-        style={{
-          background: "linear-gradient(to bottom, rgba(124,58,237,0.9), transparent)",
-          transform: "rotate(-15deg) scaleX(3)",
-          transformOrigin: "top center",
-          filter: "blur(2px)",
-        }}
-      />
-      <div
-        className="absolute top-0 left-1/2 w-px h-2/3 opacity-[0.05]"
-        style={{
-          background: "linear-gradient(to bottom, rgba(0,207,180,0.9), transparent)",
-          transform: "rotate(8deg) scaleX(4)",
-          transformOrigin: "top center",
-          filter: "blur(3px)",
-        }}
-      />
-      <div
-        className="absolute top-0 right-1/4 w-px h-1/2 opacity-[0.08]"
-        style={{
-          background: "linear-gradient(to bottom, rgba(124,58,237,0.9), transparent)",
-          transform: "rotate(20deg) scaleX(2)",
-          transformOrigin: "top center",
-          filter: "blur(2px)",
-        }}
-      />
-
-      {/* Noise grain texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "200px",
-        }}
-      />
+      {/* Diagonal beam lines */}
+      <div className="absolute top-0 left-[30%] w-[2px] h-[70%] opacity-[0.06]"
+        style={{ background: "linear-gradient(to bottom, rgba(168,85,247,1), transparent)", transform: "rotate(-12deg) scaleX(6)", transformOrigin: "top center", filter: "blur(3px)" }} />
+      <div className="absolute top-0 left-[55%] w-[2px] h-[55%] opacity-[0.04]"
+        style={{ background: "linear-gradient(to bottom, rgba(0,207,180,1), transparent)", transform: "rotate(6deg) scaleX(8)", transformOrigin: "top center", filter: "blur(4px)" }} />
+      <div className="absolute top-0 right-[20%] w-[2px] h-[45%] opacity-[0.07]"
+        style={{ background: "linear-gradient(to bottom, rgba(124,58,237,1), transparent)", transform: "rotate(18deg) scaleX(4)", transformOrigin: "top center", filter: "blur(2px)" }} />
     </div>
   );
 }

@@ -53,11 +53,8 @@ export default function MusicPage() {
     <div className="min-h-screen bg-[var(--bg)] text-white">
 
       {/* Hero */}
-      <section className="relative flex flex-col items-center justify-center text-center min-h-[75vh] px-5 sm:px-8 overflow-hidden pt-28">
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[var(--accent)]/10 blur-[120px] rounded-full" />
-          <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[var(--accent-teal)]/8 blur-[100px] rounded-full" />
-        </div>
+      <section className="relative flex flex-col items-center justify-center text-center min-h-[75vh] px-5 sm:px-8 overflow-hidden pt-28 hero-glow">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#070707] pointer-events-none" />
 
         <motion.p
           className="label-tag mb-4"
@@ -69,21 +66,21 @@ export default function MusicPage() {
         </motion.p>
 
         <motion.h1
-          className="mb-6 leading-none"
+          className="mb-6 leading-none relative z-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
         >
-          <span className="block text-2xl font-light tracking-[0.22em] uppercase text-[var(--fg-3)]">
+          <span className="block text-2xl font-semibold tracking-[0.28em] uppercase text-white/50">
             Music
           </span>
-          <span className="block font-garamond font-bold italic text-[5rem] sm:text-[7rem] lg:text-[8rem] text-[var(--accent)] leading-[0.9]">
+          <span className="block font-garamond font-bold italic text-[5rem] sm:text-[7rem] lg:text-[8rem] g-text leading-[0.9]">
             Production
           </span>
         </motion.h1>
 
         <motion.p
-          className="text-[var(--fg-2)] text-lg max-w-xl leading-relaxed mb-10"
+          className="relative z-10 text-[var(--fg-2)] text-lg max-w-xl leading-relaxed mb-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -92,7 +89,7 @@ export default function MusicPage() {
         </motion.p>
 
         <motion.div
-          className="flex gap-4 justify-center"
+          className="relative z-10 flex gap-4 justify-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
@@ -127,7 +124,7 @@ export default function MusicPage() {
         >
           {stats.map((s) => (
             <div key={s.label} className="glass rounded-2xl p-6 text-center">
-              <p className="font-garamond font-bold italic text-4xl text-[var(--accent)] leading-none mb-1">{s.value}</p>
+              <p className="font-garamond font-bold italic text-4xl g-text leading-none mb-1">{s.value}</p>
               <p className="text-[var(--fg-3)] text-xs uppercase tracking-widest">{s.label}</p>
             </div>
           ))}
@@ -156,12 +153,12 @@ export default function MusicPage() {
             <div className="p-8 lg:p-12 flex flex-col justify-center min-h-[280px]">
               <p className="label-tag mb-3">Biggest Hit</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-1 leading-tight">
-                2Bona — <span className="font-garamond font-bold italic text-[var(--accent)] text-4xl sm:text-5xl">Candy</span>
+                2Bona — <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Candy</span>
               </h2>
               <p className="text-[var(--fg-3)] text-sm mb-6">Aydhiny x Call Me G x Nikola Tracks</p>
               <div className="flex items-center gap-6 mb-6">
                 <div>
-                  <p className="font-garamond font-bold italic text-5xl text-[var(--accent-teal)] leading-none">5M+</p>
+                  <p className="font-garamond font-bold italic text-5xl g-text-teal leading-none">5M+</p>
                   <p className="text-[var(--fg-3)] text-xs uppercase tracking-widest mt-1">Streams Worldwide</p>
                 </div>
               </div>
@@ -189,7 +186,7 @@ export default function MusicPage() {
         >
           <p className="label-tag mb-2">Discography</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
-            Production <span className="font-garamond font-bold italic text-[var(--accent)] text-4xl sm:text-5xl">Projects</span>
+            Production <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Projects</span>
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
@@ -226,7 +223,7 @@ export default function MusicPage() {
         >
           <p className="label-tag mb-4">Collaborate</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Let&apos;s Make Something <span className="font-garamond font-bold italic text-[var(--accent)] text-4xl sm:text-5xl">Extraordinary</span>
+            Let&apos;s Make Something <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Extraordinary</span>
           </h2>
           <p className="text-[var(--fg-2)] max-w-xl mx-auto mb-8 leading-relaxed">
             Whether you&apos;re an artist or a producer — reach out and let&apos;s build the next big track together.

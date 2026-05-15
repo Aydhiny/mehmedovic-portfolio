@@ -18,16 +18,22 @@ import Foundation from "@/components/Foundation";
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-[var(--bg)]">
       <Chatbot />
       <Header />
       <Lines />
       <TrainTrack />
-      <SuccessShowcase />
+      <div className="section-tint">
+        <SuccessShowcase />
+      </div>
       <Tech />
-      <HunterMouseShowcase />
+      <div className="section-tint">
+        <HunterMouseShowcase />
+      </div>
       <Clients />
-      <Projects />
+      <div className="section-tint">
+        <Projects />
+      </div>
       <Foundation />
     </div>
   );

@@ -95,6 +95,34 @@ body {
   font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
+/* Garamond gradient text — purple→teal */
+.g-text {
+  background: linear-gradient(135deg, #d8b4fe 0%, #a855f7 30%, #00cfb4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/* Garamond gradient text — teal variant */
+.g-text-teal {
+  background: linear-gradient(135deg, #00cfb4 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Section atmosphere ────────────────────────────────── */
+/* Strong radial hero glow — apply to hero section wrapper */
+.hero-glow {
+  background:
+    radial-gradient(ellipse 80% 65% at 50% -5%, rgba(124,58,237,0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 35% at 12% 60%, rgba(0,207,180,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 35% 30% at 88% 35%, rgba(124,58,237,0.12) 0%, transparent 55%);
+}
+/* Alternating section tint for depth */
+.section-tint {
+  background: linear-gradient(180deg, rgba(124,58,237,0.04) 0%, transparent 30%, transparent 70%, rgba(0,207,180,0.03) 100%);
+}
+
 /* ─── Glass utilities ───────────────────────────────────── */
 .glass {
   background: rgba(255, 255, 255, 0.04);

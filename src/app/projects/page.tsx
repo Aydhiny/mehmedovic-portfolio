@@ -24,6 +24,7 @@ function SectionHeader({ tag, title }: { tag: string; title: string }) {
 
 export default function Page() {
   return (
+    <div className="min-h-screen bg-[var(--bg)] hero-glow">
     <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-28 pb-20">
 
       <motion.div
@@ -34,7 +35,7 @@ export default function Page() {
       >
         <p className="label-tag mb-4">Work</p>
         <h1 className="text-5xl sm:text-6xl font-bold text-white leading-tight">
-          My <span className="font-garamond font-bold italic text-[var(--accent)] text-7xl sm:text-8xl">Projects</span>
+          My <span className="font-garamond font-bold italic text-7xl sm:text-8xl g-text">Projects</span>
         </h1>
       </motion.div>
 
@@ -147,6 +148,7 @@ export default function Page() {
         </motion.div>
       </section>
 
+    </div>
     </div>
   );
 }

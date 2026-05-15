@@ -11,6 +11,7 @@ const placeholders = [
 
 export default function Page() {
   return (
+    <div className="min-h-screen bg-[var(--bg)] hero-glow">
     <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-28 pb-20">
 
       <motion.div
@@ -21,7 +22,7 @@ export default function Page() {
       >
         <p className="label-tag mb-4">Writing</p>
         <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4 leading-tight">
-          The <span className="font-garamond font-bold italic text-[var(--accent)] text-6xl sm:text-7xl">Blog</span>
+          The <span className="font-garamond font-bold italic text-6xl sm:text-7xl g-text">Blog</span>
         </h1>
         <p className="text-[var(--fg-2)] text-lg max-w-xl leading-relaxed">
           Thoughts on music production, game development, software engineering, and the creative process.
@@ -70,6 +71,7 @@ export default function Page() {
         </div>
       </motion.div>
 
+    </div>
     </div>
   );
 }

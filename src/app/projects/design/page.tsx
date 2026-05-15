@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +15,7 @@ const projects = [
     href: "https://bhfuturesfoundation.org/",
     category: "Social Media Graphic Design",
     tags: ["Branding", "Social Media", "Events"],
-    desc: "Designed every visual element for the Futures Leaders Summit 2024 — from brand identity and promotional graphics to all event materials.",
+    desc: "Designed every visual element for the Futures Leaders Summit 2024 â€” from brand identity and promotional graphics to all event materials.",
   },
   {
     image: Bliss,
@@ -23,23 +23,23 @@ const projects = [
     href: "https://www.instagram.com/eternal_bliss_official/",
     category: "Social Media Brand",
     tags: ["Brand Identity", "Instagram", "Music"],
-    desc: "Instagram brand for music producer Ediba Deville — educating newer producers in the craft and business of music production.",
+    desc: "Instagram brand for music producer Ediba Deville â€” educating newer producers in the craft and business of music production.",
   },
   {
     image: Plansio,
     title: "Plansio Agency",
     href: "https://www.instagram.com/plansio_central",
-    category: "Marketing · Social Media · Video",
+    category: "Marketing Â· Social Media Â· Video",
     tags: ["Marketing", "Video Editing", "Design"],
-    desc: "Full digital marketing and branding work for Plansio — social media content strategy, video editing, and design campaigns for multiple clients.",
+    desc: "Full digital marketing and branding work for Plansio â€” social media content strategy, video editing, and design campaigns for multiple clients.",
   },
 ];
 
 const services = [
-  { label: "Brand Identity", icon: "◈" },
-  { label: "Social Media Design", icon: "◉" },
-  { label: "Video Editing", icon: "▶" },
-  { label: "Event Graphics", icon: "◆" },
+  { label: "Brand Identity", icon: "â—ˆ" },
+  { label: "Social Media Design", icon: "â—‰" },
+  { label: "Video Editing", icon: "â–¶" },
+  { label: "Event Graphics", icon: "â—†" },
 ];
 
 export default function DesignPage() {
@@ -47,11 +47,8 @@ export default function DesignPage() {
     <div className="min-h-screen bg-[var(--bg)] text-white">
 
       {/* Hero */}
-      <section className="relative flex flex-col items-center justify-center text-center min-h-[70vh] px-5 sm:px-8 overflow-hidden pt-28">
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[350px] bg-[var(--accent)]/10 blur-[120px] rounded-full" />
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[var(--accent-teal)]/6 blur-[100px] rounded-full" />
-        </div>
+      <section className="relative flex flex-col items-center justify-center text-center min-h-[70vh] px-5 sm:px-8 overflow-hidden pt-28 hero-glow">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#070707] pointer-events-none" />
 
         <motion.p
           className="label-tag mb-4"
@@ -68,10 +65,10 @@ export default function DesignPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
         >
-          <span className="block text-2xl font-light tracking-[0.22em] uppercase text-[var(--fg-3)]">
+          <span className="block text-2xl font-semibold tracking-[0.28em] uppercase text-white/50">
             Design &amp;
           </span>
-          <span className="block font-garamond font-bold italic text-[5rem] sm:text-[7rem] lg:text-[8rem] text-[var(--accent)] leading-[0.9]">
+          <span className="block font-garamond font-bold italic text-[5rem] sm:text-[7rem] lg:text-[8rem] g-text leading-[0.9]">
             Marketing
           </span>
         </motion.h1>
@@ -82,7 +79,7 @@ export default function DesignPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Brand identity, social media campaigns, and visual storytelling — crafted for artists, events, and agencies.
+          Brand identity, social media campaigns, and visual storytelling â€” crafted for artists, events, and agencies.
         </motion.p>
 
         {/* Service pills */}
@@ -115,7 +112,7 @@ export default function DesignPage() {
         >
           <p className="label-tag mb-2">Portfolio</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
-            Selected <span className="font-garamond font-bold italic text-[var(--accent)] text-4xl sm:text-5xl">Work</span>
+            Selected <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Work</span>
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
@@ -185,7 +182,7 @@ export default function DesignPage() {
         >
           <p className="label-tag mb-4">Hire</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Need a <span className="font-garamond font-bold italic text-[var(--accent)] text-4xl sm:text-5xl">Designer?</span>
+            Need a <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Designer?</span>
           </h2>
           <p className="text-[var(--fg-2)] max-w-xl mx-auto mb-8 leading-relaxed">
             Looking for brand identity, social media design, or visual content? Let&apos;s create something that stands out.
@@ -202,3 +199,4 @@ export default function DesignPage() {
     </div>
   );
 }
+

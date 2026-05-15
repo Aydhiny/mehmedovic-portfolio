@@ -44,8 +44,8 @@ export default function Journey() {
     <div className="min-h-screen bg-[var(--bg)] text-white">
 
       {/* Hero */}
-      <section className="relative flex flex-col items-center justify-center text-center min-h-[80vh] px-5 sm:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent)]/5 via-transparent to-transparent pointer-events-none" />
+      <section className="relative flex flex-col items-center justify-center text-center min-h-[80vh] px-5 sm:px-8 overflow-hidden hero-glow">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#070707] pointer-events-none" />
 
         <motion.p
           className="label-tag mb-5"
@@ -63,9 +63,9 @@ export default function Journey() {
           transition={{ duration: 0.9 }}
         >
           From
-          <span className="font-garamond font-bold italic text-[var(--accent)] ml-3 text-6xl sm:text-8xl">Dreamer</span>
+          <span className="font-garamond font-bold italic ml-3 text-6xl sm:text-8xl g-text">Dreamer</span>
           <br />
-          to <span className="font-garamond font-bold italic text-[var(--accent-teal)] text-6xl sm:text-8xl">Doer</span>
+          to <span className="font-garamond font-bold italic text-6xl sm:text-8xl g-text-teal">Doer</span>
         </motion.h1>
 
         <motion.p
@@ -119,7 +119,7 @@ export default function Journey() {
                 <h2 className="text-4xl sm:text-5xl font-bold text-white mb-5">
                   {m.title.split(" ").map((word, wi) =>
                     wi === 1 ? (
-                      <span key={wi} className={`font-garamond font-bold italic ${m.accent} text-5xl sm:text-6xl`}> {word}</span>
+                      <span key={wi} className="font-garamond font-bold italic g-text text-5xl sm:text-6xl"> {word}</span>
                     ) : (
                       word + (wi === 0 ? " " : "")
                     )
@@ -143,7 +143,7 @@ export default function Journey() {
         >
           <p className="label-tag mb-4">What&apos;s Next</p>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            The Path <span className="font-garamond font-bold italic text-[var(--accent)] text-5xl sm:text-6xl">Ahead</span>
+            The Path <span className="font-garamond font-bold italic text-5xl sm:text-6xl g-text">Ahead</span>
           </h2>
           <p className="text-[var(--fg-2)] text-lg max-w-2xl mx-auto leading-relaxed">
             The journey continues as I explore new horizons, blending the power of
