@@ -3,18 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useRef } from "react";
 import { FaDownload, FaGithub } from "react-icons/fa6";
-import Profile from "../images/profile-pic.png";
 import {
   motion,
   useMotionValue,
   useTransform,
   useSpring,
   useMotionTemplate,
+  useScroll,
 } from "framer-motion";
 import Spotlight from "@/components/Spotlight";
 import MovingBorderButton from "@/components/MovingBorderButton";
 import HeroThree from "@/components/HeroThree";
 import { useLanguage } from "@/context/LanguageContext";
+import { NeonSun, PalmTree, RetroCar, FloatWrap } from "@/components/SynthwaveDecor";
 
 function FloatingDiamond({
   size,
@@ -64,7 +65,6 @@ function FloatingDiamond({
 export default function Header() {
   const { t } = useLanguage();
   const heroRef = useRef<HTMLDivElement>(null);
-  // Shared mouse ref — written by mouse handler, read by Three.js tick loop (no re-render)
   const mouseRef = useRef({ x: 0, y: 0 });
 
   // framer-motion values for the card tilt
@@ -75,10 +75,15 @@ export default function Header() {
   const rotateX = useSpring(useTransform(rawY, [-0.5, 0.5], [14, -14]), spring);
   const rotateY = useSpring(useTransform(rawX, [-0.5, 0.5], [-14, 14]), spring);
 
-  // Moving glare sheen on profile
+  // Glare sheen
   const glareX = useSpring(useTransform(rawX, [-0.5, 0.5], [15, 85]), spring);
   const glareY = useSpring(useTransform(rawY, [-0.5, 0.5], [15, 85]), spring);
   const glare = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.08) 0%, transparent 55%)`;
+
+  // Scroll-based logo rotation — 0→360° as user scrolls past the hero
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const logoRotateRaw = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  const logoRotate = useSpring(logoRotateRaw, { stiffness: 40, damping: 20 });
 
   // Opposite-direction text parallax for depth perception
   const textX = useSpring(useTransform(rawX, [-0.5, 0.5], [8, -8]), { stiffness: 50, damping: 18 });
@@ -142,6 +147,23 @@ export default function Header() {
         <FloatingDiamond size={14} color="rgba(233,30,140,0.55)" top="44%" left="2%" delay={1.8} rotateDuration={9} />
       </div>
 
+      {/* Synthwave palm trees */}
+      <div className="absolute bottom-0 left-0 w-20 sm:w-28 h-40 sm:h-56 pointer-events-none z-[1]">
+        <FloatWrap delay={0.5} amplitude={6} duration={6}>
+          <PalmTree className="w-full h-full" color="#e91e8c" opacity={0.38} />
+        </FloatWrap>
+      </div>
+      <div className="absolute bottom-0 right-0 w-20 sm:w-28 h-40 sm:h-56 pointer-events-none z-[1]">
+        <FloatWrap delay={1.2} amplitude={8} duration={7}>
+          <PalmTree className="w-full h-full" color="#f97316" opacity={0.32} flip />
+        </FloatWrap>
+      </div>
+
+      {/* Retro car silhouette */}
+      <div className="absolute bottom-[11%] left-[8%] w-36 sm:w-48 pointer-events-none z-[1] opacity-50">
+        <RetroCar className="w-full" color="#e91e8c" opacity={0.45} />
+      </div>
+
       {/* Main content */}
       <div className="relative z-[2] max-w-7xl w-full mx-auto px-5 sm:px-8">
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-20 py-36 lg:py-44">
@@ -200,9 +222,9 @@ export default function Header() {
             </div>
           </motion.div>
 
-          {/* ── Right: 3D tilting profile card ── */}
+          {/* ── Right: Logo with scroll rotation ── */}
           <motion.div
-            className="flex-shrink-0"
+            className="flex-shrink-0 relative"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.9, ease: "easeOut" }}
@@ -212,33 +234,57 @@ export default function Header() {
               style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
               className="relative flex items-center justify-center"
             >
-              {/* Ambient glow — pushed back in Z */}
+              {/* NeonSun behind the logo */}
               <div
-                className="absolute rounded-full blur-3xl opacity-40 pointer-events-none"
+                className="absolute pointer-events-none"
+                style={{
+                  width: 340,
+                  height: 200,
+                  bottom: -30,
+                  left: "50%",
+                  transform: "translateX(-50%) translateZ(-30px)",
+                  opacity: 0.75,
+                }}
+              >
+                <NeonSun className="w-full h-full" />
+              </div>
+
+              {/* Ambient glow */}
+              <div
+                className="absolute blur-3xl opacity-35 pointer-events-none"
                 style={{
                   width: 340,
                   height: 340,
                   background: "radial-gradient(circle, #e91e8c 0%, #f97316 60%, #fbbf24 100%)",
-                  transform: "translateZ(-20px) scale(1.15)",
+                  transform: "translateZ(-20px) scale(1.1)",
                 }}
               />
 
-              {/* Profile picture — floats forward */}
-              <Image
-                src={Profile}
-                alt="Ajdin Mehmedović"
-                width={340}
-                height={340}
-                priority
-                draggable={false}
-                className="relative rounded-full border border-white/10 object-cover w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80 shadow-2xl"
-                style={{ transform: "translateZ(30px)" }}
-              />
-
-              {/* Moving glare sheen */}
+              {/* AY.png logo — scroll rotation */}
               <motion.div
-                className="absolute rounded-full pointer-events-none w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
-                style={{ background: glare, transform: "translateZ(34px)" }}
+                style={{ rotate: logoRotate, translateZ: 30 }}
+                className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
+              >
+                <Image
+                  src="/AY.png"
+                  alt="Aydhiny"
+                  fill
+                  priority
+                  draggable={false}
+                  className="object-contain"
+                  style={{
+                    filter:
+                      "drop-shadow(0 0 8px rgba(233,30,140,0.7)) " +
+                      "drop-shadow(0 0 24px rgba(249,115,22,0.4)) " +
+                      "drop-shadow(0 0 48px rgba(233,30,140,0.25))",
+                  }}
+                />
+              </motion.div>
+
+              {/* Glare sheen */}
+              <motion.div
+                className="absolute pointer-events-none w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
+                style={{ background: glare, translateZ: 34 }}
               />
             </motion.div>
           </motion.div>

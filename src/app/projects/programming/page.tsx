@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Projects from "@/app/pages/Projects/page";
 import ProjectShowcase from "./ProjectShowcase";
+import GitHubGrid from "./GitHubGrid";
 import {
   FaDownload,
   FaPlay,
@@ -209,6 +210,11 @@ export default function Page() {
         button1Link="https://tjestenina-lejla-website.vercel.app/"
         reverse
       />
+
+      {/* GitHub repos grid with pagination */}
+      <div className="border-t border-[var(--border)] pt-20">
+        <GitHubGrid />
+      </div>
 
       <Projects />
     </div>

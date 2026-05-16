@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import { AnimatePresence } from "framer-motion";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { Scanlines } from "@/components/SynthwaveDecor";
 
 const HIDE_FOOTER_PAGES = ["/next-big-thing", "/projects/music", "/journey"];
 
@@ -47,6 +48,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           mixBlendMode: "overlay",
         }}
       />
+      <Scanlines opacity={0.022} />
       <ScrollProgressBar />
       <CustomCursor />
       <Navbar />
