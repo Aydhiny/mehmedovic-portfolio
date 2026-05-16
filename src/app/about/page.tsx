@@ -7,6 +7,7 @@ import {
 import { SiBeatstars } from "react-icons/si";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const socials = [
   { icon: <FaGithub />, href: "https://github.com/Aydhiny", label: "GitHub" },
@@ -16,9 +17,11 @@ const socials = [
 ];
 
 export default function Page() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<string | null>(null);
+  const [statusOk, setStatusOk] = useState(false);
   const [sending, setSending] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -30,6 +33,7 @@ export default function Page() {
     e.preventDefault();
     setSending(true);
     setStatus(null);
+    setStatusOk(false);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -38,13 +42,14 @@ export default function Page() {
       });
       const data = await response.json();
       if (response.ok) {
-        setStatus("Message sent successfully!");
+        setStatus(t.about.successMsg);
+        setStatusOk(true);
         setFormData({ name: "", email: "", message: "" });
       } else {
-        setStatus(data.error ?? "Failed to send message.");
+        setStatus(data.error ?? t.about.failMsg);
       }
     } catch {
-      setStatus("Network error — please try again.");
+      setStatus(t.about.networkError);
     } finally {
       setSending(false);
     }
@@ -63,7 +68,7 @@ export default function Page() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          About
+          {t.about.tag}
         </motion.p>
 
         <motion.h1
@@ -87,7 +92,7 @@ export default function Page() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Software Engineering Student · Music Producer · Graphic & UI Designer
+          {t.about.tagline}
         </motion.p>
 
         {/* Floating role chips */}
@@ -97,7 +102,7 @@ export default function Page() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
         >
-          {["FIT Mostar", "Aydhiny Beatz", "Plansio Agency", "1st — FIT Coding Challenge"].map((chip) => (
+          {t.about.chips.map((chip) => (
             <span
               key={chip}
               className="glass inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium text-[var(--fg-2)] border border-[var(--border)]"
@@ -119,27 +124,13 @@ export default function Page() {
           transition={{ duration: 0.7, delay: 0.15 }}
         >
           <div className="space-y-5 text-[var(--fg-2)] leading-relaxed mb-10">
-            <p>
-              Currently pursuing studies at the{" "}
-              <span className="text-white font-medium">Faculty of Information Technologies in Mostar</span>
-              , with a primary focus on Software Engineering. With over 6 years of experience in music
-              production, I go by the alias{" "}
-              <span className="text-[var(--accent)] font-medium">Aydhiny</span>. My unique blend of
-              creativity in music flows directly into my software development and design work.
-            </p>
-            <p>
-              I specialize in Graphic & UI design and contribute to{" "}
-              <span className="text-white font-medium">Plansio</span>, where I create engaging social
-              media content and user-friendly applications.
-            </p>
-            <p>
-              Always looking to collaborate on innovative projects. Feel free to reach out via any of
-              the channels below.
-            </p>
+            <p>{t.about.bio1}</p>
+            <p>{t.about.bio2}</p>
+            <p>{t.about.bio3}</p>
           </div>
 
           <div className="mb-10">
-            <p className="text-xs text-[var(--fg-3)] uppercase tracking-widest mb-5">Explore my work</p>
+            <p className="text-xs text-[var(--fg-3)] uppercase tracking-widest mb-5">{t.about.exploreWork}</p>
             <div className="flex gap-3">
               {socials.map(({ icon, href, label }) => (
                 <Link
@@ -159,10 +150,10 @@ export default function Page() {
           {/* Quick facts */}
           <div className="grid grid-cols-2 gap-3">
             {[
-              { label: "Years Music Production", value: "6+" },
-              { label: "FIT Coding Challenge", value: "1st Place" },
-              { label: "Worldwide Streams", value: "5M+" },
-              { label: "Projects Shipped", value: "10+" },
+              { label: t.about.stats.musicYears, value: "6+" },
+              { label: t.about.stats.fitChallenge, value: "1st Place" },
+              { label: t.about.stats.streams, value: "5M+" },
+              { label: t.about.stats.projects, value: "10+" },
             ].map(({ label, value }) => (
               <div key={label} className="glass rounded-xl p-5 text-center">
                 <p className="font-garamond font-bold italic text-3xl g-text leading-none mb-1">{value}</p>
@@ -178,9 +169,12 @@ export default function Page() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.25 }}
         >
-          <p className="text-xs text-[var(--fg-3)] uppercase tracking-widest mb-6">Get in touch</p>
+          <p className="text-xs text-[var(--fg-3)] uppercase tracking-widest mb-6">{t.about.contactTag}</p>
           <h2 className="text-3xl font-bold text-white mb-8">
-            Contact <span className="font-garamond font-bold italic text-4xl g-text">me.</span>
+            {t.about.contactTitle.includes(" ")
+              ? <>{t.about.contactTitle.split(" ")[0]}{" "}<span className="font-garamond font-bold italic text-4xl g-text">{t.about.contactTitle.split(" ").slice(1).join(" ")}</span></>
+              : <span className="font-garamond font-bold italic text-4xl g-text">{t.about.contactTitle}</span>
+            }
           </h2>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -202,7 +196,7 @@ export default function Page() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Your Name"
+                placeholder={t.about.namePlaceholder}
                 maxLength={100}
                 required
                 className="w-full bg-transparent text-white placeholder:text-[var(--fg-3)] focus:outline-none text-sm"
@@ -216,7 +210,7 @@ export default function Page() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Your Email"
+                placeholder={t.about.emailPlaceholder}
                 maxLength={254}
                 required
                 className="w-full bg-transparent text-white placeholder:text-[var(--fg-3)] focus:outline-none text-sm"
@@ -229,7 +223,7 @@ export default function Page() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Your Message"
+                placeholder={t.about.messagePlaceholder}
                 maxLength={2000}
                 required
                 rows={5}
@@ -240,10 +234,10 @@ export default function Page() {
             <button
               type="submit"
               disabled={sending}
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-xl text-sm font-semibold transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed glow-button"
+              className="btn-primary flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed glow-button"
             >
               <FaEnvelope />
-              {sending ? "Sending..." : "Send Message"}
+              {sending ? t.about.sending : t.about.sendBtn}
             </button>
           </form>
 
@@ -251,7 +245,7 @@ export default function Page() {
             <p
               role="status"
               className={`mt-4 text-sm font-medium ${
-                status === "Message sent successfully!" ? "text-green-400" : "text-red-400"
+                statusOk ? "text-green-400" : "text-red-400"
               }`}
             >
               {status}

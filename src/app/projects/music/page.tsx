@@ -9,6 +9,7 @@ import Candy from "@images/music/candy.jpg";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { useLanguage } from "@/context/LanguageContext";
 
 const tracks = [
   {
@@ -41,14 +42,14 @@ const tracks = [
   },
 ];
 
-const stats = [
-  { value: "5M+", label: "Total Streams" },
-  { value: "6+", label: "Years Producing" },
-  { value: "50+", label: "Beats Released" },
-  { value: "10+", label: "Artists Featured" },
-];
-
 export default function MusicPage() {
+  const { t } = useLanguage();
+  const stats = [
+    { value: "5M+", label: t.music.stats.streams },
+    { value: "6+", label: t.music.stats.years },
+    { value: "50+", label: t.music.stats.beats },
+    { value: "10+", label: t.music.stats.artists },
+  ];
   return (
     <div className="min-h-screen text-white">
 
@@ -62,7 +63,7 @@ export default function MusicPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          Sound
+          {t.music.tag}
         </motion.p>
 
         <motion.h1
@@ -72,10 +73,10 @@ export default function MusicPage() {
           transition={{ duration: 0.9 }}
         >
           <span className="block text-2xl font-semibold tracking-[0.28em] uppercase text-white/50">
-            Music
+            {t.music.heroTitle}
           </span>
           <span className="block font-garamond font-bold italic text-[5rem] sm:text-[7rem] lg:text-[8rem] g-text leading-[0.9]">
-            production.
+            {t.music.heroSubtitle}
           </span>
         </motion.h1>
 
@@ -85,7 +86,7 @@ export default function MusicPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Six years crafting beats under the alias <strong className="text-white">Aydhiny</strong> — from bedroom studio to millions of streams worldwide.
+          {t.music.tagline}
         </motion.p>
 
         <motion.div
@@ -100,7 +101,7 @@ export default function MusicPage() {
             rel="noopener noreferrer"
             className="glass-btn flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold"
           >
-            <FaInstagram className="size-4" /> Follow
+            <FaInstagram className="size-4" /> {t.music.follow}
           </Link>
           <Link
             href="https://www.youtube.com/Aydhiny"
@@ -108,7 +109,7 @@ export default function MusicPage() {
             rel="noopener noreferrer"
             className="glass-btn flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold"
           >
-            <FaYoutube className="size-4" /> YouTube
+            <FaYoutube className="size-4" /> {t.music.youtube}
           </Link>
         </motion.div>
       </section>
@@ -151,7 +152,7 @@ export default function MusicPage() {
               <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#07070e] via-[#07070e]/40 to-transparent" />
             </div>
             <div className="p-8 lg:p-12 flex flex-col justify-center min-h-[280px]">
-              <p className="label-tag mb-3">Biggest Hit</p>
+              <p className="label-tag mb-3">{t.music.biggestHit}</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-1 leading-tight">
                 2Bona — <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">candy.</span>
               </h2>
@@ -159,16 +160,16 @@ export default function MusicPage() {
               <div className="flex items-center gap-6 mb-6">
                 <div>
                   <p className="font-garamond font-bold italic text-5xl g-text-teal leading-none">5M+</p>
-                  <p className="text-[var(--fg-3)] text-xs uppercase tracking-widest mt-1">Streams Worldwide</p>
+                  <p className="text-[var(--fg-3)] text-xs uppercase tracking-widest mt-1">{t.music.streamsWorldwide}</p>
                 </div>
               </div>
               <Link
                 href="https://www.youtube.com/watch?v=GMIQ8ZWRQXo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-semibold transition-colors w-fit"
+                className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold w-fit"
               >
-                <FaYoutube className="size-4" /> Watch on YouTube
+                <FaYoutube className="size-4" /> {t.music.watchYoutube}
               </Link>
             </div>
           </div>
@@ -184,9 +185,12 @@ export default function MusicPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="label-tag mb-2">Discography</p>
+          <p className="label-tag mb-2">{t.music.discographyTag}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
-            Production <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">projects.</span>
+            {t.music.discographyTitle.includes(" ")
+              ? <>{t.music.discographyTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.music.discographyTitle.split(" ").slice(-1)[0]}</span></>
+              : <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.music.discographyTitle}</span>
+            }
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
@@ -221,20 +225,23 @@ export default function MusicPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <p className="label-tag mb-4">Collaborate</p>
+          <p className="label-tag mb-4">{t.music.collaborateTag}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Let&apos;s Make Something <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">extraordinary.</span>
+            {t.music.collaborateTitle.includes(" ")
+              ? <>{t.music.collaborateTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.music.collaborateTitle.split(" ").slice(-1)[0]}</span></>
+              : <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.music.collaborateTitle}</span>
+            }
           </h2>
           <p className="text-[var(--fg-2)] max-w-xl mx-auto mb-8 leading-relaxed">
-            Whether you&apos;re an artist or a producer — reach out and let&apos;s build the next big track together.
+            {t.music.collaborateDesc}
           </p>
           <Link
             href="https://instagram.com/aydhiny_beatz"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold transition-colors"
+            className="btn-primary inline-flex items-center gap-2 px-8 py-3 rounded-xl font-semibold"
           >
-            <FaInstagram className="size-4" /> Get in Touch
+            <FaInstagram className="size-4" /> {t.music.getInTouch}
           </Link>
         </motion.div>
       </section>

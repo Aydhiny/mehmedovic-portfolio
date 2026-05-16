@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Fira+Code:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Fira+Code:wght@300..700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,7 +43,7 @@ body {
     radial-gradient(ellipse 50% 45% at 0% 100%,  rgba(217, 119, 6, 0.07)  0%, transparent 50%),
     var(--bg);
   background-attachment: fixed;
-  font-family: "DM Sans", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -182,19 +182,23 @@ body {
 }
 
 .glass-btn {
-  background: rgba(255, 255, 255, 0.07);
+  background:
+    rgba(255, 255, 255, 0.07) padding-box,
+    linear-gradient(180deg, rgba(168,85,247,0.45) 0%, rgba(255,255,255,0.10) 100%) border-box;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.11);
+  border: 1.5px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
 }
 .glass-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(124, 58, 237, 0.55);
+  background:
+    rgba(255, 255, 255, 0.12) padding-box,
+    linear-gradient(180deg, rgba(192,100,255,0.80) 0%, rgba(217,119,6,0.40) 100%) border-box;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.10),
-    0 0 24px rgba(124, 58, 237, 0.18);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 28px rgba(124, 58, 237, 0.22);
+  transform: translateY(-1px);
 }
 
 .glass-input {
@@ -239,37 +243,88 @@ body {
 .animate-float       { animation: float 4s ease-in-out infinite; }
 .animate-float-delay { animation: float 4s ease-in-out infinite 1.6s; }
 
-/* ─── Moving border button (Aceternity style) ───────────── */
-.moving-border-btn {
-  background: transparent;
-  padding: 1.5px;
+/* ─── Button system ─────────────────────────────────────── */
+/*
+  Gradient border technique: padding-box clips the fill colour
+  inside the border edge; border-box clips the gradient to the
+  full element including border, creating a gradient border with
+  a solid fill — no pseudo-elements needed.
+*/
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 0.75rem;
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(180deg, #9d5ff5 0%, #7c3aed 55%, #5b21b6 100%) padding-box,
+    linear-gradient(180deg, rgba(196,130,255,0.95) 0%, rgba(124,58,237,0.55) 55%, rgba(91,33,182,0.9) 100%) border-box;
+  box-shadow:
+    0 4px 22px rgba(124, 58, 237, 0.40),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  text-decoration: none;
+  white-space: nowrap;
 }
-.moving-border-inner {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: conic-gradient(
-    from var(--moving-border-angle, 0deg),
-    transparent 20%,
-    #7c3aed 40%,
-    #d97706 60%,
-    transparent 80%
-  );
-  animation: moving-border-spin 3s linear infinite;
+.btn-primary:hover {
+  background:
+    linear-gradient(180deg, #aa6ef7 0%, #8b5cf6 55%, #6d28d9 100%) padding-box,
+    linear-gradient(180deg, rgba(210,148,255,1) 0%, rgba(139,92,246,0.65) 55%, rgba(109,40,217,1) 100%) border-box;
+  box-shadow:
+    0 6px 32px rgba(124, 58, 237, 0.60),
+    0 0 64px rgba(124, 58, 237, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
 }
-@property --moving-border-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow:
+    0 2px 12px rgba(124, 58, 237, 0.40),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
-@keyframes moving-border-spin {
-  to { --moving-border-angle: 360deg; }
+
+.btn-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 0.75rem;
+  border: 1.5px solid transparent;
+  background:
+    rgba(255, 255, 255, 0.07) padding-box,
+    linear-gradient(180deg, rgba(168,85,247,0.65) 0%, rgba(217,119,6,0.40) 100%) border-box;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 4px 18px rgba(0, 0, 0, 0.32);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  text-decoration: none;
+  white-space: nowrap;
 }
-@supports not (background: conic-gradient(from 0deg, red, blue)) {
-  .moving-border-inner {
-    background: linear-gradient(90deg, #7c3aed, #06b6d4);
-    animation: none;
-  }
+.btn-secondary:hover {
+  background:
+    rgba(255, 255, 255, 0.12) padding-box,
+    linear-gradient(180deg, rgba(192,100,255,0.95) 0%, rgba(217,119,6,0.65) 100%) border-box;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 0 32px rgba(124, 58, 237, 0.22),
+    0 4px 18px rgba(0, 0, 0, 0.42);
+  transform: translateY(-2px);
+}
+.btn-secondary:active {
+  transform: translateY(0);
 }
 
 /* ─── Spotlight beam animation ──────────────────────────── */

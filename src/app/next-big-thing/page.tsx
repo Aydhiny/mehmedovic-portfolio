@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -56,23 +57,7 @@ const Lightbox = ({ src, alt, onClose }: LightboxProps) => {
   );
 };
 
-const features = [
-  {
-    icon: <FaRocket />,
-    title: "Epic Adventure",
-    desc: "Embark on a sprawling journey filled with danger, profound mystery, and countless hidden secrets awaiting your discovery.",
-  },
-  {
-    icon: <FaPuzzlePiece />,
-    title: "Thunderbolt Collectables",
-    desc: "Collect thunderbolts to enter Reuf's castle, and stop him from unleashing chaos across the realms.",
-  },
-  {
-    icon: <FaMagic />,
-    title: "Magical Worlds",
-    desc: "Traverse seven breathtakingly stunning worlds, each a unique masterpiece bursting with distinct personality and charm.",
-  },
-];
+const featureIcons = [<FaRocket key="0" />, <FaPuzzlePiece key="1" />, <FaMagic key="2" />];
 
 const inView = {
   hidden: { opacity: 0, y: 40 },
@@ -80,6 +65,8 @@ const inView = {
 };
 
 export default function Page() {
+  const { t } = useLanguage();
+  const features = t.nextBigThing.features.map((f, i) => ({ ...f, icon: featureIcons[i] }));
   const screenshots = [Screenshot1, Screenshot2, Screenshot3, Screenshot4];
   const [lightboxSrc, setLightboxSrc] = useState<StaticImageData | null>(null);
   const [lightboxAlt, setLightboxAlt] = useState("");
@@ -102,13 +89,13 @@ export default function Page() {
             alt="Hunter Mouse 2 Logo"
             className="mx-auto w-44 md:w-72 drop-shadow-[0_0_40px_rgba(124,58,237,0.6)] mb-8"
           />
-          <p className="label-tag mx-auto mb-6">Next Big Thing</p>
+          <p className="label-tag mx-auto mb-6">{t.nextBigThing.tag}</p>
           <h1 className="font-garamond font-bold italic g-text leading-[0.9] mb-5"
             style={{ fontSize: "clamp(3.5rem, 10vw, 8rem)" }}>
-            hunter mouse 2.
+            {t.nextBigThing.title}
           </h1>
           <p className="text-[var(--fg-2)] text-lg sm:text-xl max-w-lg mx-auto leading-relaxed">
-            A Modern Collectathon Adventure — <span className="text-white font-semibold">Coming 2026</span>
+            {t.nextBigThing.subtitle} — <span className="text-white font-semibold">{t.nextBigThing.coming}</span>
           </p>
         </motion.div>
       </section>
@@ -119,9 +106,12 @@ export default function Page() {
           className="mb-10 text-center"
           variants={inView} initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <p className="label-tag mx-auto mb-3">Gameplay</p>
+          <p className="label-tag mx-auto mb-3">{t.nextBigThing.gameplayTag}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
-            What Makes It <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">special.</span>
+            {t.nextBigThing.specialTitle.includes(" ")
+              ? <>{t.nextBigThing.specialTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.nextBigThing.specialTitle.split(" ").slice(-1)[0]}</span></>
+              : <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.nextBigThing.specialTitle}</span>
+            }
           </h2>
         </motion.div>
 
@@ -149,17 +139,19 @@ export default function Page() {
           className="mb-10"
           variants={inView} initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <p className="label-tag mb-3">Gallery</p>
+          <p className="label-tag mb-3">{t.nextBigThing.galleryTag}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white flex items-center gap-3">
             <FaGamepad className="text-[var(--accent)]" />
-            Game <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">overview.</span>
+            {t.nextBigThing.overviewTitle.includes(" ")
+              ? <>{t.nextBigThing.overviewTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">{t.nextBigThing.overviewTitle.split(" ").slice(-1)[0]}</span></>
+              : <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">{t.nextBigThing.overviewTitle}</span>
+            }
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
 
         <p className="text-[var(--fg-2)] text-base mb-8 max-w-3xl leading-relaxed">
-          Inspired by beloved classics like Banjo-Kazooie, Hunter Mouse 2 delivers a{" "}
-          <span className="text-white font-semibold">vibrant collectathon adventure</span>. Collect thunderbolts, master new moves, and uncover every secret across expansive, beautifully crafted worlds.
+          {t.nextBigThing.overviewDesc}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -190,15 +182,18 @@ export default function Page() {
           className="mb-10"
           variants={inView} initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <p className="label-tag mb-3">Cast</p>
+          <p className="label-tag mb-3">{t.nextBigThing.castTag}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white flex items-center gap-3">
             <FaStar className="text-[var(--accent-gold)]" />
-            Meet the <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">characters.</span>
+            {t.nextBigThing.charactersTitle.includes(" ")
+              ? <>{t.nextBigThing.charactersTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">{t.nextBigThing.charactersTitle.split(" ").slice(-1)[0]}</span></>
+              : <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">{t.nextBigThing.charactersTitle}</span>
+            }
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
         <p className="text-[var(--fg-2)] text-base mb-8 max-w-3xl leading-relaxed">
-          Join Puntsy the Mouse and a vibrant cast of eccentric allies and formidable rivals — each adding humor, challenge, or tantalizing mystery to your grand adventure.
+          {t.nextBigThing.castDesc}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {[Character1, Character2].map((char, i) => (
@@ -220,10 +215,13 @@ export default function Page() {
           className="mb-10"
           variants={inView} initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <p className="label-tag mb-3">Worlds</p>
+          <p className="label-tag mb-3">{t.nextBigThing.worldsTag}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white flex items-center gap-3">
             <FaGlobe className="text-[var(--accent-gold)]" />
-            Explore the <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">realms.</span>
+            {t.nextBigThing.realmsTitle.includes(" ")
+              ? <>{t.nextBigThing.realmsTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">{t.nextBigThing.realmsTitle.split(" ").slice(-1)[0]}</span></>
+              : <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">{t.nextBigThing.realmsTitle}</span>
+            }
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
@@ -240,7 +238,7 @@ export default function Page() {
           ))}
         </div>
         <p className="text-[var(--fg-2)] text-base max-w-3xl leading-relaxed">
-          From lush jungles to futuristic cityscapes — every world is meticulously designed and teeming with secrets, enemies, and collectibles.
+          {t.nextBigThing.worldsDesc}
         </p>
       </section>
 
@@ -262,13 +260,15 @@ export default function Page() {
             />
           </motion.div>
           <div>
-            <p className="label-tag mb-4"><FaMusic className="inline mr-1" /> Soundtrack</p>
+            <p className="label-tag mb-4"><FaMusic className="inline mr-1" /> {t.nextBigThing.soundtrackTag}</p>
             <h2 className="text-3xl font-bold text-white mb-4">
-              Original <span className="font-garamond font-bold italic text-4xl g-text">soundtrack.</span>
+              {t.nextBigThing.soundtrackTitle.includes(" ")
+                ? <>{t.nextBigThing.soundtrackTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl g-text">{t.nextBigThing.soundtrackTitle.split(" ").slice(-1)[0]}</span></>
+                : <span className="font-garamond font-bold italic text-4xl g-text">{t.nextBigThing.soundtrackTitle}</span>
+              }
             </h2>
             <p className="text-[var(--fg-2)] leading-relaxed max-w-xl">
-              Immerse yourself in a whimsical, energetic score composed under the direction of{" "}
-              <span className="text-white font-semibold">Aydhiny Beats</span> — crafted to complement every moment of your adventure.
+              {t.nextBigThing.soundtrackDesc}
             </p>
           </div>
         </motion.div>
@@ -283,13 +283,15 @@ export default function Page() {
           <div className="text-4xl text-[var(--accent-gold)] mb-4 flex justify-center">
             <FaAward />
           </div>
-          <p className="label-tag mx-auto mb-4">Recognition</p>
+          <p className="label-tag mx-auto mb-4">{t.nextBigThing.recognitionTag}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Award-<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">winning</span> title.
+            {t.nextBigThing.awardTitle.includes(" ")
+              ? <>{t.nextBigThing.awardTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.nextBigThing.awardTitle.split(" ").slice(-1)[0]}</span></>
+              : <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.nextBigThing.awardTitle}</span>
+            }
           </h2>
           <p className="text-[var(--fg-2)] max-w-2xl mx-auto leading-relaxed">
-            Hunter Mouse 2 claimed <span className="text-white font-bold">1st place</span> at the{" "}
-            <span className="text-white font-semibold">FIT Coding Challenge v18</span>, earning national recognition for its groundbreaking innovation, superior design, and captivating gameplay.
+            {t.nextBigThing.awardDesc}
           </p>
         </motion.div>
       </section>

@@ -5,41 +5,23 @@ import Image from "next/image";
 import ChaosImage from "@images/game/1.png";
 import MusicImage from "@images/music/aydhiny.jpg";
 import CodeImage from "@images/code.png";
+import { useLanguage } from "@/context/LanguageContext";
 
-const milestones = [
-  {
-    year: "2018",
-    title: "The Sound",
-    subtitle: "Music Production Begins",
-    description:
-      "My love for music started it all. Producing beats and melodies taught me the power of creativity and perseverance. Six years later, over 5 million streams worldwide.",
-    image: MusicImage,
-    accent: "text-[var(--accent-teal)]",
-    border: "border-[var(--accent-teal)]/30",
-  },
-  {
-    year: "2021",
-    title: "The Code",
-    subtitle: "Discovering Software Engineering",
-    description:
-      "Coding opened a new world. The ability to bring ideas to life through logic and creativity has been transformative — from web apps to full-stack systems.",
-    image: CodeImage,
-    accent: "text-[var(--accent)]",
-    border: "border-[var(--accent)]/30",
-  },
-  {
-    year: "2024",
-    title: "The Game",
-    subtitle: "Hunter Mouse 2 — First Place",
-    description:
-      'My biggest project yet. "Hunter Mouse 2" combines all disciplines — code, music, and design — into one indie collectathon that won First Place at FIT Coding Challenge v18.',
-    image: ChaosImage,
-    accent: "text-yellow-400",
-    border: "border-yellow-400/30",
-  },
+const milestoneImages = [MusicImage, CodeImage, ChaosImage];
+const milestoneStyles = [
+  { accent: "text-[var(--accent-teal)]", border: "border-[var(--accent-teal)]/30" },
+  { accent: "text-[var(--accent)]",      border: "border-[var(--accent)]/30" },
+  { accent: "text-yellow-400",           border: "border-yellow-400/30" },
 ];
 
 export default function Journey() {
+  const { t } = useLanguage();
+  const milestones = t.journey.milestones.map((m, i) => ({
+    ...m,
+    image: milestoneImages[i],
+    ...milestoneStyles[i],
+  }));
+
   return (
     <div className="min-h-screen text-white">
 
@@ -53,7 +35,7 @@ export default function Journey() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          The Story
+          {t.journey.tag}
         </motion.p>
 
         <motion.h1
@@ -62,10 +44,10 @@ export default function Journey() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
         >
-          From
-          <span className="font-garamond font-bold italic ml-3 text-6xl sm:text-8xl g-text">dreamer.</span>
+          {t.journey.heroTitle}
+          <span className="font-garamond font-bold italic ml-3 text-6xl sm:text-8xl g-text">{t.journey.dreamer}</span>
           <br />
-          to <span className="font-garamond font-bold italic text-6xl sm:text-8xl g-text-teal">doer.</span>
+          {t.journey.heroTo} <span className="font-garamond font-bold italic text-6xl sm:text-8xl g-text-teal">{t.journey.doer}</span>
         </motion.h1>
 
         <motion.p
@@ -74,8 +56,7 @@ export default function Journey() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          A journey of passion, creativity, and relentless pursuit of growth.
-          How music, coding, and design merged into something extraordinary.
+          {t.journey.heroDesc}
         </motion.p>
 
         <motion.div
@@ -103,7 +84,7 @@ export default function Journey() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)]/60 to-transparent z-10" />
                 <Image
                   src={m.image}
-                  alt={m.title}
+                  alt={`${m.titlePlain} ${m.titleAccent}`.trim()}
                   width={600}
                   height={400}
                   className="w-full h-64 sm:h-80 object-cover"
@@ -117,15 +98,10 @@ export default function Journey() {
                 </p>
                 <p className="label-tag mb-3">{m.subtitle}</p>
                 <h2 className="text-4xl sm:text-5xl font-bold text-white mb-5">
-                  {m.title.split(" ").map((word, wi) =>
-                    wi === 1 ? (
-                      <span key={wi} className="font-garamond font-bold italic g-text text-5xl sm:text-6xl"> {word.toLowerCase()}.</span>
-                    ) : (
-                      word + (wi === 0 ? " " : "")
-                    )
-                  )}
+                  {m.titlePlain && <>{m.titlePlain} </>}
+                  <span className="font-garamond font-bold italic g-text text-5xl sm:text-6xl">{m.titleAccent}</span>
                 </h2>
-                <p className="text-[var(--fg-2)] leading-relaxed">{m.description}</p>
+                <p className="text-[var(--fg-2)] leading-relaxed">{m.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -141,14 +117,15 @@ export default function Journey() {
           transition={{ duration: 0.7 }}
           className="glass rounded-2xl p-12"
         >
-          <p className="label-tag mb-4">What&apos;s Next</p>
+          <p className="label-tag mb-4">{t.journey.aheadTag}</p>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            The Path <span className="font-garamond font-bold italic text-5xl sm:text-6xl g-text">ahead.</span>
+            {t.journey.aheadTitle.includes(" ")
+              ? <>{t.journey.aheadTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-5xl sm:text-6xl g-text">{t.journey.aheadTitle.split(" ").slice(-1)[0]}</span></>
+              : <span className="font-garamond font-bold italic text-5xl sm:text-6xl g-text">{t.journey.aheadTitle}</span>
+            }
           </h2>
           <p className="text-[var(--fg-2)] text-lg max-w-2xl mx-auto leading-relaxed">
-            The journey continues as I explore new horizons, blending the power of
-            code, design, and sound to build things that matter — and make a difference
-            in the world.
+            {t.journey.aheadDesc}
           </p>
         </motion.div>
       </section>

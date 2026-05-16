@@ -2,6 +2,7 @@
 import MusicCard from "@/components/MusicCard";
 import ProjectBox from "@/components/ProjectBox";
 import React from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Bona from "../../images/projects/2bona.jpg";
 import Bread from "../../images/projects/bread.jpg";
 import Vozis from "../../images/projects/vozis.jpg";
@@ -23,6 +24,7 @@ function SectionHeader({ tag, title }: { tag: string; title: string }) {
 }
 
 export default function Page() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen hero-glow">
     <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-28 pb-20">
@@ -33,15 +35,18 @@ export default function Page() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
-        <p className="label-tag mb-4">Work</p>
+        <p className="label-tag mb-4">{t.projects.tag}</p>
         <h1 className="text-5xl sm:text-6xl font-bold text-white leading-tight">
-          My <span className="font-garamond font-bold italic text-7xl sm:text-8xl g-text">projects.</span>
+          {t.projects.title.includes(" ")
+            ? <>{t.projects.title.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-7xl sm:text-8xl g-text">{t.projects.title.split(" ").slice(-1)[0]}</span></>
+            : <span className="font-garamond font-bold italic text-7xl sm:text-8xl g-text">{t.projects.title}</span>
+          }
         </h1>
       </motion.div>
 
       {/* PROGRAMMING */}
       <section className="mb-20">
-        <SectionHeader tag="Code" title="Programming" />
+        <SectionHeader tag={t.projects.codeTag} title={t.projects.codingTitle} />
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -77,7 +82,7 @@ export default function Page() {
 
       {/* MUSIC */}
       <section className="mb-20">
-        <SectionHeader tag="Sound" title="Music Production" />
+        <SectionHeader tag={t.projects.soundTag} title={t.projects.musicTitle} />
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -117,7 +122,7 @@ export default function Page() {
 
       {/* DESIGN */}
       <section>
-        <SectionHeader tag="Visual" title="Graphic Design" />
+        <SectionHeader tag={t.projects.visualTag} title={t.projects.designTitle} />
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

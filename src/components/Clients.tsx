@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const competitions = [
   {
@@ -41,6 +42,7 @@ const competitions = [
 ];
 
 export default function Clients() {
+  const { t } = useLanguage();
   return (
     <div className="px-5 sm:px-8 py-20 max-w-7xl mx-auto">
       <motion.div
@@ -50,8 +52,8 @@ export default function Clients() {
         transition={{ duration: 0.6 }}
         className="mb-10"
       >
-        <p className="label-tag mb-3">Competitions</p>
-        <h2 className="text-4xl sm:text-5xl font-bold text-white">Awards & Hackathons</h2>
+        <p className="label-tag mb-3">{t.clients.tag}</p>
+        <h2 className="text-4xl sm:text-5xl font-bold text-white">{t.clients.title}</h2>
       </motion.div>
 
       <div className="space-y-3">

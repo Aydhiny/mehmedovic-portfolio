@@ -8,31 +8,35 @@ import {
   FaMusic,
   FaMousePointer,
 } from "react-icons/fa";
-
-const features = [
-  {
-    icon: <FaGamepad className="size-5 text-pink-400 mt-0.5 flex-shrink-0" />,
-    title: "Full Indie Production",
-    desc: "Coded, designed & implemented entirely solo — custom game mechanics, music & UI design.",
-  },
-  {
-    icon: <FaPuzzlePiece className="size-5 text-yellow-400 mt-0.5 flex-shrink-0" />,
-    title: "Vibrant Worlds",
-    desc: "Explore 7 unique worlds, each with its own theme and challenges, from lush jungles to icy peaks.",
-  },
-  {
-    icon: <FaMusic className="size-5 text-[var(--accent)] mt-0.5 flex-shrink-0" />,
-    title: "Original Soundtrack",
-    desc: "A fully composed soundtrack — 10+ tracks of original music crafted to enhance every moment.",
-  },
-  {
-    icon: <FaMousePointer className="size-5 text-green-400 mt-0.5 flex-shrink-0" />,
-    title: "Precise Controls",
-    desc: "Tight platforming mechanics inspired by the classics — your skills determine your success.",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HunterMouseShowcase() {
+  const { t } = useLanguage();
+  const hm = t.hunterMouse;
+
+  const features = [
+    {
+      icon: <FaGamepad className="size-5 text-pink-400 mt-0.5 flex-shrink-0" />,
+      title: hm.features.production.title,
+      desc: hm.features.production.desc,
+    },
+    {
+      icon: <FaPuzzlePiece className="size-5 text-yellow-400 mt-0.5 flex-shrink-0" />,
+      title: hm.features.worlds.title,
+      desc: hm.features.worlds.desc,
+    },
+    {
+      icon: <FaMusic className="size-5 text-[var(--accent)] mt-0.5 flex-shrink-0" />,
+      title: hm.features.soundtrack.title,
+      desc: hm.features.soundtrack.desc,
+    },
+    {
+      icon: <FaMousePointer className="size-5 text-green-400 mt-0.5 flex-shrink-0" />,
+      title: hm.features.controls.title,
+      desc: hm.features.controls.desc,
+    },
+  ];
+
   return (
     <div className="px-5 sm:px-8 py-20 max-w-7xl mx-auto">
 
@@ -43,11 +47,11 @@ export default function HunterMouseShowcase() {
         transition={{ duration: 0.7 }}
         className="mb-10"
       >
-        <p className="label-tag mb-3">Showcase</p>
+        <p className="label-tag mb-3">{hm.tag}</p>
         <h2 className="text-4xl sm:text-5xl font-bold text-white">
-          Hunter Mouse 2
+          {hm.title}
           <span className="font-garamond font-bold italic g-text ml-3 text-5xl sm:text-6xl">
-            official trailer.
+            {hm.subtitle}
           </span>
         </h2>
       </motion.div>
@@ -77,11 +81,7 @@ export default function HunterMouseShowcase() {
         transition={{ duration: 0.6, delay: 0.1 }}
         className="text-[var(--fg-2)] text-base sm:text-lg leading-relaxed mb-10 max-w-3xl"
       >
-        Enter Jungle Scapes, where worlds impress & adventure awaits. Your
-        journey is to retrieve thunderbolts, so you can once and for all stop
-        and defeat the traitor of the mice —{" "}
-        <span className="text-white font-semibold">Reuf.</span> ⚡ Explore
-        various insanely detailed worlds & defeat the enemy!
+        {hm.desc}
       </motion.p>
 
       {/* Features */}
@@ -110,11 +110,8 @@ export default function HunterMouseShowcase() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <Link
-          href="/next-big-thing"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-semibold transition-colors duration-150 glow-button"
-        >
-          Explore the Game
+        <Link href="/next-big-thing" className="btn-primary inline-flex">
+          {hm.exploreBtn}
         </Link>
       </motion.div>
 

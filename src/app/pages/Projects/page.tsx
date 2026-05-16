@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa6";
+import { useLanguage } from "@/context/LanguageContext";
 
 type Repo = {
   id: number;
@@ -24,6 +25,7 @@ const LANG_COLORS: Record<string, string> = {
 };
 
 export default function Page() {
+  const { t } = useLanguage();
   const [repos, setRepos] = useState<Repo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -48,35 +50,35 @@ export default function Page() {
       className="max-w-7xl mx-auto px-5 sm:px-8 py-20"
     >
       <div className="mb-10">
-        <p className="label-tag mb-3">Open Source</p>
+        <p className="label-tag mb-3">{t.repos.tag}</p>
         <h2 className="text-3xl sm:text-4xl font-bold text-white">
-          GitHub{" "}
-          <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">
-            repositories.
-          </span>
+          {t.repos.title.includes(" ")
+            ? <>{t.repos.title.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.repos.title.split(" ").slice(-1)[0]}</span></>
+            : <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.repos.title}</span>
+          }
         </h2>
         <div className="mt-4 h-px bg-[var(--border)]" />
       </div>
 
       <div className="flex flex-col gap-4">
         {loading && (
-          <p className="text-[var(--fg-3)] text-sm">Loading repositories…</p>
+          <p className="text-[var(--fg-3)] text-sm">{t.repos.loading}</p>
         )}
         {error && (
           <p className="text-[var(--fg-3)] text-sm">
-            Couldn&apos;t load repositories.{" "}
+            {t.repos.error}{" "}
             <Link
               href="https://github.com/Aydhiny"
               className="text-[var(--accent)] hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              View on GitHub →
+              {t.repos.viewOnGitHub}
             </Link>
           </p>
         )}
         {!loading && !error && repos.length === 0 && (
-          <p className="text-[var(--fg-3)] text-sm">No repositories found.</p>
+          <p className="text-[var(--fg-3)] text-sm">{t.repos.noRepos}</p>
         )}
         {repos.map((repo) => (
           <ProjectBox
@@ -98,7 +100,7 @@ export default function Page() {
         className="inline-flex items-center gap-2 mt-8 text-sm font-semibold text-[var(--fg-2)] hover:text-white transition-colors duration-150"
       >
         <FaGithub className="size-4" />
-        See all repositories →
+        {t.repos.seeAll}
       </Link>
     </motion.div>
   );

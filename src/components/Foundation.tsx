@@ -6,8 +6,11 @@ import { FaInstagram, FaLinkedin, FaGlobe } from "react-icons/fa";
 import BhfLogo from "../images/bhfuturesfoundation-logo.png";
 import ScholarImg from "../images/bhfutures-scholar.jpg";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Foundation() {
+  const { t } = useLanguage();
+  const f = t.foundation;
   return (
     <motion.section
       className="px-5 sm:px-8 py-20 max-w-7xl mx-auto"
@@ -30,28 +33,22 @@ export default function Foundation() {
             />
           </div>
 
-          <p className="label-tag mb-3">Fellowship</p>
+          <p className="label-tag mb-3">{f.tag}</p>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-2 tracking-tight">
-            BH Futures Foundation
+            {f.title}
           </h2>
           <p className="text-[var(--accent)] text-base font-semibold mb-5">
-            Senior Scholar & Marketing Team Member
+            {f.role}
           </p>
           <p className="text-[var(--fg-2)] text-base leading-relaxed mb-8 max-w-xl">
-            As a proud Senior Scholar and active member of the marketing team at{" "}
-            <span className="text-white font-medium">
-              Bosnia & Herzegovina Futures Foundation
-            </span>
-            , I help empower youth, promote STEM education, and build a brighter
-            future for Bosnia and Herzegovina through digital campaigns, event
-            promotion, and community engagement.
+            {f.desc}
           </p>
 
           <div className="flex flex-wrap gap-3">
             {[
-              { href: "https://bhfuturesfoundation.org/", icon: <FaGlobe />, label: "Website" },
-              { href: "https://www.linkedin.com/company/bhfuturesfoundation/", icon: <FaLinkedin />, label: "LinkedIn" },
-              { href: "https://instagram.com/bhfuturesfoundation", icon: <FaInstagram />, label: "Instagram" },
+              { href: "https://bhfuturesfoundation.org/", icon: <FaGlobe />, label: f.website },
+              { href: "https://www.linkedin.com/company/bhfuturesfoundation/", icon: <FaLinkedin />, label: f.linkedin },
+              { href: "https://instagram.com/bhfuturesfoundation", icon: <FaInstagram />, label: f.instagram },
             ].map(({ href, icon, label }) => (
               <Link
                 key={label}

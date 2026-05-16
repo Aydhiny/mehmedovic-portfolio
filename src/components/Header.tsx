@@ -14,6 +14,7 @@ import {
 import Spotlight from "@/components/Spotlight";
 import MovingBorderButton from "@/components/MovingBorderButton";
 import HeroThree from "@/components/HeroThree";
+import { useLanguage } from "@/context/LanguageContext";
 
 function FloatingDiamond({
   size,
@@ -61,6 +62,7 @@ function FloatingDiamond({
 }
 
 export default function Header() {
+  const { t } = useLanguage();
   const heroRef = useRef<HTMLDivElement>(null);
   // Shared mouse ref — written by mouse handler, read by Three.js tick loop (no re-render)
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -152,17 +154,6 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Live badge */}
-            <div className="inline-flex items-center gap-2 mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-              </span>
-              <span className="text-[0.65rem] font-semibold tracking-[0.2em] uppercase text-emerald-400">
-                Available for Collaboration
-              </span>
-            </div>
-
             {/* Name */}
             <h1 className="mb-8 leading-none">
               <span className="block text-xl sm:text-2xl font-semibold tracking-[0.28em] uppercase text-white/50 mb-2">
@@ -177,21 +168,21 @@ export default function Header() {
             </h1>
 
             <p className="text-[var(--fg-2)] text-base sm:text-lg mb-10 max-w-md mx-auto lg:mx-0 leading-relaxed">
-              Software Engineer · Music Producer · Game Developer · Graphic Designer
+              {t.hero.tagline}
             </p>
 
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
               <MovingBorderButton href="/ajdin_mehmedovic_cv.pdf" target="_blank" rel="noopener noreferrer">
-                Download CV
+                {t.hero.downloadCV}
                 <FaDownload className="size-3.5" />
               </MovingBorderButton>
               <Link
                 href="https://github.com/Aydhiny"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-btn flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold"
+                className="btn-secondary flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold"
               >
-                GitHub
+                {t.hero.github}
                 <FaGithub className="size-3.5" />
               </Link>
             </div>
@@ -250,7 +241,7 @@ export default function Header() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
       >
-        <span className="text-[var(--fg-3)] text-[0.6rem] tracking-[0.25em] uppercase">Scroll</span>
+        <span className="text-[var(--fg-3)] text-[0.6rem] tracking-[0.25em] uppercase">{t.hero.scroll}</span>
         <div className="w-px h-8 bg-gradient-to-b from-[var(--fg-3)] to-transparent" />
       </motion.div>
     </section>

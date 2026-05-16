@@ -7,6 +7,7 @@ import FLS from "@images/projects/fls.jpg";
 import Bliss from "@images/projects/bliss.png";
 import { motion } from "framer-motion";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { useLanguage } from "@/context/LanguageContext";
 
 const projects = [
   {
@@ -43,6 +44,7 @@ const services = [
 ];
 
 export default function DesignPage() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen text-white">
 
@@ -56,7 +58,7 @@ export default function DesignPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          Visual
+          {t.design.tag}
         </motion.p>
 
         <motion.h1
@@ -66,10 +68,10 @@ export default function DesignPage() {
           transition={{ duration: 0.9 }}
         >
           <span className="block text-2xl font-semibold tracking-[0.28em] uppercase text-white/50">
-            Design &amp;
+            {t.design.heroTitle}
           </span>
           <span className="block font-garamond font-bold italic text-[5rem] sm:text-[7rem] lg:text-[8rem] g-text leading-[0.9]">
-            marketing.
+            {t.design.heroSubtitle}
           </span>
         </motion.h1>
 
@@ -79,7 +81,7 @@ export default function DesignPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Brand identity, social media campaigns, and visual storytelling - crafted for artists, events, and agencies.
+          {t.design.tagline}
         </motion.p>
 
         {/* Service pills */}
@@ -110,9 +112,12 @@ export default function DesignPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="label-tag mb-2">Portfolio</p>
+          <p className="label-tag mb-2">{t.design.portfolioTag}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
-            Selected <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">work.</span>
+            {t.design.portfolioTitle.includes(" ")
+              ? <>{t.design.portfolioTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.design.portfolioTitle.split(" ").slice(-1)[0]}</span></>
+              : <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.design.portfolioTitle}</span>
+            }
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
@@ -162,7 +167,7 @@ export default function DesignPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] hover:text-white transition-colors duration-150"
                 >
-                  View Project
+                  {t.design.viewProject}
                   <FaExternalLinkAlt className="size-3" />
                 </Link>
               </div>
@@ -180,18 +185,21 @@ export default function DesignPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <p className="label-tag mb-4">Hire</p>
+          <p className="label-tag mb-4">{t.design.hireTag}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Need a <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">designer.</span>
+            {t.design.hireTitle.includes(" ")
+              ? <>{t.design.hireTitle.split(" ").slice(0, -1).join(" ")}{" "}<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.design.hireTitle.split(" ").slice(-1)[0]}</span></>
+              : <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">{t.design.hireTitle}</span>
+            }
           </h2>
           <p className="text-[var(--fg-2)] max-w-xl mx-auto mb-8 leading-relaxed">
-            Looking for brand identity, social media design, or visual content? Let&apos;s create something that stands out.
+            {t.design.hireDesc}
           </p>
           <Link
             href="/about"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold transition-colors"
+            className="btn-primary inline-flex items-center gap-2 px-8 py-3 rounded-xl font-semibold"
           >
-            Get in Touch
+            {t.design.getInTouch}
           </Link>
         </motion.div>
       </section>

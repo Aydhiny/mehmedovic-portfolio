@@ -5,6 +5,7 @@ import { FaUnity, FaReact, FaGithub } from "react-icons/fa";
 import { DiDotnet } from "react-icons/di";
 import { SiAngular, SiBootstrap, SiAzuredevops } from "react-icons/si";
 import { motion, useInView } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const techStack = [
   { icon: <RiNextjsFill className="size-8 text-white" />, label: "Next.js" },
@@ -28,6 +29,7 @@ function TechItem({ icon, label }: { icon: React.ReactNode; label: string }) {
 }
 
 export default function Tech() {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -42,8 +44,8 @@ export default function Tech() {
       className="py-16"
     >
       <div className="px-5 sm:px-8 max-w-7xl mx-auto mb-10">
-        <p className="label-tag mb-3">Stack</p>
-        <h2 className="text-4xl sm:text-5xl font-bold text-white">Tech Stack</h2>
+        <p className="label-tag mb-3">{t.tech.tag}</p>
+        <h2 className="text-4xl sm:text-5xl font-bold text-white">{t.tech.title}</h2>
       </div>
 
       <div className="border-y border-[var(--border)] overflow-hidden py-6 bg-[var(--surface)]">

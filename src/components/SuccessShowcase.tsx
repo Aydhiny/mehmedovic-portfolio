@@ -14,6 +14,7 @@ import {
   FaGithub,
 } from "react-icons/fa";
 import { SiBeatstars } from "react-icons/si";
+import { useLanguage } from "@/context/LanguageContext";
 
 const successes = [
   {
@@ -59,6 +60,7 @@ const socials = [
 ];
 
 export default function SuccessShowcase() {
+  const { t } = useLanguage();
   const aboutRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -74,14 +76,12 @@ export default function SuccessShowcase() {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        <p className="label-tag mb-3">About</p>
+        <p className="label-tag mb-3">{t.success.aboutTag}</p>
         <h2 className="text-4xl sm:text-5xl font-bold text-white mb-5">
-          Who I Am
+          {t.success.aboutTitle}
         </h2>
         <p className="text-[var(--fg-2)] text-base sm:text-lg leading-relaxed mb-8">
-          Software engineering student, game developer, music producer, and designer.
-          I build across disciplines — code, sound, and visuals — and that cross-domain
-          curiosity drives everything I create.
+          {t.success.aboutDesc}
         </p>
         <div className="flex justify-center gap-5 text-xl text-[var(--fg-2)]">
           {socials.map(({ icon, href, label, hoverClass }) => (
@@ -107,9 +107,9 @@ export default function SuccessShowcase() {
         transition={{ duration: 0.6 }}
         className="mb-12"
       >
-        <p className="label-tag mb-3">Highlights</p>
+        <p className="label-tag mb-3">{t.success.highlightsTag}</p>
         <h2 className="text-4xl sm:text-5xl font-bold text-white mb-10">
-          Achievements
+          {t.success.achievementsTitle}
         </h2>
       </motion.div>
 

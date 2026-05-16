@@ -3,38 +3,18 @@ import React, { useState } from "react";
 import { TbMessageChatbotFilled } from "react-icons/tb";
 import { FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-
-interface Question {
-  text: string;
-  answer: string;
-}
-
-const questions: Question[] = [
-  {
-    text: "What is your email?",
-    answer: "You can reach me at ajdin.mehmedovic@edu.fit.ba",
-  },
-  {
-    text: "When did you start music production?",
-    answer: "I started producing beats 6 years ago, in 2018.",
-  },
-  {
-    text: "What programming languages do you know?",
-    answer: "Primarily C#, TypeScript, and JavaScript. I also work with SQL and C++.",
-  },
-  {
-    text: "Where are you located?",
-    answer: "Based in Kakanj, Bosnia and Herzegovina.",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 const Chatbot: React.FC = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<Question | null>(null);
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+
+  const questions = t.chatbot.questions;
 
   const close = () => {
     setIsOpen(false);
-    setSelected(null);
+    setSelectedIdx(null);
   };
 
   return (
@@ -83,7 +63,7 @@ const Chatbot: React.FC = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
                 </span>
-                <span className="text-white font-semibold text-sm">Ask Me</span>
+                <span className="text-white font-semibold text-sm">{t.chatbot.title}</span>
               </div>
               <button
                 onClick={close}
@@ -97,7 +77,7 @@ const Chatbot: React.FC = () => {
             {/* Body */}
             <div className="p-4">
               <AnimatePresence mode="wait" initial={false}>
-                {!selected ? (
+                {selectedIdx === null ? (
                   <motion.div
                     key="questions"
                     initial={{ opacity: 0, x: -10 }}
@@ -106,11 +86,11 @@ const Chatbot: React.FC = () => {
                     transition={{ duration: 0.18 }}
                     className="flex flex-col gap-2"
                   >
-                    <p className="text-[var(--fg-3)] text-xs mb-1">Select a question</p>
+                    <p className="text-[var(--fg-3)] text-xs mb-1">{t.chatbot.selectQuestion}</p>
                     {questions.map((q, i) => (
                       <button
                         key={i}
-                        onClick={() => setSelected(q)}
+                        onClick={() => setSelectedIdx(i)}
                         className="glass-btn w-full text-left px-4 py-3 rounded-xl text-[var(--fg-2)] text-sm hover:text-white transition-colors duration-150"
                       >
                         {q.text}
@@ -119,19 +99,19 @@ const Chatbot: React.FC = () => {
                   </motion.div>
                 ) : (
                   <motion.div
-                    key="answer"
+                    key={`answer-${selectedIdx}`}
                     initial={{ opacity: 0, x: 10 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 10 }}
                     transition={{ duration: 0.18 }}
                   >
-                    <p className="text-[var(--fg-3)] text-xs mb-3">{selected.text}</p>
-                    <p className="text-white text-sm leading-relaxed mb-5">{selected.answer}</p>
+                    <p className="text-[var(--fg-3)] text-xs mb-3">{questions[selectedIdx].text}</p>
+                    <p className="text-white text-sm leading-relaxed mb-5">{questions[selectedIdx].answer}</p>
                     <button
-                      onClick={() => setSelected(null)}
+                      onClick={() => setSelectedIdx(null)}
                       className="glass-btn px-4 py-2 rounded-xl text-[var(--fg-2)] hover:text-white text-sm font-medium transition-colors duration-150"
                     >
-                      ← Back
+                      {t.chatbot.back}
                     </button>
                   </motion.div>
                 )}

@@ -4,17 +4,19 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Aydhiny from "../images/ay.png";
 import Link from "next/link";
-
-const links = [
-  { label: "Home", href: "/" },
-  { label: "Blog", href: "/blog" },
-  { label: "Journey", href: "/journey" },
-  { label: "Next Big Thing", href: "/next-big-thing" },
-  { label: "About", href: "/about" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
   const pathname = usePathname();
+  const { t } = useLanguage();
+
+  const links = [
+    { label: t.footer.home, href: "/" },
+    { label: t.footer.blog, href: "/blog" },
+    { label: t.footer.journey, href: "/journey" },
+    { label: t.footer.nextBigThing, href: "/next-big-thing" },
+    { label: t.footer.about, href: "/about" },
+  ];
 
   return (
     <footer className="relative border-t border-[var(--border)] mt-10 overflow-hidden">
@@ -62,7 +64,7 @@ export default function Footer() {
                   href="mailto:ajdin.mehmedovic@edu.fit.ba"
                   className="text-sm text-[var(--fg-3)] hover:text-[var(--fg-2)] transition-colors duration-150"
                 >
-                  Email
+                  {t.footer.email}
                 </a>
               </li>
             </ul>

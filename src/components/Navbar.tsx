@@ -9,9 +9,11 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import Link from "next/link";
 import Image from "next/image";
 import Aydhiny from "../images/ay.png";
+import { useLanguage, type Lang } from "@/context/LanguageContext";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { t, lang, setLang } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -24,6 +26,19 @@ export default function Navbar() {
 
   const isActive = (path: string) =>
     pathname === path ? "text-white" : "text-[var(--fg-2)] hover:text-white";
+
+  const navLinks = [
+    { label: t.nav.home, href: "/" },
+    { label: t.nav.blog, href: "/blog" },
+    { label: t.nav.journey, href: "/journey" },
+    { label: t.nav.about, href: "/about" },
+  ];
+
+  const projectLinks = [
+    { label: t.nav.programming, href: "/projects/programming" },
+    { label: t.nav.musicProduction, href: "/projects/music" },
+    { label: t.nav.designMarketing, href: "/projects/design" },
+  ];
 
   return (
     <header
@@ -51,12 +66,7 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <ul className="hidden md:flex items-center gap-1">
-            {[
-              { label: "Home", href: "/" },
-              { label: "Blog", href: "/blog" },
-              { label: "Journey", href: "/journey" },
-              { label: "About", href: "/about" },
-            ].map(({ label, href }) => (
+            {navLinks.map(({ label, href }) => (
               <li key={href}>
                 <Link
                   href={href}
@@ -73,7 +83,7 @@ export default function Navbar() {
                 onClick={() => setProjectsOpen((p) => !p)}
                 className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm transition-colors duration-150 ${isActive("/projects")}`}
               >
-                Projects
+                {t.nav.projects}
                 <MdKeyboardArrowDown
                   aria-hidden="true"
                   className={`transition-transform duration-200 ${projectsOpen ? "rotate-180" : ""}`}
@@ -81,11 +91,7 @@ export default function Navbar() {
               </button>
               {projectsOpen && (
                 <ul className="absolute top-full left-0 mt-2 w-52 bg-[var(--surface)] border border-[var(--border)] rounded-xl shadow-2xl shadow-black/50 overflow-hidden">
-                  {[
-                    { label: "Programming", href: "/projects/programming" },
-                    { label: "Music Production", href: "/projects/music" },
-                    { label: "Design & Marketing", href: "/projects/design" },
-                  ].map(({ label, href }) => (
+                  {projectLinks.map(({ label, href }) => (
                     <li key={href}>
                       <Link
                         href={href}
@@ -109,12 +115,12 @@ export default function Navbar() {
                     : "border-[var(--border-2)] text-[var(--fg-2)] hover:border-[var(--accent)] hover:text-white"
                 }`}
               >
-                Next Big Thing
+                {t.nav.nextBigThing}
               </Link>
             </li>
           </ul>
 
-          {/* Desktop social + CTA */}
+          {/* Desktop: social + lang toggle + CTA */}
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="https://instagram.com/ajdinmehmedovix"
@@ -143,11 +149,26 @@ export default function Navbar() {
             >
               <FaYoutube aria-hidden="true" className="size-4" />
             </Link>
-            <Link
-              href="/about"
-              className="ml-2 px-4 py-1.5 rounded-lg bg-[var(--accent)] text-white text-sm font-semibold hover:bg-[var(--accent-hover)] transition-colors duration-150"
-            >
-              Contact
+
+            {/* Language toggle */}
+            <div className="flex items-center rounded-lg border border-[var(--border-2)] overflow-hidden ml-1">
+              {(["en", "bs"] as Lang[]).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`px-2.5 py-1 text-[0.7rem] font-semibold tracking-wider uppercase transition-colors duration-150 ${
+                    lang === l
+                      ? "bg-[var(--accent)] text-white"
+                      : "text-[var(--fg-3)] hover:text-white"
+                  }`}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
+            <Link href="/about" className="btn-primary ml-1 px-4 py-1.5 text-sm rounded-lg">
+              {t.nav.contact}
             </Link>
           </div>
 
@@ -169,14 +190,9 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-[var(--border)] bg-[#07070e]/95 backdrop-blur-2xl animate-slide-down">
+        <div className="md:hidden border-t border-[var(--border)] bg-[#07070e]/95 backdrop-blur-2xl">
           <ul className="px-5 py-4 space-y-1">
-            {[
-              { label: "Home", href: "/" },
-              { label: "Blog", href: "/blog" },
-              { label: "Journey", href: "/journey" },
-              { label: "About", href: "/about" },
-            ].map(({ label, href }) => (
+            {navLinks.map(({ label, href }) => (
               <li key={href}>
                 <Link
                   href={href}
@@ -192,7 +208,7 @@ export default function Navbar() {
                 className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-[var(--fg-2)] hover:text-white transition-colors"
                 onClick={() => setProjectsOpen((p) => !p)}
               >
-                <span>Projects</span>
+                <span>{t.nav.projects}</span>
                 <MdKeyboardArrowDown
                   aria-hidden="true"
                   className={`transition-transform duration-200 ${projectsOpen ? "rotate-180" : ""}`}
@@ -200,11 +216,7 @@ export default function Navbar() {
               </button>
               {projectsOpen && (
                 <ul className="ml-4 mt-1 space-y-1 border-l border-[var(--border)] pl-4">
-                  {[
-                    { label: "Programming", href: "/projects/programming" },
-                    { label: "Music Production", href: "/projects/music" },
-                    { label: "Design & Marketing", href: "/projects/design" },
-                  ].map(({ label, href }) => (
+                  {projectLinks.map(({ label, href }) => (
                     <li key={href}>
                       <Link
                         href={href}
@@ -224,28 +236,46 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 className="block px-3 py-2.5 text-sm text-[var(--fg-2)] hover:text-white transition-colors"
               >
-                Next Big Thing
+                {t.nav.nextBigThing}
               </Link>
             </li>
           </ul>
-          <div className="px-5 pb-5 pt-2 border-t border-[var(--border)] flex items-center gap-5">
-            {[
-              { label: "Instagram", href: "https://instagram.com/ajdinmehmedovix", icon: <GrInstagram aria-hidden="true" className="size-4" /> },
-              { label: "BeatStars", href: "https://beatstars.com/aydhiny", icon: <SiBeatstars aria-hidden="true" className="size-4" /> },
-              { label: "YouTube", href: "https://youtube.com/Aydhiny", icon: <FaYoutube aria-hidden="true" className="size-4" /> },
-            ].map(({ label, href, icon }) => (
-              <Link
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                onClick={() => setMenuOpen(false)}
-                className="text-[var(--fg-2)] hover:text-white transition-colors"
-              >
-                {icon}
-              </Link>
-            ))}
+          <div className="px-5 pb-4 pt-2 border-t border-[var(--border)] flex items-center justify-between">
+            <div className="flex items-center gap-5">
+              {[
+                { label: "Instagram", href: "https://instagram.com/ajdinmehmedovix", icon: <GrInstagram aria-hidden="true" className="size-4" /> },
+                { label: "BeatStars", href: "https://beatstars.com/aydhiny", icon: <SiBeatstars aria-hidden="true" className="size-4" /> },
+                { label: "YouTube", href: "https://youtube.com/Aydhiny", icon: <FaYoutube aria-hidden="true" className="size-4" /> },
+              ].map(({ label, href, icon }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-[var(--fg-2)] hover:text-white transition-colors"
+                >
+                  {icon}
+                </Link>
+              ))}
+            </div>
+            {/* Mobile language toggle */}
+            <div className="flex items-center rounded-lg border border-[var(--border-2)] overflow-hidden">
+              {(["en", "bs"] as Lang[]).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`px-2.5 py-1 text-[0.7rem] font-semibold tracking-wider uppercase transition-colors duration-150 ${
+                    lang === l
+                      ? "bg-[var(--accent)] text-white"
+                      : "text-[var(--fg-3)] hover:text-white"
+                  }`}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
