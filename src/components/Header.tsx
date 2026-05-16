@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useRef } from "react";
 import { FaDownload, FaGithub } from "react-icons/fa6";
@@ -8,15 +7,12 @@ import {
   useMotionValue,
   useTransform,
   useSpring,
-  useMotionTemplate,
-  useScroll,
 } from "framer-motion";
 import Spotlight from "@/components/Spotlight";
 import MovingBorderButton from "@/components/MovingBorderButton";
 import HeroThree from "@/components/HeroThree";
 import { useLanguage } from "@/context/LanguageContext";
 import { NeonSun } from "@/components/SynthwaveDecor";
-import AYLogo from "@/images/ay.png";
 
 function FloatingDiamond({
   size,
@@ -68,23 +64,10 @@ export default function Header() {
   const heroRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
 
-  // framer-motion values for the card tilt
+  // Mouse parallax for text
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
-  const spring = { stiffness: 80, damping: 18 };
-
-  const rotateX = useSpring(useTransform(rawY, [-0.5, 0.5], [14, -14]), spring);
-  const rotateY = useSpring(useTransform(rawX, [-0.5, 0.5], [-14, 14]), spring);
-
-  // Glare sheen
-  const glareX = useSpring(useTransform(rawX, [-0.5, 0.5], [15, 85]), spring);
-  const glareY = useSpring(useTransform(rawY, [-0.5, 0.5], [15, 85]), spring);
-  const glare = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.08) 0%, transparent 55%)`;
-
-  // Scroll-based logo rotation — 0→360° as user scrolls past the hero
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const logoRotateRaw = useTransform(scrollYProgress, [0, 1], [0, 360]);
-  const logoRotate = useSpring(logoRotateRaw, { stiffness: 40, damping: 20 });
+  const spring = { stiffness: 50, damping: 18 };
 
   // Opposite-direction text parallax for depth perception
   const textX = useSpring(useTransform(rawX, [-0.5, 0.5], [8, -8]), { stiffness: 50, damping: 18 });
@@ -206,71 +189,14 @@ export default function Header() {
             </div>
           </motion.div>
 
-          {/* ── Right: Logo with scroll rotation ── */}
+          {/* ── Right: NeonSun ── */}
           <motion.div
-            className="flex-shrink-0 relative"
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="flex-shrink-0 pointer-events-none"
+            initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.9, ease: "easeOut" }}
-            style={{ perspective: "1100px" }}
+            transition={{ delay: 0.3, duration: 1.1, ease: "easeOut" }}
           >
-            <motion.div
-              style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-              className="relative flex items-center justify-center"
-            >
-              {/* NeonSun behind the logo */}
-              <div
-                className="absolute pointer-events-none"
-                style={{
-                  width: 340,
-                  height: 200,
-                  bottom: -30,
-                  left: "50%",
-                  transform: "translateX(-50%) translateZ(-30px)",
-                  opacity: 0.75,
-                }}
-              >
-                <NeonSun className="w-full h-full" />
-              </div>
-
-              {/* Ambient glow */}
-              <div
-                className="absolute blur-3xl opacity-35 pointer-events-none"
-                style={{
-                  width: 340,
-                  height: 340,
-                  background: "radial-gradient(circle, #e91e8c 0%, #f97316 60%, #fbbf24 100%)",
-                  transform: "translateZ(-20px) scale(1.1)",
-                }}
-              />
-
-              {/* AY.png logo — scroll rotation */}
-              <motion.div
-                style={{ rotate: logoRotate, translateZ: 30 }}
-                className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
-              >
-                <Image
-                  src={AYLogo}
-                  alt="Aydhiny"
-                  fill
-                  priority
-                  draggable={false}
-                  className="object-contain"
-                  style={{
-                    filter:
-                      "drop-shadow(0 0 8px rgba(233,30,140,0.7)) " +
-                      "drop-shadow(0 0 24px rgba(249,115,22,0.4)) " +
-                      "drop-shadow(0 0 48px rgba(233,30,140,0.25))",
-                  }}
-                />
-              </motion.div>
-
-              {/* Glare sheen */}
-              <motion.div
-                className="absolute pointer-events-none w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
-                style={{ background: glare, translateZ: 34 }}
-              />
-            </motion.div>
+            <NeonSun className="w-72 h-44 sm:w-96 sm:h-56 lg:w-[28rem] lg:h-64" />
           </motion.div>
 
         </div>
