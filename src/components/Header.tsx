@@ -16,6 +16,7 @@ import MovingBorderButton from "@/components/MovingBorderButton";
 import HeroThree from "@/components/HeroThree";
 import { useLanguage } from "@/context/LanguageContext";
 import { NeonSun } from "@/components/SynthwaveDecor";
+import AYLogo from "@/images/ay.png";
 
 function FloatingDiamond({
   size,
@@ -249,7 +250,7 @@ export default function Header() {
                 className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
               >
                 <Image
-                  src="/AY.png"
+                  src={AYLogo}
                   alt="Aydhiny"
                   fill
                   priority
