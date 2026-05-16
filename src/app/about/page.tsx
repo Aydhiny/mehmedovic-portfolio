@@ -8,6 +8,7 @@ import { SiBeatstars } from "react-icons/si";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import ShapeCanvas from "@/components/ShapeCanvas";
 
 const socials = [
   { icon: <FaGithub />, href: "https://github.com/Aydhiny", label: "GitHub" },
@@ -61,6 +62,12 @@ export default function Page() {
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center text-center min-h-[55vh] px-5 sm:px-8 overflow-hidden pt-28 pb-16 hero-glow">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#07070e]/80 pointer-events-none" />
+
+        {/* Three.js wireframe accents */}
+        <ShapeCanvas shape="octahedron" color="#f97316" wireOpacity={0.35} speed={0.7}
+          className="absolute top-8 right-6 w-32 h-32 opacity-30 pointer-events-none hidden sm:block" />
+        <ShapeCanvas shape="cube" color="#e91e8c" wireOpacity={0.3} speed={0.5}
+          className="absolute bottom-6 left-6 w-24 h-24 opacity-25 pointer-events-none hidden sm:block" />
 
         <motion.p
           className="label-tag mb-5"

@@ -3,6 +3,7 @@ import Projects from "@/app/pages/Projects/page";
 import ProjectShowcase from "./ProjectShowcase";
 import GitHubGrid from "./GitHubGrid";
 import { NeonSun, PalmTree, RetroCar } from "@/components/SynthwaveDecor";
+import ShapeCanvas from "@/components/ShapeCanvas";
 import {
   FaDownload,
   FaPlay,
@@ -50,7 +51,9 @@ export default function Page() {
   return (
     <div className="max-w-7xl mx-auto space-y-24 mt-24 px-6 md:px-12">
       {/* Hero */}
-      <div className="text-center space-y-4">
+      <div className="relative text-center space-y-4">
+        <ShapeCanvas shape="icosahedron" color="#e91e8c" wireOpacity={0.38} speed={0.75}
+          className="absolute -top-4 right-0 w-36 h-36 opacity-30 pointer-events-none hidden md:block" />
         <p className="text-[0.6rem] font-bold tracking-[0.28em] uppercase text-[#fda4af] mb-3">
           Work
         </p>

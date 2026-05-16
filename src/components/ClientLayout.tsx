@@ -8,6 +8,7 @@ import CustomCursor from "@/components/CustomCursor";
 import { AnimatePresence } from "framer-motion";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Scanlines } from "@/components/SynthwaveDecor";
+import EasterEggs from "@/components/EasterEggs";
 
 const HIDE_FOOTER_PAGES = ["/next-big-thing", "/projects/music", "/journey"];
 
@@ -49,6 +50,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         }}
       />
       <Scanlines opacity={0.022} />
+      <EasterEggs />
       <ScrollProgressBar />
       <CustomCursor />
       <Navbar />

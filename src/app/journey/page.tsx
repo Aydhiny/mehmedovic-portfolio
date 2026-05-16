@@ -13,6 +13,7 @@ import {
   RetroSunglasses,
   FloatWrap,
 } from "@/components/SynthwaveDecor";
+import ShapeCanvas from "@/components/ShapeCanvas";
 
 const milestoneImages = [MusicImage, CodeImage, ChaosImage];
 const milestoneAccents = ["#e91e8c", "#f97316", "#fbbf24"];
@@ -217,6 +218,12 @@ export default function Journey() {
 
       {/* ── Path Ahead ───────────────────────────────────────── */}
       <section className="relative max-w-7xl mx-auto px-5 sm:px-8 py-20 text-center overflow-hidden">
+        {/* Three.js torus accent */}
+        <ShapeCanvas shape="torus" color="#fbbf24" wireOpacity={0.3} speed={0.6}
+          className="absolute top-4 left-4 w-28 h-28 opacity-25 pointer-events-none hidden sm:block" />
+        <ShapeCanvas shape="icosahedron" color="#f97316" wireOpacity={0.28} speed={0.8}
+          className="absolute top-4 right-4 w-24 h-24 opacity-22 pointer-events-none hidden sm:block" />
+
         {/* Floating sunglasses accents */}
         <div className="absolute top-6 right-6 w-28 pointer-events-none opacity-30 hidden sm:block">
           <FloatWrap delay={0.3} amplitude={8} duration={5}>

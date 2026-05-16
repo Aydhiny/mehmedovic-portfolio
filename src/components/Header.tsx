@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { FaDownload, FaGithub } from "react-icons/fa6";
 import {
   motion,
   useMotionValue,
   useTransform,
   useSpring,
+  AnimatePresence,
 } from "framer-motion";
 import Spotlight from "@/components/Spotlight";
 import MovingBorderButton from "@/components/MovingBorderButton";
@@ -67,7 +68,27 @@ export default function Header() {
   // Mouse parallax for text
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
-  const spring = { stiffness: 50, damping: 18 };
+
+  // NeonSun easter egg — 3 clicks
+  const [sunClicks, setSunClicks] = useState(0);
+  const [sunPulse, setSunPulse] = useState(false);
+  const [sunToast, setSunToast] = useState(false);
+  const sunTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleSunClick = () => {
+    const next = sunClicks + 1;
+    setSunClicks(next);
+    if (next >= 3) {
+      setSunClicks(0);
+      setSunPulse(true);
+      setSunToast(true);
+      if (sunTimerRef.current) clearTimeout(sunTimerRef.current);
+      sunTimerRef.current = setTimeout(() => {
+        setSunPulse(false);
+        setSunToast(false);
+      }, 3000);
+    }
+  };
 
   // Opposite-direction text parallax for depth perception
   const textX = useSpring(useTransform(rawX, [-0.5, 0.5], [8, -8]), { stiffness: 50, damping: 18 });
@@ -189,15 +210,38 @@ export default function Header() {
             </div>
           </motion.div>
 
-          {/* ── Right: NeonSun ── */}
+          {/* ── Right: NeonSun (click 3× to find easter egg) ── */}
           <motion.div
-            className="flex-shrink-0 pointer-events-none"
+            className="flex-shrink-0 cursor-pointer select-none"
             initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 1.1, ease: "easeOut" }}
+            animate={sunPulse
+              ? { opacity: 1, scale: [1, 1.18, 0.94, 1.06, 1], filter: ["brightness(1)", "brightness(1.6)", "brightness(1)"] }
+              : { opacity: 1, scale: 1 }
+            }
+            transition={{ delay: sunPulse ? 0 : 0.3, duration: sunPulse ? 0.7 : 1.1, ease: "easeOut" }}
+            onClick={handleSunClick}
+            title=""
           >
             <NeonSun className="w-72 h-44 sm:w-96 sm:h-56 lg:w-[28rem] lg:h-64" />
           </motion.div>
+
+          {/* Sun easter egg toast */}
+          <AnimatePresence>
+            {sunToast && (
+              <motion.div
+                className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[9997] px-5 py-3 rounded-2xl border border-[var(--accent)]/35 backdrop-blur-md"
+                style={{ background: "rgba(7,7,14,0.92)" }}
+                initial={{ y: 18, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 10, opacity: 0 }}
+                transition={{ duration: 0.28 }}
+              >
+                <p className="font-michroma text-sm text-[var(--accent)] uppercase tracking-wider">
+                  ☀️ you found the sunrise.
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
         </div>
       </div>
