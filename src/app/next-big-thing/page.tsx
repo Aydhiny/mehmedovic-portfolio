@@ -105,7 +105,7 @@ export default function Page() {
           <p className="label-tag mx-auto mb-6">Next Big Thing</p>
           <h1 className="font-garamond font-bold italic g-text leading-[0.9] mb-5"
             style={{ fontSize: "clamp(3.5rem, 10vw, 8rem)" }}>
-            Hunter Mouse 2
+            hunter mouse 2.
           </h1>
           <p className="text-[var(--fg-2)] text-lg sm:text-xl max-w-lg mx-auto leading-relaxed">
             A Modern Collectathon Adventure — <span className="text-white font-semibold">Coming 2026</span>
@@ -121,7 +121,7 @@ export default function Page() {
         >
           <p className="label-tag mx-auto mb-3">Gameplay</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
-            What Makes It <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Special</span>
+            What Makes It <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">special.</span>
           </h2>
         </motion.div>
 
@@ -152,7 +152,7 @@ export default function Page() {
           <p className="label-tag mb-3">Gallery</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white flex items-center gap-3">
             <FaGamepad className="text-[var(--accent)]" />
-            Game <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">Overview</span>
+            Game <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">overview.</span>
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
@@ -193,7 +193,7 @@ export default function Page() {
           <p className="label-tag mb-3">Cast</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white flex items-center gap-3">
             <FaStar className="text-[var(--accent-gold)]" />
-            Meet the <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">Characters</span>
+            Meet the <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">characters.</span>
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
@@ -223,7 +223,7 @@ export default function Page() {
           <p className="label-tag mb-3">Worlds</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white flex items-center gap-3">
             <FaGlobe className="text-[var(--accent-gold)]" />
-            Explore the <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">Realms</span>
+            Explore the <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text ml-2">realms.</span>
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
@@ -264,7 +264,7 @@ export default function Page() {
           <div>
             <p className="label-tag mb-4"><FaMusic className="inline mr-1" /> Soundtrack</p>
             <h2 className="text-3xl font-bold text-white mb-4">
-              Original <span className="font-garamond font-bold italic text-4xl g-text">Soundtrack</span>
+              Original <span className="font-garamond font-bold italic text-4xl g-text">soundtrack.</span>
             </h2>
             <p className="text-[var(--fg-2)] leading-relaxed max-w-xl">
               Immerse yourself in a whimsical, energetic score composed under the direction of{" "}
@@ -285,7 +285,7 @@ export default function Page() {
           </div>
           <p className="label-tag mx-auto mb-4">Recognition</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Award-<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Winning</span> Title
+            Award-<span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">winning</span> title.
           </h2>
           <p className="text-[var(--fg-2)] max-w-2xl mx-auto leading-relaxed">
             Hunter Mouse 2 claimed <span className="text-white font-bold">1st place</span> at the{" "}

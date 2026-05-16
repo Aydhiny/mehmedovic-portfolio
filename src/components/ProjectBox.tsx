@@ -1,7 +1,16 @@
+"use client";
 import React from "react";
-import { FaCircle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 import { FaLink } from "react-icons/fa";
+
+const LANG_DOT: Record<string, string> = {
+  yellow: "#eab308",
+  blue: "#60a5fa",
+  green: "#4ade80",
+  red: "#f87171",
+  orange: "#fb923c",
+  gray: "#71717a",
+};
 
 interface ProjectBoxProps {
   name: string;
@@ -12,45 +21,41 @@ interface ProjectBoxProps {
   github?: string;
 }
 
-const ProjectBox: React.FC<ProjectBoxProps> = ({
-  name,
-  description,
-  tech,
-  color,
-  link,
-  github,
-}) => {
+const ProjectBox: React.FC<ProjectBoxProps> = ({ name, description, tech, color, link, github }) => {
+  const dot = LANG_DOT[color] ?? "#71717a";
   return (
-    <div className="xl:p-12 p-4 my-4 flex border justify-between hover:shadow-2xl hover:shadow-main-app-purple transition-all duration-150 bg-gradient-to-t from-zinc-800 to-main-background-grey rounded-md border-gray-400">
-      {/* Links Section */}
-
-      {/* Project Details */}
-
-      <div className="flex flex-col">
-        <h4 className="text-xl">{name}</h4>
-        <p className="text-gray-300">{description}</p>
-        <div className="flex items-center gap-2">
-          <FaCircle style={{ color: color }} />
-          <p>{tech}</p>
+    <div className="glass rounded-2xl p-5 flex items-center justify-between gap-4 border border-[var(--border)] hover:border-[var(--accent)]/40 transition-all duration-300">
+      <div className="flex-1 min-w-0">
+        <h4 className="font-semibold text-white text-base mb-1 truncate">{name}</h4>
+        <p className="text-[var(--fg-2)] text-sm leading-relaxed line-clamp-2">{description}</p>
+        <div className="flex items-center gap-1.5 mt-2.5">
+          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: dot }} />
+          <span className="text-[var(--fg-3)] text-xs">{tech}</span>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row text-center items-center text-white">
-        <a
-          className="p-4 mx-4 cursor-pointer xl:my-0 my-4 border border-gray-400 rounded-2xl"
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaGithub className="size-5" />
-        </a>
-        <a
-          className="p-4 border cursor-pointer border-gray-400 rounded-2xl"
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaLink className="size-5" />
-        </a>
+      <div className="flex items-center gap-2 flex-shrink-0">
+        {github && (
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="glass-btn p-2.5 rounded-xl text-[var(--fg-2)] hover:text-white transition-colors duration-150"
+          >
+            <FaGithub className="size-4" />
+          </a>
+        )}
+        {link && (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Live site"
+            className="glass-btn p-2.5 rounded-xl text-[var(--fg-2)] hover:text-white transition-colors duration-150"
+          >
+            <FaLink className="size-4" />
+          </a>
+        )}
       </div>
     </div>
   );

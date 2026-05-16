@@ -35,7 +35,7 @@ export default function Page() {
       >
         <p className="label-tag mb-4">Work</p>
         <h1 className="text-5xl sm:text-6xl font-bold text-white leading-tight">
-          My <span className="font-garamond font-bold italic text-7xl sm:text-8xl g-text">Projects</span>
+          My <span className="font-garamond font-bold italic text-7xl sm:text-8xl g-text">projects.</span>
         </h1>
       </motion.div>
 

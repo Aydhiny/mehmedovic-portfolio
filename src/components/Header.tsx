@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { FaDownload, FaGithub } from "react-icons/fa6";
 import Profile from "../images/profile-pic.png";
+import AydhinyLogo from "../images/ay.png";
 import { motion } from "framer-motion";
 import Spotlight from "@/components/Spotlight";
 import MovingBorderButton from "@/components/MovingBorderButton";
@@ -12,11 +13,10 @@ export default function Header() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-glow">
 
-      {/* CSS Spotlight — strong atmospheric beams */}
       <Spotlight />
 
-      {/* Bottom fade into page */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#07070e] to-transparent pointer-events-none z-[1]" />
+      {/* Bottom fade into page — no hard cutoff */}
+      <div className="absolute bottom-0 left-0 right-0 h-60 bg-gradient-to-t from-[#07070e] via-[#07070e]/60 to-transparent pointer-events-none z-[1]" />
 
       {/* Content */}
       <div className="relative z-[2] max-w-7xl w-full mx-auto px-5 sm:px-8">
@@ -40,16 +40,16 @@ export default function Header() {
               </span>
             </div>
 
-            {/* Name — split DM Sans + Garamond gradient */}
+            {/* Name */}
             <h1 className="mb-8 leading-none">
-              {/* "Ajdin" — small, visible, tracked uppercase */}
               <span className="block text-xl sm:text-2xl font-semibold tracking-[0.28em] uppercase text-white/50 mb-2">
                 Ajdin
               </span>
-              {/* "Mehmedović" — massive gradient Garamond */}
-              <span className="block font-garamond font-bold italic leading-[0.88] g-text"
-                style={{ fontSize: "clamp(4.5rem, 12vw, 10rem)" }}>
-                Mehmedović
+              <span
+                className="block font-garamond font-bold italic leading-[0.88] g-text"
+                style={{ fontSize: "clamp(4.5rem, 12vw, 10rem)" }}
+              >
+                mehmedović.
               </span>
             </h1>
 
@@ -74,17 +74,32 @@ export default function Header() {
             </div>
           </motion.div>
 
-          {/* ── Right: Profile + floating badges ── */}
+          {/* ── Right: Spinning logo + profile ── */}
           <motion.div
-            className="flex-shrink-0 relative"
-            initial={{ opacity: 0, scale: 0.92 }}
+            className="flex-shrink-0 relative flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.9, ease: "easeOut" }}
           >
-            {/* Glow halo */}
-            <div className="absolute inset-0 rounded-full opacity-30 blur-3xl scale-125"
-              style={{ background: "radial-gradient(circle, #7c3aed 0%, #d97706 60%, transparent 75%)" }} />
+            {/* Large spinning Aydhiny logo */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ width: 420, height: 420 }}>
+              <Image
+                src={AydhinyLogo}
+                alt=""
+                width={420}
+                height={420}
+                aria-hidden
+                className="opacity-[0.13] animate-spin-slow select-none"
+              />
+            </div>
 
+            {/* Ambient glow behind profile */}
+            <div
+              className="absolute inset-0 rounded-full opacity-25 blur-3xl scale-110 pointer-events-none"
+              style={{ background: "radial-gradient(circle, #7c3aed 0%, #d97706 70%, transparent 100%)" }}
+            />
+
+            {/* Profile picture */}
             <Image
               src={Profile}
               alt="Ajdin Mehmedović"
@@ -94,52 +109,6 @@ export default function Header() {
               draggable={false}
               className="relative rounded-full border border-white/10 object-cover w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
             />
-
-            {/* Floating badge — top left */}
-            <motion.div
-              className="absolute -top-6 -left-10 glass rounded-xl px-4 py-2.5 hidden sm:flex items-center gap-2.5"
-              style={{ border: "1px solid rgba(250,204,21,0.2)" }}
-              initial={{ opacity: 0, x: -16, y: 8 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.6 }}
-            >
-              <span className="text-lg">🏆</span>
-              <div>
-                <p className="text-white font-semibold text-xs leading-none mb-0.5">1st Place</p>
-                <p className="text-[var(--fg-3)] text-[0.6rem] leading-none">FIT Challenge v18</p>
-              </div>
-            </motion.div>
-
-            {/* Floating badge — bottom right */}
-            <motion.div
-              className="absolute -bottom-4 -right-8 glass rounded-xl px-4 py-2.5 hidden sm:flex items-center gap-2.5"
-              style={{ border: "1px solid rgba(0,207,180,0.2)" }}
-              initial={{ opacity: 0, x: 16, y: -8 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ delay: 1.15, duration: 0.6 }}
-            >
-              <span className="text-lg">🎵</span>
-              <div>
-                <p className="text-white font-semibold text-xs leading-none mb-0.5">5M+ Streams</p>
-                <p className="text-[var(--fg-3)] text-[0.6rem] leading-none">Worldwide</p>
-              </div>
-            </motion.div>
-
-            {/* Floating badge — top right */}
-            <motion.div
-              className="absolute -top-3 -right-12 glass rounded-xl px-4 py-2.5 hidden lg:flex items-center gap-2.5"
-              style={{ border: "1px solid rgba(124,58,237,0.25)" }}
-              initial={{ opacity: 0, x: 16, y: 8 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ delay: 1.3, duration: 0.6 }}
-            >
-              <span className="text-lg">⚡</span>
-              <div>
-                <p className="text-white font-semibold text-xs leading-none mb-0.5">6+ Years</p>
-                <p className="text-[var(--fg-3)] text-[0.6rem] leading-none">Creating</p>
-              </div>
-            </motion.div>
-
           </motion.div>
 
         </div>
@@ -147,7 +116,7 @@ export default function Header() {
 
       {/* Scroll hint */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center gap-1.5"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center gap-1.5"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}

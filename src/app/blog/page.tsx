@@ -22,7 +22,7 @@ export default function Page() {
       >
         <p className="label-tag mb-4">Writing</p>
         <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4 leading-tight">
-          The <span className="font-garamond font-bold italic text-6xl sm:text-7xl g-text">Blog</span>
+          The <span className="font-garamond font-bold italic text-6xl sm:text-7xl g-text">blog.</span>
         </h1>
         <p className="text-[var(--fg-2)] text-lg max-w-xl leading-relaxed">
           Thoughts on music production, game development, software engineering, and the creative process.

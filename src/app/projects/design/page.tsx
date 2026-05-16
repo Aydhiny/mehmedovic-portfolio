@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +15,7 @@ const projects = [
     href: "https://bhfuturesfoundation.org/",
     category: "Social Media Graphic Design",
     tags: ["Branding", "Social Media", "Events"],
-    desc: "Designed every visual element for the Futures Leaders Summit 2024 â€” from brand identity and promotional graphics to all event materials.",
+    desc: "Designed every visual element for the Futures Leaders Summit 2024 - from brand identity and promotional graphics to all event materials.",
   },
   {
     image: Bliss,
@@ -23,23 +23,23 @@ const projects = [
     href: "https://www.instagram.com/eternal_bliss_official/",
     category: "Social Media Brand",
     tags: ["Brand Identity", "Instagram", "Music"],
-    desc: "Instagram brand for music producer Ediba Deville â€” educating newer producers in the craft and business of music production.",
+    desc: "Instagram brand for music producer Ediba Deville - educating newer producers in the craft and business of music production.",
   },
   {
     image: Plansio,
     title: "Plansio Agency",
     href: "https://www.instagram.com/plansio_central",
-    category: "Marketing Â· Social Media Â· Video",
+    category: "Marketing · Social Media · Video",
     tags: ["Marketing", "Video Editing", "Design"],
-    desc: "Full digital marketing and branding work for Plansio â€” social media content strategy, video editing, and design campaigns for multiple clients.",
+    desc: "Full digital marketing and branding work for Plansio - social media content strategy, video editing, and design campaigns for multiple clients.",
   },
 ];
 
 const services = [
-  { label: "Brand Identity", icon: "â—ˆ" },
-  { label: "Social Media Design", icon: "â—‰" },
-  { label: "Video Editing", icon: "â–¶" },
-  { label: "Event Graphics", icon: "â—†" },
+  { label: "Brand Identity", icon: "◈" },
+  { label: "Social Media Design", icon: "◉" },
+  { label: "Video Editing", icon: "▶" },
+  { label: "Event Graphics", icon: "◆" },
 ];
 
 export default function DesignPage() {
@@ -69,7 +69,7 @@ export default function DesignPage() {
             Design &amp;
           </span>
           <span className="block font-garamond font-bold italic text-[5rem] sm:text-[7rem] lg:text-[8rem] g-text leading-[0.9]">
-            Marketing
+            marketing.
           </span>
         </motion.h1>
 
@@ -79,7 +79,7 @@ export default function DesignPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Brand identity, social media campaigns, and visual storytelling â€” crafted for artists, events, and agencies.
+          Brand identity, social media campaigns, and visual storytelling - crafted for artists, events, and agencies.
         </motion.p>
 
         {/* Service pills */}
@@ -112,7 +112,7 @@ export default function DesignPage() {
         >
           <p className="label-tag mb-2">Portfolio</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
-            Selected <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Work</span>
+            Selected <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">work.</span>
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
@@ -182,7 +182,7 @@ export default function DesignPage() {
         >
           <p className="label-tag mb-4">Hire</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Need a <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Designer?</span>
+            Need a <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">designer.</span>
           </h2>
           <p className="text-[var(--fg-2)] max-w-xl mx-auto mb-8 leading-relaxed">
             Looking for brand identity, social media design, or visual content? Let&apos;s create something that stands out.
@@ -199,4 +199,3 @@ export default function DesignPage() {
     </div>
   );
 }
-

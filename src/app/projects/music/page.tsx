@@ -75,7 +75,7 @@ export default function MusicPage() {
             Music
           </span>
           <span className="block font-garamond font-bold italic text-[5rem] sm:text-[7rem] lg:text-[8rem] g-text leading-[0.9]">
-            Production
+            production.
           </span>
         </motion.h1>
 
@@ -153,7 +153,7 @@ export default function MusicPage() {
             <div className="p-8 lg:p-12 flex flex-col justify-center min-h-[280px]">
               <p className="label-tag mb-3">Biggest Hit</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-1 leading-tight">
-                2Bona — <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Candy</span>
+                2Bona — <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">candy.</span>
               </h2>
               <p className="text-[var(--fg-3)] text-sm mb-6">Aydhiny x Call Me G x Nikola Tracks</p>
               <div className="flex items-center gap-6 mb-6">
@@ -186,7 +186,7 @@ export default function MusicPage() {
         >
           <p className="label-tag mb-2">Discography</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
-            Production <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Projects</span>
+            Production <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">projects.</span>
           </h2>
           <div className="mt-4 h-px bg-[var(--border)]" />
         </motion.div>
@@ -223,7 +223,7 @@ export default function MusicPage() {
         >
           <p className="label-tag mb-4">Collaborate</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Let&apos;s Make Something <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">Extraordinary</span>
+            Let&apos;s Make Something <span className="font-garamond font-bold italic text-4xl sm:text-5xl g-text">extraordinary.</span>
           </h2>
           <p className="text-[var(--fg-2)] max-w-xl mx-auto mb-8 leading-relaxed">
             Whether you&apos;re an artist or a producer — reach out and let&apos;s build the next big track together.

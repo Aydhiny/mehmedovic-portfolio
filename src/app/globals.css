@@ -115,17 +115,17 @@ body {
   font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-/* Vertical white → purple gradient for Garamond italic headings */
+/* Vertical purple gradient — subtle, same-family tones, no harsh white */
 .g-text {
-  background: linear-gradient(180deg, #ffffff 0%, #e9d5ff 38%, #c084fc 68%, #7c3aed 100%);
+  background: linear-gradient(180deg, #ede9ff 0%, #d8b4fe 35%, #a78bfa 65%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Vertical gold / amber variant */
+/* Vertical amber gradient — warm tones only */
 .g-text-teal {
-  background: linear-gradient(180deg, #fef3c7 0%, #fbbf24 50%, #d97706 100%);
+  background: linear-gradient(180deg, #fde68a 0%, #f59e0b 55%, #b45309 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

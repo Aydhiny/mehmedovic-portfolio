@@ -63,9 +63,9 @@ export default function Journey() {
           transition={{ duration: 0.9 }}
         >
           From
-          <span className="font-garamond font-bold italic ml-3 text-6xl sm:text-8xl g-text">Dreamer</span>
+          <span className="font-garamond font-bold italic ml-3 text-6xl sm:text-8xl g-text">dreamer.</span>
           <br />
-          to <span className="font-garamond font-bold italic text-6xl sm:text-8xl g-text-teal">Doer</span>
+          to <span className="font-garamond font-bold italic text-6xl sm:text-8xl g-text-teal">doer.</span>
         </motion.h1>
 
         <motion.p
@@ -119,7 +119,7 @@ export default function Journey() {
                 <h2 className="text-4xl sm:text-5xl font-bold text-white mb-5">
                   {m.title.split(" ").map((word, wi) =>
                     wi === 1 ? (
-                      <span key={wi} className="font-garamond font-bold italic g-text text-5xl sm:text-6xl"> {word}</span>
+                      <span key={wi} className="font-garamond font-bold italic g-text text-5xl sm:text-6xl"> {word.toLowerCase()}.</span>
                     ) : (
                       word + (wi === 0 ? " " : "")
                     )
@@ -143,7 +143,7 @@ export default function Journey() {
         >
           <p className="label-tag mb-4">What&apos;s Next</p>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            The Path <span className="font-garamond font-bold italic text-5xl sm:text-6xl g-text">Ahead</span>
+            The Path <span className="font-garamond font-bold italic text-5xl sm:text-6xl g-text">ahead.</span>
           </h2>
           <p className="text-[var(--fg-2)] text-lg max-w-2xl mx-auto leading-relaxed">
             The journey continues as I explore new horizons, blending the power of

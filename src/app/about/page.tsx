@@ -77,7 +77,7 @@ export default function Page() {
           </span>
           <span className="block font-garamond font-bold italic g-text"
             style={{ fontSize: "clamp(4rem, 11vw, 8.5rem)", lineHeight: 0.88 }}>
-            Mehmedović
+            mehmedović.
           </span>
         </motion.h1>
 
@@ -180,7 +180,7 @@ export default function Page() {
         >
           <p className="text-xs text-[var(--fg-3)] uppercase tracking-widest mb-6">Get in touch</p>
           <h2 className="text-3xl font-bold text-white mb-8">
-            Contact <span className="font-garamond font-bold italic text-4xl g-text">Me</span>
+            Contact <span className="font-garamond font-bold italic text-4xl g-text">me.</span>
           </h2>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">

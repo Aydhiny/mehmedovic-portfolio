@@ -23,17 +23,11 @@ export default function Home() {
       <Header />
       <Lines />
       <TrainTrack />
-      <div className="section-tint">
-        <SuccessShowcase />
-      </div>
+      <SuccessShowcase />
       <Tech />
-      <div className="section-tint">
-        <HunterMouseShowcase />
-      </div>
+      <HunterMouseShowcase />
       <Clients />
-      <div className="section-tint">
-        <Projects />
-      </div>
+      <Projects />
       <Foundation />
     </div>
   );
