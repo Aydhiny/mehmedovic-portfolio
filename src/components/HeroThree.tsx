@@ -32,13 +32,13 @@ export default function HeroThree({ mouseRef }: Props) {
     const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
     camera.position.set(0, 0, 5);
 
-    // ── Inner sphere — purple wireframe ──
+    // ── Inner sphere — magenta wireframe ──
     const innerGeo = new THREE.SphereGeometry(1.45, 22, 22);
     const innerEdges = new THREE.EdgesGeometry(innerGeo);
     const inner = new THREE.LineSegments(
       innerEdges,
       new THREE.LineBasicMaterial({
-        color: 0x7c3aed,
+        color: 0xe91e8c,
         transparent: true,
         opacity: 0.42,
       })
@@ -46,13 +46,13 @@ export default function HeroThree({ mouseRef }: Props) {
     inner.position.x = 1.6;
     scene.add(inner);
 
-    // ── Outer sphere — subtle gold, counter-rotating ──
+    // ── Outer sphere — orange, counter-rotating ──
     const outerGeo = new THREE.SphereGeometry(1.85, 16, 16);
     const outerEdges = new THREE.EdgesGeometry(outerGeo);
     const outer = new THREE.LineSegments(
       outerEdges,
       new THREE.LineBasicMaterial({
-        color: 0xd97706,
+        color: 0xf97316,
         transparent: true,
         opacity: 0.14,
       })
@@ -60,13 +60,13 @@ export default function HeroThree({ mouseRef }: Props) {
     outer.position.x = 1.6;
     scene.add(outer);
 
-    // ── Octahedron accent — small, floating nearby ──
+    // ── Octahedron accent — hot pink, floating nearby ──
     const octaGeo = new THREE.OctahedronGeometry(0.4, 0);
     const octaEdges = new THREE.EdgesGeometry(octaGeo);
     const octa = new THREE.LineSegments(
       octaEdges,
       new THREE.LineBasicMaterial({
-        color: 0xa855f7,
+        color: 0xf0097a,
         transparent: true,
         opacity: 0.55,
       })
@@ -74,13 +74,13 @@ export default function HeroThree({ mouseRef }: Props) {
     octa.position.set(3.2, 1.2, 0);
     scene.add(octa);
 
-    // ── Icosahedron — bottom left of sphere ──
+    // ── Icosahedron — gold, bottom left of sphere ──
     const icoGeo = new THREE.IcosahedronGeometry(0.28, 0);
     const icoEdges = new THREE.EdgesGeometry(icoGeo);
     const ico = new THREE.LineSegments(
       icoEdges,
       new THREE.LineBasicMaterial({
-        color: 0xd97706,
+        color: 0xfbbf24,
         transparent: true,
         opacity: 0.5,
       })
@@ -101,7 +101,7 @@ export default function HeroThree({ mouseRef }: Props) {
     const pts = new THREE.Points(
       ptGeo,
       new THREE.PointsMaterial({
-        color: 0x7c3aed,
+        color: 0xe91e8c,
         size: 0.022,
         transparent: true,
         opacity: 0.55,

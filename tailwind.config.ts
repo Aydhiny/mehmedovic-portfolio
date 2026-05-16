@@ -10,6 +10,7 @@ export default {
     extend: {
       fontFamily: {
         garamond: ["Cormorant Garamond", "Georgia", "serif"],
+        michroma: ["Michroma", "Orbitron", "sans-serif"],
       },
       animation: {
         "slide-down": "slide-down 0.6s ease-in-out",
@@ -47,7 +48,7 @@ export default {
         // Legacy aliases kept so existing Tailwind classes compile unchanged
         "main-background-grey": "#070707",
         "main-app-teal": "#00cfb4",
-        "main-app-purple": "#7c3aed",
+        "main-app-purple": "#e91e8c",
       },
     },
   },

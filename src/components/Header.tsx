@@ -119,13 +119,13 @@ export default function Header() {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "linear-gradient(rgba(124,58,237,0.14) 1px, transparent 1px)," +
-              "linear-gradient(90deg, rgba(124,58,237,0.14) 1px, transparent 1px)",
-            backgroundSize: "72px 72px",
+              "linear-gradient(rgba(233,30,140,0.22) 1px, transparent 1px)," +
+              "linear-gradient(90deg, rgba(249,115,22,0.14) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
             transform: "perspective(480px) rotateX(70deg) translateY(38%)",
             transformOrigin: "50% 100%",
-            maskImage: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 78%)",
-            WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 78%)",
+            maskImage: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 80%)",
+            WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 80%)",
           }}
         />
       </div>
@@ -135,11 +135,11 @@ export default function Header() {
 
       {/* Floating 2D diamond accents — sit in front of WebGL, behind content */}
       <div className="absolute inset-0 pointer-events-none z-[1]">
-        <FloatingDiamond size={30} color="rgba(124,58,237,0.6)" top="16%" left="6%" delay={0} rotateDuration={11} />
-        <FloatingDiamond size={20} color="rgba(217,119,6,0.5)" top="21%" left="88%" delay={1.6} rotateDuration={13} />
-        <FloatingDiamond size={16} color="rgba(168,85,247,0.5)" top="66%" left="4%" delay={0.9} rotateDuration={8} />
-        <FloatingDiamond size={24} color="rgba(217,119,6,0.4)" top="74%" left="91%" delay={2.3} rotateDuration={12} />
-        <FloatingDiamond size={14} color="rgba(124,58,237,0.5)" top="44%" left="2%" delay={1.8} rotateDuration={9} />
+        <FloatingDiamond size={30} color="rgba(233,30,140,0.65)" top="16%" left="6%" delay={0} rotateDuration={11} />
+        <FloatingDiamond size={20} color="rgba(249,115,22,0.55)" top="21%" left="88%" delay={1.6} rotateDuration={13} />
+        <FloatingDiamond size={16} color="rgba(240,9,122,0.55)" top="66%" left="4%" delay={0.9} rotateDuration={8} />
+        <FloatingDiamond size={24} color="rgba(251,191,36,0.45)" top="74%" left="91%" delay={2.3} rotateDuration={12} />
+        <FloatingDiamond size={14} color="rgba(233,30,140,0.55)" top="44%" left="2%" delay={1.8} rotateDuration={9} />
       </div>
 
       {/* Main content */}
@@ -156,7 +156,10 @@ export default function Header() {
           >
             {/* Name */}
             <h1 className="mb-8 leading-none">
-              <span className="block text-xl sm:text-2xl font-semibold tracking-[0.28em] uppercase text-white/50 mb-2">
+              <span
+                className="block font-michroma g-text uppercase tracking-[0.20em] mb-1"
+                style={{ fontSize: "clamp(2.2rem, 6vw, 5rem)" }}
+              >
                 Ajdin
               </span>
               <span
@@ -202,11 +205,11 @@ export default function Header() {
             >
               {/* Ambient glow — pushed back in Z */}
               <div
-                className="absolute rounded-full blur-3xl opacity-35 pointer-events-none"
+                className="absolute rounded-full blur-3xl opacity-40 pointer-events-none"
                 style={{
                   width: 340,
                   height: 340,
-                  background: "radial-gradient(circle, #7c3aed 0%, #d97706 70%, transparent 100%)",
+                  background: "radial-gradient(circle, #e91e8c 0%, #f97316 60%, #fbbf24 100%)",
                   transform: "translateZ(-20px) scale(1.15)",
                 }}
               />
