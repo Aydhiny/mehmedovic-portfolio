@@ -73,27 +73,15 @@ body {
   The ::before dot gives visual confirmation this is a "live" tag.
 */
 .label-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.65rem;
+  display: inline-block;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: #fda4af;
-  background: rgba(233, 30, 140, 0.10);
-  border: 1px solid rgba(240, 9, 122, 0.30);
-  padding: 5px 13px;
-  border-radius: 100px;
 }
 .label-tag::before {
-  content: '';
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #f0097a;
-  box-shadow: 0 0 6px rgba(240, 9, 122, 0.9), 0 0 14px rgba(249, 115, 22, 0.5);
-  flex-shrink: 0;
+  display: none;
 }
 
 /* Gradient section divider line */

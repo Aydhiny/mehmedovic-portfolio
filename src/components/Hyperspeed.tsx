@@ -37,9 +37,9 @@ const DEFAULT_OPTS = {
     background: 0x000000,
     shoulderLines: 0xffffff,
     brokenLines: 0xffffff,
-    leftCars: [0x7c3aed, 0x6d28d9, 0x8b5cf6],
-    rightCars: [0x00cfb4, 0x059669, 0x10b981],
-    sticks: 0x7c3aed,
+    leftCars: [0xe91e8c, 0xd0166f, 0xf0097a],
+    rightCars: [0xf97316, 0xfbbf24, 0xfb923c],
+    sticks: 0xe91e8c,
   },
 };
 

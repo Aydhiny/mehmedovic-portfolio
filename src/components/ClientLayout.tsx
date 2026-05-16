@@ -43,7 +43,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E")`,
           backgroundRepeat: "repeat",
           backgroundSize: "250px 250px",
-          opacity: 0.028,
+          opacity: 0.055,
           mixBlendMode: "overlay",
         }}
       />

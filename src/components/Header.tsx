@@ -158,7 +158,12 @@ export default function Header() {
             <h1 className="mb-8 leading-none">
               <span
                 className="block font-michroma g-text uppercase tracking-[0.20em] mb-1"
-                style={{ fontSize: "clamp(2.2rem, 6vw, 5rem)" }}
+                style={{
+                  fontSize: "clamp(2.2rem, 6vw, 5rem)",
+                  fontWeight: 900,
+                  filter:
+                    "drop-shadow(0 0 8px rgba(233,30,140,0.65)) drop-shadow(0 0 20px rgba(249,115,22,0.35))",
+                }}
               >
                 Ajdin
               </span>

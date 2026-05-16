@@ -47,7 +47,7 @@ export default {
         "text-3": "var(--fg-3)",
         // Legacy aliases kept so existing Tailwind classes compile unchanged
         "main-background-grey": "#070707",
-        "main-app-teal": "#00cfb4",
+        "main-app-teal": "#f97316",
         "main-app-purple": "#e91e8c",
       },
     },
