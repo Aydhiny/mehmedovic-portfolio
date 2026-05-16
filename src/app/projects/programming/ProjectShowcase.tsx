@@ -40,12 +40,12 @@ export default function ProjectShowcase({
 
   return (
     <div
-      className={`flex flex-col md:flex-row ${
-        reverse ? "md:flex-row-reverse" : ""
-      } items-center gap-12 px-6 md:px-24`}
+      className={`flex flex-col gap-8 lg:flex-row ${
+        reverse ? "lg:flex-row-reverse" : ""
+      } items-center`}
     >
       {/* Image Slider */}
-      <div className="relative w-full md:w-1/2 overflow-hidden rounded-xl shadow-xl">
+      <div className="relative w-full lg:w-1/2 rounded-2xl overflow-hidden border border-[var(--border-2)] bg-[var(--bg)]">
         <div
           className="flex transition-transform duration-500"
           style={{ transform: `translateX(-${index * 100}%)` }}
@@ -55,59 +55,89 @@ export default function ProjectShowcase({
               key={i}
               src={src}
               alt={`${title} Slide ${i + 1}`}
-              className="w-full"
+              className="w-full flex-shrink-0"
+              style={{ minWidth: "100%" }}
             />
           ))}
         </div>
+
+        {/* Prev arrow */}
         <button
           onClick={() => setIndex(index === 0 ? images.length - 1 : index - 1)}
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 p-2 bg-main-app-purple text-white rounded-full hover:bg-main-app-teal"
+          className="glass-btn absolute top-1/2 left-3 -translate-y-1/2 p-2 rounded-full"
+          aria-label="Previous image"
         >
-          <FaArrowLeft size={20} />
+          <FaArrowLeft size={16} className="text-[var(--accent)]" />
         </button>
+
+        {/* Next arrow */}
         <button
           onClick={() => setIndex((index + 1) % images.length)}
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 p-2 bg-main-app-purple text-white rounded-full hover:bg-main-app-teal"
+          className="glass-btn absolute top-1/2 right-3 -translate-y-1/2 p-2 rounded-full"
+          aria-label="Next image"
         >
-          <FaArrowRight size={20} />
+          <FaArrowRight size={16} className="text-[var(--accent)]" />
         </button>
+
+        {/* Dot indicators */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                i === index
+                  ? "bg-[var(--accent)]"
+                  : "bg-white/30 hover:bg-white/60"
+              }`}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Text Content */}
-      <div className="w-full md:w-1/2 space-y-6 text-center md:text-left">
+      <div className="w-full lg:w-1/2 space-y-5">
+        {/* Logo */}
         <Image
           alt={`${title} logo`}
           src={logo}
-          width={200}
-          height={200}
-          className="animate-bounce mx-auto md:mx-0"
+          width={48}
+          height={48}
+          className="w-12 h-12 object-contain"
         />
-        <h1 className="text-3xl md:text-5xl font-bold">{title}</h1>
-        <h4 className="text-lg md:text-xl text-gray-300 font-bold">
+
+        {/* Subtitle label */}
+        <p className="text-[0.6rem] font-bold tracking-[0.28em] uppercase text-[#fda4af]">
           {subtitle}
-        </h4>
-        <p className="text-base md:text-lg text-gray-400 max-w-xl mx-auto md:mx-0">
+        </p>
+
+        {/* Title */}
+        <h2 className="text-3xl sm:text-4xl font-bold text-white">{title}</h2>
+
+        {/* Description */}
+        <p className="text-[var(--fg-2)] text-sm sm:text-base leading-relaxed">
           {description}
         </p>
 
         {/* Hashtags */}
         {hashtags && (
-          <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+          <div className="flex flex-wrap gap-2">
             {hashtags.map((tag, i) => (
               <span
                 key={i}
-                className="bg-gray-800 text-white text-xs px-2 py-1 rounded-full"
+                className="glass-btn text-xs px-2.5 py-1 rounded-full text-[var(--fg-2)]"
               >
-                #{tag}
+                {tag}
               </span>
             ))}
           </div>
         )}
 
         {/* Buttons */}
-        <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+        <div className="flex flex-wrap gap-4 pt-1">
           <Link
-            className="flex items-center gap-2 px-6 py-3 bg-main-app-teal text-main-background-grey font-bold rounded-lg hover:bg-white hover:text-main-background-grey border-b-4 border-white transition"
+            className="btn-primary flex items-center gap-2"
             href={button1Link}
             target="_blank"
             rel="noopener noreferrer"
@@ -116,7 +146,7 @@ export default function ProjectShowcase({
           </Link>
           {button2Text && button2Link && (
             <Link
-              className="flex items-center gap-2 px-6 py-3 bg-main-app-purple text-white font-bold rounded-lg hover:bg-white hover:text-main-background-grey border-b-4 border-white transition"
+              className="btn-secondary flex items-center gap-2"
               href={button2Link}
               target="_blank"
               rel="noopener noreferrer"

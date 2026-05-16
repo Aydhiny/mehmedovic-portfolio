@@ -46,13 +46,21 @@ import tkb2 from "@images/tkb/two.png";
 
 export default function Page() {
   return (
-    <div className="space-y-24 mt-24">
-      {/* Quick Summary */}
-      <div className="px-6 md:px-24 text-center space-y-4">
-        <h1 className="text-3xl md:text-5xl font-bold">
-          My Project Highlights
+    <div className="max-w-7xl mx-auto space-y-24 mt-24 px-6 md:px-12">
+      {/* Hero */}
+      <div className="text-center space-y-4">
+        <p className="text-[0.6rem] font-bold tracking-[0.28em] uppercase text-[#fda4af] mb-3">
+          Work
+        </p>
+        <h1 className="flex flex-col items-center gap-1">
+          <span className="font-michroma g-text uppercase text-4xl sm:text-5xl md:text-6xl font-bold tracking-wide">
+            Programming
+          </span>
+          <span className="font-garamond italic g-text text-5xl sm:text-6xl">
+            projects.
+          </span>
         </h1>
-        <p className="text-gray-400 max-w-3xl mx-auto text-lg">
+        <p className="text-[var(--fg-2)] max-w-3xl mx-auto text-base sm:text-lg">
           Explore a selection of my most impactful projects — from game
           development to polished, real-world websites — built with modern
           technologies, creativity, and clean code.
@@ -67,7 +75,7 @@ export default function Page() {
         subtitle="Retro Platformer Made in Unity"
         description={
           <>
-            <FaUnity className="inline text-main-app-purple mr-2" />
+            <FaUnity className="inline text-[var(--accent)] mr-2" />
             Thrilling 3D adventure through vibrant worlds packed with
             platforming challenges. Handcrafted from scratch in Unity — retro
             spirit with modern polish.
@@ -89,7 +97,7 @@ export default function Page() {
         subtitle="Website Created at HTEC Internship"
         description={
           <>
-            <FaCode className="inline text-main-app-purple mr-2" />
+            <FaCode className="inline text-[var(--accent)] mr-2" />
             Real-world project from my HTEC internship. Dating platform focused
             on clean UI, accessibility, and modern industry standards.
           </>
@@ -107,7 +115,7 @@ export default function Page() {
         subtitle="Movie Discovery Next.js Application"
         description={
           <>
-            <FaFilm className="inline text-main-app-purple mr-2" />
+            <FaFilm className="inline text-[var(--accent)] mr-2" />
             Modern movie discovery app with fast search, clean UI, and
             responsive layout — built using Next.js and Tailwind CSS.
           </>
@@ -118,7 +126,7 @@ export default function Page() {
       />
 
       {/* Middle Banner */}
-      <div className="relative w-full h-48 md:h-64 xl:h-80 overflow-hidden mt-32">
+      <div className="relative w-full h-48 md:h-64 xl:h-80 overflow-hidden rounded-2xl border border-[var(--border)]">
         <Image
           src="/images/banner.png"
           alt="Hunter Mouse 2 Banner"
@@ -129,28 +137,24 @@ export default function Page() {
       </div>
 
       {/* Hunter Mouse 2 Feature */}
-      <div id="next-big-thing" className="px-6 md:px-24 text-center space-y-4">
+      <div id="next-big-thing" className="text-center space-y-4">
         <h2 className="text-4xl md:text-6xl font-bold text-white">
           Hunter Mouse 2
         </h2>
-        <p className="text-gray-400 max-w-4xl mx-auto text-lg">
-          <FaGamepad className="inline text-main-app-purple mr-2" />
+        <p className="text-[var(--fg-2)] max-w-4xl mx-auto text-lg">
+          <FaGamepad className="inline text-[var(--accent)] mr-2" />
           The biggest game project I&apos;ve ever taken on. Featuring improved
           graphics, deeper levels, and refined gameplay. Powered by Unity,
           driven by pure passion.
         </p>
         <div className="flex justify-center gap-4 mt-6">
-          <Link
-            href="/next-big-thing"
-            className="flex items-center px-8 py-3 bg-main-app-purple text-white font-bold rounded-lg hover:bg-white hover:text-main-background-grey border-b-4 border-white transition"
-          >
+          <Link href="/next-big-thing" className="btn-primary flex items-center">
             See The Next Big Thing
           </Link>
         </div>
       </div>
 
       {/* Remaining Projects */}
-
       <ProjectShowcase
         images={[ponijeri1, ponijeri2, ponijeri3]}
         logo={ponijeriLogo}
@@ -158,7 +162,7 @@ export default function Page() {
         subtitle="Tourism & Exploration Website"
         description={
           <>
-            <FaMapMarkedAlt className="inline text-main-app-purple mr-2" />
+            <FaMapMarkedAlt className="inline text-[var(--accent)] mr-2" />
             Interactive tourism website promoting the natural beauty of
             Ponijeri. Clean design, galleries, and useful local information.
           </>
@@ -176,7 +180,7 @@ export default function Page() {
         subtitle="Sports Club Presentation Website"
         description={
           <>
-            <FaRunning className="inline text-main-app-purple mr-2" />
+            <FaRunning className="inline text-[var(--accent)] mr-2" />
             Official website for one of the region&apos;s most respected
             Taekwondo clubs. Event info, achievements, and a clean online
             presence.
@@ -194,7 +198,7 @@ export default function Page() {
         subtitle="React, Tailwind, Framer Motion Website"
         description={
           <>
-            <FaReact className="inline text-main-app-purple mr-2" />
+            <FaReact className="inline text-[var(--accent)] mr-2" />
             Sleek, modern, and responsive website for a local pasta brand. Built
             for performance with Tailwind and React. Smooth animations and clean
             design.

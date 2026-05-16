@@ -162,7 +162,11 @@ export default function Header() {
                   fontSize: "clamp(2.2rem, 6vw, 5rem)",
                   fontWeight: 900,
                   filter:
-                    "drop-shadow(0 0 8px rgba(233,30,140,0.65)) drop-shadow(0 0 20px rgba(249,115,22,0.35))",
+                    "drop-shadow(0 0 1px rgba(233,30,140,1)) " +
+                    "drop-shadow(0 0 2px rgba(233,30,140,0.95)) " +
+                    "drop-shadow(0 0 6px rgba(233,30,140,0.80)) " +
+                    "drop-shadow(0 0 16px rgba(233,30,140,0.55)) " +
+                    "drop-shadow(0 0 32px rgba(249,115,22,0.30))",
                 }}
               >
                 Ajdin

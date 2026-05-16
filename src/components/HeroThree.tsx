@@ -12,6 +12,9 @@ export default function HeroThree({ mouseRef }: Props) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    // Skip Three.js on mobile — WebGL is expensive on low-end devices and
+    // the scene is purely decorative. The hero reads fine without it.
+    if (window.innerWidth < 768) return;
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
