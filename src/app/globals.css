@@ -16,8 +16,11 @@
   --accent: #7c3aed;
   --accent-hover: #6d28d9;
   --accent-muted: rgba(124, 58, 237, 0.12);
-  --accent-teal: #06b6d4;
-  --accent-teal-muted: rgba(6, 182, 212, 0.10);
+  --accent-gold: #d97706;
+  --accent-gold-muted: rgba(217, 119, 6, 0.12);
+  /* kept for backwards compat with journey page */
+  --accent-teal: #d97706;
+  --accent-teal-muted: rgba(217, 119, 6, 0.12);
 }
 
 /* ─── Base ──────────────────────────────────────────────── */
@@ -34,10 +37,10 @@ body {
     feel atmospheric, not just the hero.
   */
   background:
-    radial-gradient(ellipse 85% 65% at 0% 0%,   rgba(124, 58, 237, 0.24) 0%, transparent 62%),
-    radial-gradient(ellipse 75% 60% at 100% 100%, rgba(6, 182, 212, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 70% at 100% 0%,  rgba(124, 58, 237, 0.11) 0%, transparent 54%),
-    radial-gradient(ellipse 50% 45% at 0% 100%,  rgba(6, 182, 212, 0.09) 0%, transparent 50%),
+    radial-gradient(ellipse 85% 65% at 0% 0%,    rgba(124, 58, 237, 0.24) 0%, transparent 62%),
+    radial-gradient(ellipse 75% 60% at 100% 100%, rgba(217, 119, 6, 0.13)  0%, transparent 60%),
+    radial-gradient(ellipse 60% 70% at 100% 0%,  rgba(124, 58, 237, 0.10) 0%, transparent 54%),
+    radial-gradient(ellipse 50% 45% at 0% 100%,  rgba(217, 119, 6, 0.07)  0%, transparent 50%),
     var(--bg);
   background-attachment: fixed;
   font-family: "DM Sans", sans-serif;
@@ -100,7 +103,7 @@ body {
     90deg,
     transparent 0%,
     rgba(124, 58, 237, 0.55) 25%,
-    rgba(6, 182, 212, 0.45) 75%,
+    rgba(217, 119, 6, 0.45) 75%,
     transparent 100%
   );
   border: none;
@@ -112,17 +115,17 @@ body {
   font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-/* Vivid pink → purple → cyan gradient for Garamond italic headings */
+/* Vertical white → purple gradient for Garamond italic headings */
 .g-text {
-  background: linear-gradient(135deg, #f0abfc 0%, #a855f7 42%, #22d3ee 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #e9d5ff 38%, #c084fc 68%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Teal / cyan variant */
+/* Vertical gold / amber variant */
 .g-text-teal {
-  background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 55%, #38bdf8 100%);
+  background: linear-gradient(180deg, #fef3c7 0%, #fbbf24 50%, #d97706 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -137,9 +140,9 @@ body {
 .hero-glow {
   background:
     radial-gradient(ellipse 130% 90% at 50% -20%, rgba(124, 58, 237, 0.45) 0%, transparent 65%),
-    radial-gradient(ellipse 80% 65% at 4%  55%,  rgba(6, 182, 212, 0.20) 0%, transparent 58%),
-    radial-gradient(ellipse 70% 60% at 96% 30%,  rgba(124, 58, 237, 0.20) 0%, transparent 52%),
-    radial-gradient(ellipse 55% 45% at 85% 90%,  rgba(6, 182, 212, 0.10) 0%, transparent 48%);
+    radial-gradient(ellipse 80%  65% at 4%  55%,  rgba(217, 119, 6, 0.14)  0%, transparent 58%),
+    radial-gradient(ellipse 70%  60% at 96% 30%,  rgba(124, 58, 237, 0.20) 0%, transparent 52%),
+    radial-gradient(ellipse 55%  45% at 85% 90%,  rgba(217, 119, 6, 0.07)  0%, transparent 48%);
 }
 
 /* Subtle gradient tint for alternating sections */
@@ -148,8 +151,8 @@ body {
     180deg,
     rgba(124, 58, 237, 0.05) 0%,
     rgba(124, 58, 237, 0.02) 40%,
-    rgba(6, 182, 212, 0.02) 60%,
-    rgba(6, 182, 212, 0.04) 100%
+    rgba(217, 119, 6, 0.02) 60%,
+    rgba(217, 119, 6, 0.04) 100%
   );
 }
 
@@ -249,7 +252,7 @@ body {
     from var(--moving-border-angle, 0deg),
     transparent 20%,
     #7c3aed 40%,
-    #06b6d4 60%,
+    #d97706 60%,
     transparent 80%
   );
   animation: moving-border-spin 3s linear infinite;

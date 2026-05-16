@@ -22,14 +22,14 @@ export default function MovingBorderButton({
       href={href}
       target={target}
       rel={rel}
-      className={`moving-border-btn relative inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white overflow-hidden ${className}`}
+      className={`moving-border-btn relative inline-flex rounded-xl overflow-hidden ${className}`}
     >
       {/* Rotating conic gradient border */}
       <span className="moving-border-inner" aria-hidden="true" />
-      {/* Dark bg inside */}
+      {/* Dark fill inset by border thickness */}
       <span className="absolute inset-[1.5px] rounded-[10px] bg-[#07070e] z-[1]" />
-      {/* Content */}
-      <span className="relative z-[2] flex items-center gap-2">{children}</span>
+      {/* Content — padding lives here so moving-border-btn's 1.5px doesn't override it */}
+      <span className="relative z-[2] flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white">{children}</span>
     </Link>
   );
 }

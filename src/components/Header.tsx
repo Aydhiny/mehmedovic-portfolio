@@ -83,7 +83,7 @@ export default function Header() {
           >
             {/* Glow halo */}
             <div className="absolute inset-0 rounded-full opacity-30 blur-3xl scale-125"
-              style={{ background: "radial-gradient(circle, #7c3aed 0%, #00cfb4 60%, transparent 75%)" }} />
+              style={{ background: "radial-gradient(circle, #7c3aed 0%, #d97706 60%, transparent 75%)" }} />
 
             <Image
               src={Profile}
