@@ -15,7 +15,7 @@ import Spotlight from "@/components/Spotlight";
 import MovingBorderButton from "@/components/MovingBorderButton";
 import HeroThree from "@/components/HeroThree";
 import { useLanguage } from "@/context/LanguageContext";
-import { NeonSun, PalmTree, RetroCar, FloatWrap } from "@/components/SynthwaveDecor";
+import { NeonSun } from "@/components/SynthwaveDecor";
 
 function FloatingDiamond({
   size,
@@ -145,23 +145,6 @@ export default function Header() {
         <FloatingDiamond size={16} color="rgba(240,9,122,0.55)" top="66%" left="4%" delay={0.9} rotateDuration={8} />
         <FloatingDiamond size={24} color="rgba(251,191,36,0.45)" top="74%" left="91%" delay={2.3} rotateDuration={12} />
         <FloatingDiamond size={14} color="rgba(233,30,140,0.55)" top="44%" left="2%" delay={1.8} rotateDuration={9} />
-      </div>
-
-      {/* Synthwave palm trees */}
-      <div className="absolute bottom-0 left-0 w-20 sm:w-28 h-40 sm:h-56 pointer-events-none z-[1]">
-        <FloatWrap delay={0.5} amplitude={6} duration={6}>
-          <PalmTree className="w-full h-full" color="#e91e8c" opacity={0.38} />
-        </FloatWrap>
-      </div>
-      <div className="absolute bottom-0 right-0 w-20 sm:w-28 h-40 sm:h-56 pointer-events-none z-[1]">
-        <FloatWrap delay={1.2} amplitude={8} duration={7}>
-          <PalmTree className="w-full h-full" color="#f97316" opacity={0.32} flip />
-        </FloatWrap>
-      </div>
-
-      {/* Retro car silhouette */}
-      <div className="absolute bottom-[11%] left-[8%] w-36 sm:w-48 pointer-events-none z-[1] opacity-50">
-        <RetroCar className="w-full" color="#e91e8c" opacity={0.45} />
       </div>
 
       {/* Main content */}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Projects from "@/app/pages/Projects/page";
 import ProjectShowcase from "./ProjectShowcase";
 import GitHubGrid from "./GitHubGrid";
+import { NeonSun, PalmTree, RetroCar } from "@/components/SynthwaveDecor";
 import {
   FaDownload,
   FaPlay,
@@ -211,8 +212,26 @@ export default function Page() {
         reverse
       />
 
-      {/* GitHub repos grid with pagination */}
-      <div className="border-t border-[var(--border)] pt-20">
+      {/* GitHub repos grid — synthwave divider + decor */}
+      <div className="relative overflow-hidden pt-8">
+        {/* NeonSun as visual divider */}
+        <div className="flex justify-center mb-10 pointer-events-none">
+          <NeonSun className="w-72 h-44 opacity-55" />
+        </div>
+
+        {/* Flanking palm trees */}
+        <div className="absolute top-0 left-0 w-24 h-48 pointer-events-none opacity-70">
+          <PalmTree className="w-full h-full" color="#e91e8c" opacity={0.40} />
+        </div>
+        <div className="absolute top-0 right-0 w-24 h-48 pointer-events-none opacity-70">
+          <PalmTree className="w-full h-full" color="#f97316" opacity={0.35} flip />
+        </div>
+
+        {/* Retro car — bottom right of the section */}
+        <div className="absolute bottom-8 right-4 w-44 pointer-events-none opacity-40 hidden sm:block">
+          <RetroCar className="w-full" color="#fbbf24" opacity={0.55} flip />
+        </div>
+
         <GitHubGrid />
       </div>
 
