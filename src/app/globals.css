@@ -5,19 +5,19 @@
 
 /* ─── Design tokens ────────────────────────────────────── */
 :root {
-  --bg: #070707;
-  --surface: #0d0d0d;
-  --surface-2: #141414;
-  --border: #1e1e1e;
-  --border-2: #2a2a2a;
-  --fg: #f5f5f5;
-  --fg-2: #888888;
-  --fg-3: #4a4a4a;
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --surface-2: #13132a;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-2: rgba(255, 255, 255, 0.13);
+  --fg: #f4f4f6;
+  --fg-2: #a1a1aa;
+  --fg-3: #71717a;
   --accent: #7c3aed;
   --accent-hover: #6d28d9;
   --accent-muted: rgba(124, 58, 237, 0.12);
-  --accent-teal: #00cfb4;
-  --accent-teal-muted: rgba(0, 207, 180, 0.1);
+  --accent-teal: #06b6d4;
+  --accent-teal-muted: rgba(6, 182, 212, 0.10);
 }
 
 /* ─── Base ──────────────────────────────────────────────── */
@@ -27,67 +27,84 @@ html {
 
 body {
   color: var(--fg);
-  background: var(--bg);
+  /*
+    Four ambient gradient orbs fixed to viewport corners.
+    background-attachment: fixed keeps them stationary while
+    page content scrolls — this is what makes every section
+    feel atmospheric, not just the hero.
+  */
+  background:
+    radial-gradient(ellipse 85% 65% at 0% 0%,   rgba(124, 58, 237, 0.24) 0%, transparent 62%),
+    radial-gradient(ellipse 75% 60% at 100% 100%, rgba(6, 182, 212, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 70% at 100% 0%,  rgba(124, 58, 237, 0.11) 0%, transparent 54%),
+    radial-gradient(ellipse 50% 45% at 0% 100%,  rgba(6, 182, 212, 0.09) 0%, transparent 50%),
+    var(--bg);
+  background-attachment: fixed;
   font-family: "DM Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 99px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-hover);
-}
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent) var(--bg);
-}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
+* { scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); }
 
 /* ─── Custom cursor ─────────────────────────────────────── */
-* {
-  cursor: none !important;
-}
+* { cursor: none !important; }
 @media (pointer: coarse), (max-width: 768px) {
-  * {
-    cursor: auto !important;
-  }
-  html,
-  body {
-    cursor: auto !important;
-  }
+  * { cursor: auto !important; }
+  html, body { cursor: auto !important; }
 }
 
 /* ─── Interactive utilities ─────────────────────────────── */
 .glow-button:hover {
-  box-shadow: 0 0 24px rgba(124, 58, 237, 0.45);
+  box-shadow: 0 0 28px rgba(124, 58, 237, 0.55), 0 0 60px rgba(124, 58, 237, 0.22);
 }
 
-/* Section label style — uppercase eyebrow text */
+/* ─── Label / eyebrow pill tag ───────────────────────────── */
+/*
+  Pill with gradient border + glowing dot.
+  The ::before dot gives visual confirmation this is a "live" tag.
+*/
 .label-tag {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: #c084fc;
+  background: rgba(124, 58, 237, 0.10);
+  border: 1px solid rgba(168, 85, 247, 0.30);
+  padding: 5px 13px;
+  border-radius: 100px;
+}
+.label-tag::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a855f7;
+  box-shadow: 0 0 6px rgba(168, 85, 247, 0.9), 0 0 14px rgba(168, 85, 247, 0.5);
+  flex-shrink: 0;
 }
 
-/* Subtle vertical divider for section headers */
+/* Gradient section divider line */
 .section-divider {
-  width: 32px;
   height: 1px;
-  background: var(--accent);
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 12px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(124, 58, 237, 0.55) 25%,
+    rgba(6, 182, 212, 0.45) 75%,
+    transparent 100%
+  );
+  border: none;
+  margin: 0;
 }
 
 /* ─── Typography ────────────────────────────────────────── */
@@ -95,61 +112,101 @@ body {
   font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-/* Garamond gradient text — purple→teal */
+/* Vivid pink → purple → cyan gradient for Garamond italic headings */
 .g-text {
-  background: linear-gradient(135deg, #d8b4fe 0%, #a855f7 30%, #00cfb4 100%);
+  background: linear-gradient(135deg, #f0abfc 0%, #a855f7 42%, #22d3ee 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-/* Garamond gradient text — teal variant */
+
+/* Teal / cyan variant */
 .g-text-teal {
-  background: linear-gradient(135deg, #00cfb4 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 55%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 /* ─── Section atmosphere ────────────────────────────────── */
-/* Strong radial hero glow — apply to hero section wrapper */
+/*
+  Hero glow — large radial gradient above the fold.
+  Stacks on top of the fixed body orbs for a double-intensity
+  effect in hero sections.
+*/
 .hero-glow {
   background:
-    radial-gradient(ellipse 80% 65% at 50% -5%, rgba(124,58,237,0.28) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 35% at 12% 60%, rgba(0,207,180,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 35% 30% at 88% 35%, rgba(124,58,237,0.12) 0%, transparent 55%);
+    radial-gradient(ellipse 130% 90% at 50% -20%, rgba(124, 58, 237, 0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 65% at 4%  55%,  rgba(6, 182, 212, 0.20) 0%, transparent 58%),
+    radial-gradient(ellipse 70% 60% at 96% 30%,  rgba(124, 58, 237, 0.20) 0%, transparent 52%),
+    radial-gradient(ellipse 55% 45% at 85% 90%,  rgba(6, 182, 212, 0.10) 0%, transparent 48%);
 }
-/* Alternating section tint for depth */
+
+/* Subtle gradient tint for alternating sections */
 .section-tint {
-  background: linear-gradient(180deg, rgba(124,58,237,0.04) 0%, transparent 30%, transparent 70%, rgba(0,207,180,0.03) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(124, 58, 237, 0.05) 0%,
+    rgba(124, 58, 237, 0.02) 40%,
+    rgba(6, 182, 212, 0.02) 60%,
+    rgba(6, 182, 212, 0.04) 100%
+  );
 }
 
 /* ─── Glass utilities ───────────────────────────────────── */
+/*
+  backdrop-filter blurs the fixed ambient orbs from body —
+  this is what creates the premium frosted-glass effect.
+  saturate(150%) amplifies the color beneath the glass.
+*/
 .glass {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 40px rgba(0, 0, 0, 0.45);
+  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
 }
+.glass:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.13);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    0 8px 40px rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(124, 58, 237, 0.10);
+}
+
 .glass-btn {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  transition: background 0.15s, border-color 0.15s;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 .glass-btn:hover {
-  background: rgba(255, 255, 255, 0.10);
-  border-color: rgba(124, 58, 237, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(124, 58, 237, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 0 24px rgba(124, 58, 237, 0.18);
 }
+
 .glass-input {
   background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: border-color 0.15s;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .glass-input:focus-within {
-  border-color: var(--accent);
+  border-color: rgba(124, 58, 237, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 24px rgba(124, 58, 237, 0.14);
 }
 
 /* ─── Animations ────────────────────────────────────────── */
@@ -158,30 +215,26 @@ body {
   50%  { transform: translateY(-80px); }
   100% { transform: translateY(0); }
 }
-.animate-jump {
-  animation: jump 0.5s ease-in-out;
-}
+.animate-jump { animation: jump 0.5s ease-in-out; }
 
 @keyframes glow {
-  0%, 100% {
-    text-shadow: 0 0 5px #facc15, 0 0 10px #facc15;
-  }
-  50% {
-    text-shadow: 0 0 10px #facc15, 0 0 20px #facc15, 0 0 30px #facc15;
-  }
+  0%, 100% { text-shadow: 0 0 5px #facc15, 0 0 10px #facc15; }
+  50%       { text-shadow: 0 0 10px #facc15, 0 0 20px #facc15, 0 0 30px #facc15; }
 }
-.glow-text {
-  animation: glow 2s infinite ease-in-out;
-}
+.glow-text { animation: glow 2s infinite ease-in-out; }
 
-/* Slow spin for background watermark logo */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
-.animate-spin-slow {
-  animation: spin-slow 25s linear infinite;
+.animate-spin-slow { animation: spin-slow 25s linear infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-7px); }
 }
+.animate-float       { animation: float 4s ease-in-out infinite; }
+.animate-float-delay { animation: float 4s ease-in-out infinite 1.6s; }
 
 /* ─── Moving border button (Aceternity style) ───────────── */
 .moving-border-btn {
@@ -196,7 +249,7 @@ body {
     from var(--moving-border-angle, 0deg),
     transparent 20%,
     #7c3aed 40%,
-    #00cfb4 60%,
+    #06b6d4 60%,
     transparent 80%
   );
   animation: moving-border-spin 3s linear infinite;
@@ -209,23 +262,19 @@ body {
 @keyframes moving-border-spin {
   to { --moving-border-angle: 360deg; }
 }
-
-/* Fallback for browsers without @property */
 @supports not (background: conic-gradient(from 0deg, red, blue)) {
   .moving-border-inner {
-    background: linear-gradient(90deg, #7c3aed, #00cfb4);
+    background: linear-gradient(90deg, #7c3aed, #06b6d4);
     animation: none;
   }
 }
 
 /* ─── Spotlight beam animation ──────────────────────────── */
 @keyframes spotlight-pulse {
-  0%, 100% { opacity: 0.18; }
-  50%       { opacity: 0.28; }
+  0%, 100% { opacity: 0.22; }
+  50%       { opacity: 0.38; }
 }
-.spotlight-pulse {
-  animation: spotlight-pulse 6s ease-in-out infinite;
-}
+.spotlight-pulse { animation: spotlight-pulse 6s ease-in-out infinite; }
 
 /* Marquee — pause on hover */
 .marquee-track {
@@ -233,9 +282,7 @@ body {
   width: max-content;
   animation: marquee 35s linear infinite;
 }
-.marquee-track:hover {
-  animation-play-state: paused;
-}
+.marquee-track:hover { animation-play-state: paused; }
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }

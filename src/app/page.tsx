@@ -18,7 +18,7 @@ import Foundation from "@/components/Foundation";
 
 export default function Home() {
   return (
-    <div className="bg-[var(--bg)]">
+    <div>
       <Chatbot />
       <Header />
       <Lines />

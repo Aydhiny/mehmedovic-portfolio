@@ -16,7 +16,7 @@ export default function Header() {
       <Spotlight />
 
       {/* Bottom fade into page */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#070707] to-transparent pointer-events-none z-[1]" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#07070e] to-transparent pointer-events-none z-[1]" />
 
       {/* Content */}
       <div className="relative z-[2] max-w-7xl w-full mx-auto px-5 sm:px-8">

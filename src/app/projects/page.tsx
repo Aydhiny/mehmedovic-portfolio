@@ -24,7 +24,7 @@ function SectionHeader({ tag, title }: { tag: string; title: string }) {
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-[var(--bg)] hero-glow">
+    <div className="min-h-screen hero-glow">
     <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-28 pb-20">
 
       <motion.div

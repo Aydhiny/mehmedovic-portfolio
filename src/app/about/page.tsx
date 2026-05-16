@@ -51,25 +51,64 @@ export default function Page() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-white">
-    <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-28 pb-20">
+    <div className="min-h-screen text-white">
 
       {/* Hero */}
-      <motion.div
-        className="mb-16"
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        <p className="label-tag mb-4">About</p>
-        <h1 className="text-5xl sm:text-6xl font-bold text-white mb-2 tracking-tight leading-none">
-          Ajdin{" "}
-          <span className="font-garamond font-bold italic text-6xl sm:text-7xl g-text">Mehmedović</span>
-        </h1>
-        <p className="text-[var(--fg-2)] text-lg mt-4 max-w-2xl leading-relaxed">
-          Software Engineering Student · Music Producer (Aydhiny) · Graphic & UI Designer
-        </p>
-      </motion.div>
+      <section className="relative flex flex-col items-center justify-center text-center min-h-[55vh] px-5 sm:px-8 overflow-hidden pt-28 pb-16 hero-glow">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#07070e]/80 pointer-events-none" />
+
+        <motion.p
+          className="label-tag mb-5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          About
+        </motion.p>
+
+        <motion.h1
+          className="relative z-10 leading-none mb-6"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="block text-2xl font-semibold tracking-[0.28em] uppercase text-white/50 mb-1">
+            Ajdin
+          </span>
+          <span className="block font-garamond font-bold italic g-text"
+            style={{ fontSize: "clamp(4rem, 11vw, 8.5rem)", lineHeight: 0.88 }}>
+            Mehmedović
+          </span>
+        </motion.h1>
+
+        <motion.p
+          className="relative z-10 text-[var(--fg-2)] text-lg max-w-xl leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          Software Engineering Student · Music Producer · Graphic & UI Designer
+        </motion.p>
+
+        {/* Floating role chips */}
+        <motion.div
+          className="relative z-10 flex flex-wrap gap-2 justify-center mt-8"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+        >
+          {["FIT Mostar", "Aydhiny Beatz", "Plansio Agency", "1st — FIT Coding Challenge"].map((chip) => (
+            <span
+              key={chip}
+              className="glass inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium text-[var(--fg-2)] border border-[var(--border)]"
+            >
+              {chip}
+            </span>
+          ))}
+        </motion.div>
+      </section>
+
+    <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16">
 
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
 
@@ -125,9 +164,9 @@ export default function Page() {
               { label: "Worldwide Streams", value: "5M+" },
               { label: "Projects Shipped", value: "10+" },
             ].map(({ label, value }) => (
-              <div key={label} className="glass rounded-xl p-4">
-                <p className="text-2xl font-bold text-white mb-0.5">{value}</p>
-                <p className="text-xs text-[var(--fg-3)]">{label}</p>
+              <div key={label} className="glass rounded-xl p-5 text-center">
+                <p className="font-garamond font-bold italic text-3xl g-text leading-none mb-1">{value}</p>
+                <p className="text-xs text-[var(--fg-3)] uppercase tracking-widest">{label}</p>
               </div>
             ))}
           </div>

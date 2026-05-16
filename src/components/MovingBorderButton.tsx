@@ -27,7 +27,7 @@ export default function MovingBorderButton({
       {/* Rotating conic gradient border */}
       <span className="moving-border-inner" aria-hidden="true" />
       {/* Dark bg inside */}
-      <span className="absolute inset-[1.5px] rounded-[10px] bg-[#0d0d0d] z-[1]" />
+      <span className="absolute inset-[1.5px] rounded-[10px] bg-[#07070e] z-[1]" />
       {/* Content */}
       <span className="relative z-[2] flex items-center gap-2">{children}</span>
     </Link>

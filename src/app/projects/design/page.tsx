@@ -44,11 +44,11 @@ const services = [
 
 export default function DesignPage() {
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-white">
+    <div className="min-h-screen text-white">
 
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center text-center min-h-[70vh] px-5 sm:px-8 overflow-hidden pt-28 hero-glow">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#070707] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#07070e] pointer-events-none" />
 
         <motion.p
           className="label-tag mb-4"
@@ -135,7 +135,7 @@ export default function DesignPage() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07070e]/80 to-transparent" />
               </div>
 
               {/* Content */}

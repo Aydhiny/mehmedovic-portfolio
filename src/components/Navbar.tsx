@@ -29,7 +29,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
         scrolled || menuOpen
-          ? "bg-[#070707]/90 border-b border-[var(--border)]"
+          ? "bg-[#07070e]/90 border-b border-[var(--border)]"
           : "bg-transparent border-b border-transparent"
       }`}
     >
@@ -169,7 +169,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-[var(--border)] bg-[#070707]/95 backdrop-blur-2xl animate-slide-down">
+        <div className="md:hidden border-t border-[var(--border)] bg-[#07070e]/95 backdrop-blur-2xl animate-slide-down">
           <ul className="px-5 py-4 space-y-1">
             {[
               { label: "Home", href: "/" },

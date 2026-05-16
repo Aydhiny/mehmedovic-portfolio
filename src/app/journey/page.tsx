@@ -41,11 +41,11 @@ const milestones = [
 
 export default function Journey() {
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-white">
+    <div className="min-h-screen text-white">
 
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center text-center min-h-[80vh] px-5 sm:px-8 overflow-hidden hero-glow">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#070707] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#07070e] pointer-events-none" />
 
         <motion.p
           className="label-tag mb-5"
