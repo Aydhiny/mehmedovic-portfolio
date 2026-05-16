@@ -156,8 +156,8 @@ body {
 */
 .glass {
   background: rgba(255, 255, 255, 0.045);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
@@ -342,7 +342,7 @@ body {
 .strip-track {
   display: flex;
   width: max-content;
-  animation: strip-scroll 55s linear infinite;
+  animation: strip-scroll 90s linear infinite;
 }
 .strip-track:hover { animation-play-state: paused; }
 @keyframes strip-scroll {

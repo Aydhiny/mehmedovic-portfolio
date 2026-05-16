@@ -17,187 +17,183 @@ export default function MouseThree({ className = "" }: { className?: string }) {
       const w = canvas.clientWidth  || 380;
       const h = canvas.clientHeight || 320;
 
-      const scene    = new THREE.Scene();
-      const camera   = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
-      camera.position.set(0.4, 1.2, 6.5);
+      const scene  = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
+      camera.position.set(0.4, 1.0, 6.5);
       camera.lookAt(0, 0, 0);
 
       const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
       renderer.setSize(w, h, false);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
-      // ── Lights ──────────────────────────────────────────────
+      // Lights
       const sun = new THREE.DirectionalLight(0xfbbf24, 2.2);
       sun.position.set(3, 5, 4);
       scene.add(sun);
-
-      const rim = new THREE.PointLight(0xe91e8c, 2.0, 14);
-      rim.position.set(-3, -1, 3);
+      const rim = new THREE.PointLight(0x60a5fa, 2.8, 16);
+      rim.position.set(-3, 2, 3);
       scene.add(rim);
+      scene.add(new THREE.AmbientLight(0x1e3a5f, 1.4));
 
-      const fill = new THREE.AmbientLight(0xf97316, 0.45);
-      scene.add(fill);
+      const mk = (hex: number, em: number, sh = 50) =>
+        new THREE.MeshPhongMaterial({ color: hex, emissive: em, shininess: sh, flatShading: true });
 
-      // ── Materials ───────────────────────────────────────────
-      const mkMat = (hex: number, emHex: number, shininess = 50) =>
-        new THREE.MeshPhongMaterial({ color: hex, emissive: emHex, shininess, flatShading: true });
+      // ── Airship ──────────────────────────────────────────────
+      const ship = new THREE.Group();
 
-      const fusMat   = mkMat(0xe91e8c, 0x3d0025, 70);
-      const wingMat  = mkMat(0xf97316, 0x301200, 50);
-      const accMat   = mkMat(0xfbbf24, 0x302000, 90);
-      const furMat   = mkMat(0x2d1b35, 0x100b18, 20);
-      const earMat   = mkMat(0xff6b9d, 0x3d0020, 40);
-      const eyeMat   = new THREE.MeshPhongMaterial({ color: 0xfde68a, emissive: 0x4a3800, shininess: 120 });
-      const noseMat  = new THREE.MeshPhongMaterial({ color: 0xff80ab, emissive: 0x2d0015, shininess: 60 });
+      // Envelope (blimp oval)
+      const envGeo = new THREE.SphereGeometry(0.55, 8, 6);
+      envGeo.applyMatrix4(new THREE.Matrix4().makeScale(2.5, 1, 1));
+      ship.add(new THREE.Mesh(envGeo, mk(0x0f172a, 0x0d2341, 40)));
 
-      // ── Airplane ────────────────────────────────────────────
-      const plane = new THREE.Group();
+      // Gold trim band around middle
+      const trimGeo = new THREE.TorusGeometry(0.55, 0.032, 5, 16);
+      const trimRing = new THREE.Mesh(trimGeo, mk(0xfbbf24, 0x302000, 90));
+      trimRing.rotation.y = Math.PI / 2;
+      ship.add(trimRing);
 
-      // Fuselage — elongated sphere
-      const fuseGeo = new THREE.SphereGeometry(0.48, 9, 6);
-      fuseGeo.applyMatrix4(new THREE.Matrix4().makeScale(2.8, 1, 1));
-      plane.add(new THREE.Mesh(fuseGeo, fusMat));
+      // Gondola (cabin)
+      const gondola = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.22, 0.42), mk(0x1e293b, 0x080e18, 60));
+      gondola.position.set(0, -0.68, 0);
+      ship.add(gondola);
 
-      // Nose cone
-      const noseGeo = new THREE.ConeGeometry(0.32, 0.7, 7);
-      const noseCone = new THREE.Mesh(noseGeo, fusMat);
-      noseCone.position.set(1.55, 0, 0);
-      noseCone.rotation.z = -Math.PI / 2;
-      plane.add(noseCone);
+      // Gondola top trim
+      const gTrim = new THREE.Mesh(new THREE.BoxGeometry(0.92, 0.04, 0.44), mk(0xfbbf24, 0x302000, 90));
+      gTrim.position.set(0, -0.57, 0);
+      ship.add(gTrim);
 
-      // Main wings
-      const wingGeo = new THREE.BoxGeometry(1.1, 0.06, 2.8);
-      const wing = new THREE.Mesh(wingGeo, wingMat);
-      wing.position.set(-0.1, -0.15, 0);
-      plane.add(wing);
+      // Side rotors — boom + spinning blades
+      const makeRotor = (sideZ: number) => {
+        const boom = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.055, 0.6), mk(0x334155, 0x0d1927, 40));
+        boom.position.set(0, -0.14, sideZ * 0.62);
+        ship.add(boom);
+        const pivot = new THREE.Group();
+        pivot.position.set(0, -0.14, sideZ * 0.94);
+        pivot.add(new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.5, 0.055), mk(0xf97316, 0x301200, 70)));
+        pivot.add(new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.055, 0.055), mk(0xf97316, 0x301200, 70)));
+        ship.add(pivot);
+        return pivot;
+      };
+      const lRotor = makeRotor(-1);
+      const rRotor = makeRotor(1);
 
-      // Tail horizontal
-      const tailGeo = new THREE.BoxGeometry(0.65, 0.05, 1.0);
-      const tail = new THREE.Mesh(tailGeo, wingMat);
-      tail.position.set(-1.2, 0, 0);
-      plane.add(tail);
+      // Stern rudder fin
+      const rudder = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.42, 0.04), mk(0x0f172a, 0x060e1e, 40));
+      rudder.position.set(-1.28, 0.20, 0);
+      ship.add(rudder);
 
-      // Tail fin
-      const finGeo = new THREE.BoxGeometry(0.55, 0.55, 0.06);
-      const fin = new THREE.Mesh(finGeo, fusMat);
-      fin.position.set(-1.1, 0.28, 0);
-      plane.add(fin);
-
-      // Engine pod under wing
-      const podGeo = new THREE.CylinderGeometry(0.16, 0.14, 0.65, 7);
-      const pod = new THREE.Mesh(podGeo, accMat);
-      pod.rotation.z = Math.PI / 2;
-      pod.position.set(-0.1, -0.35, 0.8);
-      plane.add(pod);
-
-      // Propeller pivot
-      const propPivot = new THREE.Group();
-      propPivot.position.set(1.92, 0, 0);
-      const propGeo = new THREE.BoxGeometry(0.07, 1.6, 0.14);
-      const propBlade = new THREE.Mesh(propGeo, accMat);
-      propPivot.add(propBlade);
-      const propGeo2 = new THREE.BoxGeometry(1.6, 0.07, 0.14);
-      const propBlade2 = new THREE.Mesh(propGeo2, accMat);
-      propPivot.add(propBlade2);
-      plane.add(propPivot);
-
-      // ── Mouse character ──────────────────────────────────────
+      // ── Blue Mouse hero character ────────────────────────────
       const mouse = new THREE.Group();
+      const blueFur  = mk(0x1d4ed8, 0x071233, 30);
+      const blueEar  = mk(0x60a5fa, 0x0d2448, 40);
 
       // Body
-      const bodyGeo = new THREE.SphereGeometry(0.4, 6, 5);
-      mouse.add(new THREE.Mesh(bodyGeo, furMat));
+      mouse.add(new THREE.Mesh(new THREE.SphereGeometry(0.38, 6, 5), blueFur));
 
       // Head
-      const headGeo = new THREE.SphereGeometry(0.3, 6, 5);
-      const head = new THREE.Mesh(headGeo, furMat);
-      head.position.set(0.42, 0.2, 0);
+      const head = new THREE.Mesh(new THREE.SphereGeometry(0.28, 6, 5), blueFur);
+      head.position.set(0.40, 0.18, 0);
       mouse.add(head);
 
       // Snout
-      const snoutGeo = new THREE.SphereGeometry(0.14, 5, 4);
-      const snout = new THREE.Mesh(snoutGeo, furMat);
-      snout.position.set(0.7, 0.1, 0);
+      const snout = new THREE.Mesh(new THREE.SphereGeometry(0.13, 5, 4), blueFur);
       snout.scale.x = 1.2;
+      snout.position.set(0.64, 0.09, 0);
       mouse.add(snout);
 
-      // Ears
-      const earGeo = new THREE.SphereGeometry(0.17, 5, 4);
-      const lEar = new THREE.Mesh(earGeo, earMat);
+      // Ears (light blue)
+      const lEar = new THREE.Mesh(new THREE.SphereGeometry(0.16, 5, 4), blueEar);
       lEar.scale.z = 0.38;
-      lEar.position.set(0.28, 0.52, 0.22);
+      lEar.position.set(0.26, 0.50, 0.21);
       mouse.add(lEar);
       const rEar = lEar.clone();
-      rEar.position.z = -0.22;
+      rEar.position.z = -0.21;
       mouse.add(rEar);
 
       // Eyes
-      const eyeGeo = new THREE.SphereGeometry(0.055, 5, 4);
-      const lEye = new THREE.Mesh(eyeGeo, eyeMat);
-      lEye.position.set(0.64, 0.24, 0.17);
+      const eyeMat = new THREE.MeshPhongMaterial({ color: 0xfde68a, emissive: 0x4a3800, shininess: 120 });
+      const lEye = new THREE.Mesh(new THREE.SphereGeometry(0.052, 5, 4), eyeMat);
+      lEye.position.set(0.60, 0.22, 0.16);
       mouse.add(lEye);
       const rEye = lEye.clone();
-      rEye.position.z = -0.17;
+      rEye.position.z = -0.16;
       mouse.add(rEye);
 
       // Nose tip
-      const noseTip = new THREE.Mesh(new THREE.SphereGeometry(0.05, 4, 4), noseMat);
-      noseTip.position.set(0.78, 0.09, 0);
+      const noseMat = new THREE.MeshPhongMaterial({ color: 0xff80ab, emissive: 0x2d0015, shininess: 60 });
+      const noseTip = new THREE.Mesh(new THREE.SphereGeometry(0.048, 4, 4), noseMat);
+      noseTip.position.set(0.74, 0.08, 0);
       mouse.add(noseTip);
 
-      // Tail — bezier tube
-      const curve = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-0.38, -0.1, 0),
-        new THREE.Vector3(-0.6, -0.22, 0.15),
-        new THREE.Vector3(-0.7, -0.08, 0.3),
-        new THREE.Vector3(-0.55, 0.12, 0.38),
-      ]);
-      const tailTubeGeo = new THREE.TubeGeometry(curve, 8, 0.028, 5, false);
-      mouse.add(new THREE.Mesh(tailTubeGeo, furMat));
+      // Cape — 3-sided cone flattened to look like flowing fabric
+      const capeMat = mk(0xdc2626, 0x450a0a, 30);
+      const capeGeo = new THREE.ConeGeometry(0.42, 0.68, 3);
+      const cape    = new THREE.Mesh(capeGeo, capeMat);
+      cape.scale.z   = 0.22;
+      cape.rotation.x = Math.PI;       // flip so point is at top
+      cape.rotation.z = -0.15;
+      cape.position.set(-0.22, 0.06, 0);
+      mouse.add(cape);
 
-      // Sit on top of fuselage
-      mouse.position.set(-0.25, 0.5, 0);
-      mouse.rotation.y = -0.25;
+      // Sword group — raised at angle
+      const swordGroup = new THREE.Group();
+      swordGroup.position.set(0.48, 0.0, 0.22);
+      swordGroup.rotation.z = 0.65;
 
-      // ── Root group ───────────────────────────────────────────
+      // Blade (silver)
+      const blade = new THREE.Mesh(new THREE.BoxGeometry(0.038, 0.62, 0.038), mk(0xd1d5db, 0x2c3246, 180));
+      blade.position.y = 0.32;
+      swordGroup.add(blade);
+
+      // Crossguard (gold)
+      const guard = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.038, 0.038), mk(0xfbbf24, 0x302000, 90));
+      swordGroup.add(guard);
+
+      // Handle
+      const handle = new THREE.Mesh(new THREE.BoxGeometry(0.038, 0.18, 0.038), mk(0x292524, 0x0a0808, 40));
+      handle.position.y = -0.11;
+      swordGroup.add(handle);
+
+      mouse.add(swordGroup);
+
+      // Sit in gondola
+      mouse.position.set(-0.1, 0.08, 0);
+      mouse.rotation.y = -0.2;
+
+      // ── Root ─────────────────────────────────────────────────
       const root = new THREE.Group();
-      root.add(plane);
+      root.add(ship);
       root.add(mouse);
-      root.rotation.y = 0.35;
+      root.rotation.y = 0.30;
       scene.add(root);
 
       // ── Scroll reaction ──────────────────────────────────────
-      let scrollVel  = 0;
-      let lastY      = window.scrollY;
-      const onScroll = () => {
-        scrollVel = window.scrollY - lastY;
-        lastY     = window.scrollY;
-      };
+      let scrollVel = 0, lastY = window.scrollY;
+      const onScroll = () => { scrollVel = window.scrollY - lastY; lastY = window.scrollY; };
       window.addEventListener("scroll", onScroll, { passive: true });
 
-      // ── Animation loop ───────────────────────────────────────
+      // ── Tick ─────────────────────────────────────────────────
       let t = 0, animId: number;
 
       const tick = () => {
         if (disposed) return;
         t += 0.012;
 
-        // Float
-        root.position.y = Math.sin(t * 0.75) * 0.14;
+        root.position.y   = Math.sin(t * 0.75) * 0.14;
+        root.rotation.z   = Math.sin(t * 0.45) * 0.04;
 
-        // Gentle roll
-        root.rotation.z = Math.sin(t * 0.45) * 0.045;
-
-        // Scroll tilt
         const tgt = THREE.MathUtils.clamp(-scrollVel * 0.045, -0.38, 0.38);
-        root.rotation.x = THREE.MathUtils.lerp(root.rotation.x, tgt, 0.08);
-        scrollVel *= 0.87;
+        root.rotation.x   = THREE.MathUtils.lerp(root.rotation.x, tgt, 0.08);
+        scrollVel        *= 0.87;
 
-        // Propeller
-        propPivot.rotation.x += 0.28;
+        lRotor.rotation.z += 0.30;
+        rRotor.rotation.z -= 0.30;
 
-        // Camera breathe
-        camera.position.y = 1.2 + Math.sin(t * 0.3) * 0.04;
+        // Subtle cape flutter
+        cape.rotation.z = -0.15 + Math.sin(t * 1.4) * 0.055;
+
+        // Sword gentle bob
+        swordGroup.rotation.z = 0.65 + Math.sin(t * 0.9) * 0.04;
 
         renderer.render(scene, camera);
         animId = requestAnimationFrame(tick);

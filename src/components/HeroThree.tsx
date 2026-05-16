@@ -19,9 +19,9 @@ export default function HeroThree({ mouseRef }: Props) {
     const renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
-      antialias: true,
+      antialias: false, // off — LineSegments don't benefit, saves ~20% GPU
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
     const setSize = () => {
       const w = canvas.clientWidth;
@@ -36,7 +36,7 @@ export default function HeroThree({ mouseRef }: Props) {
     camera.position.set(0, 0, 5);
 
     // ── Inner sphere — magenta wireframe ──
-    const innerGeo = new THREE.SphereGeometry(1.45, 22, 22);
+    const innerGeo = new THREE.SphereGeometry(1.45, 9, 9);
     const innerEdges = new THREE.EdgesGeometry(innerGeo);
     const inner = new THREE.LineSegments(
       innerEdges,
@@ -50,7 +50,7 @@ export default function HeroThree({ mouseRef }: Props) {
     scene.add(inner);
 
     // ── Outer sphere — orange, counter-rotating ──
-    const outerGeo = new THREE.SphereGeometry(1.85, 16, 16);
+    const outerGeo = new THREE.SphereGeometry(1.85, 7, 7);
     const outerEdges = new THREE.EdgesGeometry(outerGeo);
     const outer = new THREE.LineSegments(
       outerEdges,
@@ -91,27 +91,7 @@ export default function HeroThree({ mouseRef }: Props) {
     ico.position.set(0.1, -1.6, 0.3);
     scene.add(ico);
 
-    // ── Particle field ──
-    const particleCount = 120;
-    const positions = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      positions[i * 3 + 0] = (Math.random() - 0.3) * 9;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 6;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 3;
-    }
-    const ptGeo = new THREE.BufferGeometry();
-    ptGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    const pts = new THREE.Points(
-      ptGeo,
-      new THREE.PointsMaterial({
-        color: 0xe91e8c,
-        size: 0.022,
-        transparent: true,
-        opacity: 0.55,
-        sizeAttenuation: true,
-      })
-    );
-    scene.add(pts);
+    // Particles removed — they added a draw call for minimal visual value
 
     setSize();
 
@@ -134,9 +114,6 @@ export default function HeroThree({ mouseRef }: Props) {
       octa.rotation.y = t * 0.8;
       ico.rotation.y = -t * 0.9;
       ico.rotation.z = t * 0.6;
-
-      // Particles slow drift
-      pts.rotation.y = t * 0.04;
 
       // Smooth camera parallax from mouse
       const mx = mouseRef.current?.x ?? 0;
@@ -164,7 +141,6 @@ export default function HeroThree({ mouseRef }: Props) {
       octaEdges.dispose();
       icoGeo.dispose();
       icoEdges.dispose();
-      ptGeo.dispose();
     };
   }, [mouseRef]);
 

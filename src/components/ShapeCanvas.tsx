@@ -27,6 +27,13 @@ export default function ShapeCanvas({
     if (!canvas || window.innerWidth < 768) return;
 
     let disposed = false;
+    let visible  = true;
+
+    const observer = new IntersectionObserver(
+      ([e]) => { visible = e.isIntersecting; },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
 
     import("three").then((THREE) => {
       if (disposed) return;
@@ -38,9 +45,9 @@ export default function ShapeCanvas({
       const camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 100);
       camera.position.z = 3.8;
 
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
       renderer.setSize(w, h, false);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
       const geo =
         shape === "torus"       ? new THREE.TorusGeometry(0.9, 0.32, 14, 28)
@@ -62,6 +69,7 @@ export default function ShapeCanvas({
 
       function tick() {
         if (disposed) return;
+        if (!visible) { animId = requestAnimationFrame(tick); return; }
         t += 0.004 * speed;
         mesh.rotation.x = t * 0.55;
         mesh.rotation.y = t;
@@ -81,6 +89,7 @@ export default function ShapeCanvas({
 
     return () => {
       disposed = true;
+      observer.disconnect();
       cleanupRef.current?.();
       cleanupRef.current = null;
     };

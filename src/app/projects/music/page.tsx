@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import MusicCard from "@/components/MusicCard";
 import Bona from "@images/projects/2bona.jpg";
 import Bread from "@images/projects/bread.jpg";
 import Vozis from "@images/projects/vozis.jpg";
@@ -8,37 +7,58 @@ import Hanoi from "@images/projects/hanoi.jpg";
 import Candy from "@images/music/candy.jpg";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaYoutube, FaPlay } from "react-icons/fa";
+import { SiBeatstars, SiSoundcloud, SiSpotify } from "react-icons/si";
 import { useLanguage } from "@/context/LanguageContext";
+import { NeonSun } from "@/components/SynthwaveDecor";
 
 const tracks = [
   {
     text: "2Bona - Candy",
     link: "https://www.youtube.com/watch?v=GMIQ8ZWRQXo",
     image: Bona,
-    desc: "An irresistible beat with sugary-sweet melodies — over 5 million plays worldwide.",
     producers: "Aydhiny x Call Me G x Nikola Tracks",
   },
   {
     text: "Shark Puppet x YBN NAHMIR - Gettin Bread",
     link: "https://www.youtube.com/watch?v=dEqu-7yvzhk",
     image: Bread,
-    desc: "A high-energy hip-hop collab featuring Shark Puppet and YBN NAHMIR.",
     producers: "Aydhiny x Call Me G",
   },
   {
     text: "Danči - Voziš",
     link: "https://www.youtube.com/watch?v=f6zvcjW95cs",
     image: Vozis,
-    desc: "Regional hit blending Balkan trap with melodic rap production.",
     producers: "Aydhiny",
   },
   {
     text: "Hanoi Capital - Charles & Panda",
     link: "https://www.youtube.com/watch?v=iYK4cKJC0QQ",
     image: Hanoi,
-    desc: "Moody, atmospheric production crafted in collaboration with Hanoi Capital.",
     producers: "Aydhiny x Call Me G x Nikola Tracks",
+  },
+];
+
+const platforms = [
+  {
+    label: "BeatStars",
+    href: "https://www.beatstars.com/aydhiny",
+    icon: SiBeatstars,
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/Aydhiny",
+    icon: FaYoutube,
+  },
+  {
+    label: "SoundCloud",
+    href: "https://soundcloud.com/aydhiny",
+    icon: SiSoundcloud,
+  },
+  {
+    label: "Spotify",
+    href: "https://open.spotify.com/artist/aydhiny",
+    icon: SiSpotify,
   },
 ];
 
@@ -47,18 +67,41 @@ export default function MusicPage() {
   const stats = [
     { value: "5M+", label: t.music.stats.streams },
     { value: "6+", label: t.music.stats.years },
-    { value: "50+", label: t.music.stats.beats },
-    { value: "10+", label: t.music.stats.artists },
+    { value: "5,000+", label: t.music.stats.beats },
+    { value: "100+", label: t.music.stats.artists },
   ];
   return (
     <div className="min-h-screen text-white">
 
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center text-center min-h-[75vh] px-5 sm:px-8 overflow-hidden pt-28 hero-glow">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#07070e] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#07070e] pointer-events-none z-[3]" />
+
+        {/* Perspective grid floor */}
+        <div className="absolute bottom-0 left-0 right-0 h-[45%] pointer-events-none z-[1]">
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage:
+                "linear-gradient(rgba(233,30,140,0.18) 1px, transparent 1px)," +
+                "linear-gradient(90deg, rgba(249,115,22,0.12) 1px, transparent 1px)",
+              backgroundSize: "56px 56px",
+              transform: "perspective(480px) rotateX(70deg) translateY(38%)",
+              transformOrigin: "50% 100%",
+              maskImage: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 75%)",
+              WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 75%)",
+            }}
+          />
+        </div>
+
+        {/* NeonSun horizon */}
+        <div className="absolute bottom-[14%] left-1/2 -translate-x-1/2 w-64 sm:w-96 pointer-events-none z-[1] opacity-50">
+          <NeonSun className="w-full" />
+        </div>
 
         <motion.p
-          className="label-tag mb-4"
+          className="label-tag mb-4 relative z-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -204,16 +247,65 @@ export default function MusicPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
-              <MusicCard
-                text={track.text}
-                link={track.link}
-                image={track.image}
-                desc={track.desc}
-                producers={track.producers}
-              />
+              <Link
+                href={track.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group glass rounded-2xl overflow-hidden flex flex-col block"
+              >
+                {/* Image top half */}
+                <div className="relative h-44 w-full overflow-hidden flex-shrink-0">
+                  <Image
+                    src={track.image}
+                    alt={track.text}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  {/* Pink play button — bottom-right on hover */}
+                  <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#e91e8c] shadow-lg shadow-[#e91e8c]/40">
+                      <FaPlay className="size-3.5 text-white ml-0.5" />
+                    </div>
+                  </div>
+                </div>
+                {/* Track info */}
+                <div className="p-4 flex flex-col gap-1">
+                  <p className="text-white font-semibold text-sm leading-snug line-clamp-2">{track.text}</p>
+                  <p className="text-[var(--fg-3)] text-xs">{track.producers}</p>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* Platforms */}
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 pb-12">
+        <motion.div
+          className="flex flex-wrap gap-3 justify-center"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {platforms.map((p) => {
+            const Icon = p.icon;
+            return (
+              <Link
+                key={p.label}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white/80 hover:text-white transition-colors duration-200 hover:border-[var(--accent)]/50 border border-transparent"
+              >
+                <Icon className="size-4" />
+                {p.label}
+              </Link>
+            );
+          })}
+        </motion.div>
       </section>
 
       {/* Collab CTA */}

@@ -7,10 +7,10 @@ import { FaYoutube } from "react-icons/fa";
 import { useLanguage } from "@/context/LanguageContext";
 
 const STATS = [
-  { value: "5M+",  label: "Streams" },
-  { value: "6+",   label: "Years producing" },
-  { value: "50+",  label: "Beats released" },
-  { value: "10+",  label: "Artists worked with" },
+  { value: "5M+",    label: "Streams" },
+  { value: "6+",     label: "Years producing" },
+  { value: "5,000+", label: "Beats released" },
+  { value: "100+",   label: "Artists worked with" },
 ];
 
 const PLATFORMS = [
