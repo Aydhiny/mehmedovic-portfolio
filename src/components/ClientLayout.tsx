@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import ScrollProgressBar from "@/components/ProgressBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import TopStrip from "@/components/TopStrip";
 import CustomCursor from "@/components/CustomCursor";
 import { AnimatePresence } from "framer-motion";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -16,6 +17,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const pathname = usePathname();
 
   useEffect(() => {
+    if (window.innerWidth < 768) return; // skip smooth scroll on mobile — too heavy
     let lenis: { raf: (t: number) => void; destroy: () => void } | null = null;
     let rafId: number;
 
@@ -53,6 +55,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <EasterEggs />
       <ScrollProgressBar />
       <CustomCursor />
+      {/* TopStrip sits above navbar — fixed, z-60, hidden on mobile */}
+      <div className="fixed top-0 left-0 right-0 z-[60] hidden md:block">
+        <TopStrip />
+      </div>
       <Navbar />
       <AnimatePresence mode="wait">
         <div>{children}</div>

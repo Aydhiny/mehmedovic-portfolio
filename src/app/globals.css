@@ -337,3 +337,15 @@ body {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+/* TopStrip ticker */
+.strip-track {
+  display: flex;
+  width: max-content;
+  animation: strip-scroll 55s linear infinite;
+}
+.strip-track:hover { animation-play-state: paused; }
+@keyframes strip-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

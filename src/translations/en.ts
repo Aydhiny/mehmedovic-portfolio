@@ -75,6 +75,10 @@ export const en = {
     tag: "Sound",
     heroTitle: "Music",
     heroSubtitle: "production.",
+    titleTop: "Aydhiny",
+    titleAccent: "beats & vibes.",
+    desc: "From trap beats to cinematic orchestrations, I craft sounds that tell stories. Producing under the alias Aydhiny since 2018.",
+    cta: "Explore Music Projects",
     tagline:
       "Six years crafting beats under the alias Aydhiny — from bedroom studio to millions of streams worldwide.",
     follow: "Follow",

@@ -15,6 +15,7 @@ import Lines from "@/components/Lines";
 import SuccessShowcase from "@/components/SuccessShowcase";
 import HunterMouseShowcase from "@/components/HunterMouseShowcase";
 import Foundation from "@/components/Foundation";
+import MusicSection from "@/components/MusicSection";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       <SuccessShowcase />
       <Tech />
       <HunterMouseShowcase />
+      <MusicSection />
       <Clients />
       <Projects />
       <Foundation />

@@ -42,7 +42,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
+      className={`fixed top-0 md:top-9 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
         scrolled || menuOpen
           ? "bg-[#07070e]/90 border-b border-[var(--border)]"
           : "bg-transparent border-b border-transparent"

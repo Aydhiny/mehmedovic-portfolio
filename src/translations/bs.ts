@@ -77,6 +77,10 @@ export const bs: Translations = {
     tag: "Zvuk",
     heroTitle: "Muzička",
     heroSubtitle: "produkcija.",
+    titleTop: "Aydhiny",
+    titleAccent: "zvuk & vibra.",
+    desc: "Od trap beatova do kinematografskih orkestacija — kreiram zvukove koji pričaju priče. Producira pod pseudonimom Aydhiny od 2018.",
+    cta: "Istraži muzičke projekte",
     tagline:
       "Šest godina kreiram ritmove pod pseudonimom Aydhiny — od kućnog studija do miliona preslušavanja širom svijeta.",
     follow: "Prati",
