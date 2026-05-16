@@ -1,0 +1,175 @@
+"use client";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+
+interface Props {
+  mouseRef: React.RefObject<{ x: number; y: number }>;
+}
+
+export default function HeroThree({ mouseRef }: Props) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: true,
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const setSize = () => {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    };
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+    camera.position.set(0, 0, 5);
+
+    // ── Inner sphere — purple wireframe ──
+    const innerGeo = new THREE.SphereGeometry(1.45, 22, 22);
+    const innerEdges = new THREE.EdgesGeometry(innerGeo);
+    const inner = new THREE.LineSegments(
+      innerEdges,
+      new THREE.LineBasicMaterial({
+        color: 0x7c3aed,
+        transparent: true,
+        opacity: 0.42,
+      })
+    );
+    inner.position.x = 1.6;
+    scene.add(inner);
+
+    // ── Outer sphere — subtle gold, counter-rotating ──
+    const outerGeo = new THREE.SphereGeometry(1.85, 16, 16);
+    const outerEdges = new THREE.EdgesGeometry(outerGeo);
+    const outer = new THREE.LineSegments(
+      outerEdges,
+      new THREE.LineBasicMaterial({
+        color: 0xd97706,
+        transparent: true,
+        opacity: 0.14,
+      })
+    );
+    outer.position.x = 1.6;
+    scene.add(outer);
+
+    // ── Octahedron accent — small, floating nearby ──
+    const octaGeo = new THREE.OctahedronGeometry(0.4, 0);
+    const octaEdges = new THREE.EdgesGeometry(octaGeo);
+    const octa = new THREE.LineSegments(
+      octaEdges,
+      new THREE.LineBasicMaterial({
+        color: 0xa855f7,
+        transparent: true,
+        opacity: 0.55,
+      })
+    );
+    octa.position.set(3.2, 1.2, 0);
+    scene.add(octa);
+
+    // ── Icosahedron — bottom left of sphere ──
+    const icoGeo = new THREE.IcosahedronGeometry(0.28, 0);
+    const icoEdges = new THREE.EdgesGeometry(icoGeo);
+    const ico = new THREE.LineSegments(
+      icoEdges,
+      new THREE.LineBasicMaterial({
+        color: 0xd97706,
+        transparent: true,
+        opacity: 0.5,
+      })
+    );
+    ico.position.set(0.1, -1.6, 0.3);
+    scene.add(ico);
+
+    // ── Particle field ──
+    const particleCount = 120;
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+      positions[i * 3 + 0] = (Math.random() - 0.3) * 9;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 6;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 3;
+    }
+    const ptGeo = new THREE.BufferGeometry();
+    ptGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    const pts = new THREE.Points(
+      ptGeo,
+      new THREE.PointsMaterial({
+        color: 0x7c3aed,
+        size: 0.022,
+        transparent: true,
+        opacity: 0.55,
+        sizeAttenuation: true,
+      })
+    );
+    scene.add(pts);
+
+    setSize();
+
+    let raf = 0;
+    let t = 0;
+    const camTarget = new THREE.Vector3();
+
+    const tick = () => {
+      raf = requestAnimationFrame(tick);
+      t += 0.004;
+
+      // Sphere rotations
+      inner.rotation.y = t * 0.75;
+      inner.rotation.x = t * 0.18;
+      outer.rotation.y = -t * 0.38;
+      outer.rotation.z = t * 0.22;
+
+      // Accent shapes
+      octa.rotation.x = t * 1.1;
+      octa.rotation.y = t * 0.8;
+      ico.rotation.y = -t * 0.9;
+      ico.rotation.z = t * 0.6;
+
+      // Particles slow drift
+      pts.rotation.y = t * 0.04;
+
+      // Smooth camera parallax from mouse
+      const mx = mouseRef.current?.x ?? 0;
+      const my = mouseRef.current?.y ?? 0;
+      camTarget.set(mx * 0.5, -my * 0.3, 5);
+      camera.position.lerp(camTarget, 0.04);
+      camera.lookAt(1.6, 0, 0);
+
+      renderer.render(scene, camera);
+    };
+    tick();
+
+    const onResize = () => setSize();
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+      renderer.dispose();
+      innerGeo.dispose();
+      innerEdges.dispose();
+      outerGeo.dispose();
+      outerEdges.dispose();
+      octaGeo.dispose();
+      octaEdges.dispose();
+      icoGeo.dispose();
+      icoEdges.dispose();
+      ptGeo.dispose();
+    };
+  }, [mouseRef]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 0 }}
+    />
+  );
+}
