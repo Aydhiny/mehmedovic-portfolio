@@ -49,7 +49,7 @@ import tkb2 from "@images/tkb/two.png";
 
 export default function Page() {
   return (
-    <div className="max-w-7xl mx-auto space-y-24 mt-24 px-6 md:px-12">
+    <div className="max-w-7xl mx-auto space-y-14 md:space-y-24 mt-20 md:mt-28 px-6 md:px-12">
       {/* Hero */}
       <div className="relative text-center space-y-4">
         <ShapeCanvas shape="icosahedron" color="#e91e8c" wireOpacity={0.38} speed={0.75}

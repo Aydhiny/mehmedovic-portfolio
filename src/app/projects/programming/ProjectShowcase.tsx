@@ -46,19 +46,22 @@ export default function ProjectShowcase({
     >
       {/* Image Slider */}
       <div className="relative w-full lg:w-1/2 rounded-2xl overflow-hidden border border-[var(--border-2)] bg-[var(--bg)]">
-        <div
-          className="flex transition-transform duration-500"
-          style={{ transform: `translateX(-${index * 100}%)` }}
-        >
-          {images.map((src: StaticImageData, i: number) => (
-            <Image
-              key={i}
-              src={src}
-              alt={`${title} Slide ${i + 1}`}
-              className="w-full flex-shrink-0"
-              style={{ minWidth: "100%" }}
-            />
-          ))}
+        <div className="relative" style={{ aspectRatio: "16/9" }}>
+          <div
+            className="absolute inset-0 flex transition-transform duration-500"
+            style={{ transform: `translateX(-${index * 100}%)` }}
+          >
+            {images.map((src: StaticImageData, i: number) => (
+              <div key={i} className="relative flex-shrink-0 w-full h-full">
+                <Image
+                  src={src}
+                  alt={`${title} Slide ${i + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Prev arrow */}

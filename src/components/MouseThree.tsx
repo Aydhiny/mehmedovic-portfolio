@@ -14,140 +14,154 @@ export default function MouseThree({ className = "" }: { className?: string }) {
     import("three").then((THREE) => {
       if (disposed) return;
 
-      const w = canvas.clientWidth  || 380;
+      const w = canvas.clientWidth  || 384;
       const h = canvas.clientHeight || 320;
 
       const scene  = new THREE.Scene();
-      // Camera looks slightly down at chest/head height
-      const camera = new THREE.PerspectiveCamera(44, w / h, 0.1, 100);
-      camera.position.set(0, 1.4, 5.2);
-      camera.lookAt(0, 0.6, 0);
+      const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
+      camera.position.set(0, 1.7, 4.4);
+      camera.lookAt(0, 0.8, 0);
 
       const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
       renderer.setSize(w, h, false);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
       // ── Lights ──────────────────────────────────────────────
-      const key = new THREE.DirectionalLight(0xfbbf24, 2.6);
-      key.position.set(2, 5, 4);
+      const key = new THREE.DirectionalLight(0xfde68a, 2.8);
+      key.position.set(2, 4, 4);
       scene.add(key);
-      const fill = new THREE.DirectionalLight(0x93c5fd, 1.4);
-      fill.position.set(-3, 1, 2);
+      const fill = new THREE.DirectionalLight(0x93c5fd, 1.6);
+      fill.position.set(-3, 0.5, 2);
       scene.add(fill);
-      const back = new THREE.PointLight(0xe91e8c, 2.2, 14);
-      back.position.set(0, -1, -4);
+      const back = new THREE.PointLight(0xe91e8c, 1.8, 12);
+      back.position.set(0, -2, -4);
       scene.add(back);
-      scene.add(new THREE.AmbientLight(0x1e3a5f, 2.0));
+      scene.add(new THREE.AmbientLight(0x1e3a8a, 2.2));
 
-      // ── Materials ──────────────────────────────────────────
-      const blueFur   = new THREE.MeshPhongMaterial({ color: 0x1d4ed8, emissive: 0x071233, shininess: 50 });
-      const lightBlue = new THREE.MeshPhongMaterial({ color: 0x93c5fd, emissive: 0x0d2448, shininess: 70 });
-      const eyeM      = new THREE.MeshPhongMaterial({ color: 0x0f0f12, emissive: 0x000000, shininess: 200 });
-      const eyeShine  = new THREE.MeshPhongMaterial({ color: 0xfde68a, emissive: 0x4a3800, shininess: 200 });
-      const noseM     = new THREE.MeshPhongMaterial({ color: 0xff80ab, emissive: 0x2d0015, shininess: 80 });
-      const capeM     = new THREE.MeshPhongMaterial({ color: 0xdc2626, emissive: 0x450a0a, shininess: 35, side: THREE.DoubleSide });
-      const silverM   = new THREE.MeshPhongMaterial({ color: 0xe2e8f0, emissive: 0x1e2a3a, shininess: 220 });
-      const goldM     = new THREE.MeshPhongMaterial({ color: 0xfbbf24, emissive: 0x302000, shininess: 100 });
-      const darkM     = new THREE.MeshPhongMaterial({ color: 0x1c1917, emissive: 0x080605, shininess: 40 });
+      // ── Materials ───────────────────────────────────────────
+      const blueMat  = new THREE.MeshPhongMaterial({ color: 0x1d4ed8, emissive: 0x040e26, shininess: 55 });
+      const hoodMat  = new THREE.MeshPhongMaterial({ color: 0x1d4ed8, emissive: 0x040e26, shininess: 80, flatShading: true });
+      const faceMat  = new THREE.MeshPhongMaterial({ color: 0xe8ddd2, emissive: 0x080604, shininess: 25 });
+      const earOutM  = new THREE.MeshPhongMaterial({ color: 0x93c5fd, emissive: 0x0d2448, shininess: 50, flatShading: true });
+      const earInM   = new THREE.MeshPhongMaterial({ color: 0xfb7185, emissive: 0x3d000f, shininess: 40, side: THREE.DoubleSide });
+      const irisM    = new THREE.MeshPhongMaterial({ color: 0xd97706, emissive: 0x3d1500, shininess: 130 });
+      const pupilM   = new THREE.MeshPhongMaterial({ color: 0x0d0d10, shininess: 200 });
+      const shineM   = new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0x888888, shininess: 300 });
+      const noseM    = new THREE.MeshPhongMaterial({ color: 0xfb7185, emissive: 0x3d000f, shininess: 90 });
+      const capeM    = new THREE.MeshPhongMaterial({ color: 0xdc2626, emissive: 0x450a0a, shininess: 35, side: THREE.DoubleSide });
+      const silverM  = new THREE.MeshPhongMaterial({ color: 0xe2e8f0, emissive: 0x1e2a3a, shininess: 240 });
+      const goldM    = new THREE.MeshPhongMaterial({ color: 0xfbbf24, emissive: 0x302000, shininess: 100 });
+      const darkM    = new THREE.MeshPhongMaterial({ color: 0x1c1917, shininess: 40 });
 
-      // ── Mouse character — faces +Z (toward camera) ──────────
+      // ── Scene groups ────────────────────────────────────────
+      const root  = new THREE.Group();
       const mouse = new THREE.Group();
+      root.add(mouse);
+      scene.add(root);
+      root.rotation.y = 0.10; // mostly frontal
 
       // Body
-      const body = new THREE.Mesh(new THREE.SphereGeometry(0.34, 10, 10), blueFur);
-      body.scale.y = 0.88;
+      const body = new THREE.Mesh(new THREE.SphereGeometry(0.30, 8, 8), blueMat);
+      body.scale.y = 0.82;
+      body.position.y = -0.02;
       mouse.add(body);
 
-      // Head — clearly above and slightly forward from body
-      const head = new THREE.Mesh(new THREE.SphereGeometry(0.30, 12, 12), blueFur);
-      head.position.set(0, 0.50, 0.06);
-      mouse.add(head);
-
-      // ── Ears: flat discs (CylinderGeometry, rotation.x = π/2 → face camera) ──
-      const earGeo = new THREE.CylinderGeometry(0.20, 0.20, 0.04, 16);
-      const lEar = new THREE.Mesh(earGeo, lightBlue);
-      lEar.rotation.x = Math.PI / 2; // flat face toward camera
-      lEar.position.set(-0.22, 0.76, 0.04);
-      mouse.add(lEar);
-      const rEar = new THREE.Mesh(earGeo, lightBlue);
-      rEar.rotation.x = Math.PI / 2;
-      rEar.position.set(0.22, 0.76, 0.04);
-      mouse.add(rEar);
-
-      // Snout — forward bump from head
-      const snout = new THREE.Mesh(new THREE.SphereGeometry(0.12, 8, 6), blueFur);
-      snout.scale.set(1.0, 0.82, 1.25);
-      snout.position.set(0, 0.42, 0.30);
-      mouse.add(snout);
-
-      // Eyes (dark iris + gold highlight)
-      const lEye = new THREE.Mesh(new THREE.SphereGeometry(0.065, 10, 10), eyeM);
-      lEye.position.set(-0.13, 0.53, 0.27);
-      mouse.add(lEye);
-      const rEye = lEye.clone();
-      rEye.position.x = 0.13;
-      mouse.add(rEye);
-      // Eye shine
-      const lShine = new THREE.Mesh(new THREE.SphereGeometry(0.028, 6, 6), eyeShine);
-      lShine.position.set(-0.10, 0.56, 0.33);
-      mouse.add(lShine);
-      const rShine = lShine.clone();
-      rShine.position.x = 0.10;
-      mouse.add(rShine);
-
-      // Nose
-      const nose = new THREE.Mesh(new THREE.SphereGeometry(0.046, 8, 8), noseM);
-      nose.position.set(0, 0.41, 0.40);
-      mouse.add(nose);
-
-      // ── Cape — trapezoidal BufferGeometry, hangs behind ─────
+      // Cape — trapezoidal quad hanging behind body
       const capeGeo = new THREE.BufferGeometry();
-      const capeVerts = new Float32Array([
-        -0.28,  0.38,  0.00,   // top-left  (at shoulders)
-         0.28,  0.38,  0.00,   // top-right
-        -0.44, -0.24, -0.28,   // bottom-left (wider, further back)
-         0.44, -0.24, -0.28,   // bottom-right
+      const capeV   = new Float32Array([
+        -0.24,  0.18,  0.02,
+         0.24,  0.18,  0.02,
+        -0.40, -0.28, -0.22,
+         0.40, -0.28, -0.22,
       ]);
-      capeGeo.setAttribute("position", new THREE.BufferAttribute(capeVerts, 3));
+      capeGeo.setAttribute("position", new THREE.BufferAttribute(capeV, 3));
       capeGeo.setIndex([0, 2, 1,  1, 2, 3]);
       capeGeo.computeVertexNormals();
-      const cape = new THREE.Mesh(capeGeo, capeM);
-      mouse.add(cape);
+      mouse.add(new THREE.Mesh(capeGeo, capeM));
 
-      // ── Sword — left hand, raised diagonally ─────────────
+      // Sword (attached to body, right side)
       const sword = new THREE.Group();
-      sword.position.set(-0.42, 0.15, 0.18);
-      sword.rotation.z =  0.70;
-      sword.rotation.y =  0.20;
-
-      const blade  = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.72, 0.045), silverM);
+      sword.position.set(0.40, 0.10, 0.18);
+      sword.rotation.set(0, 0.18, 0.68);
+      const blade = new THREE.Mesh(new THREE.BoxGeometry(0.040, 0.72, 0.040), silverM);
       blade.position.y = 0.38;
       sword.add(blade);
-
-      const guard  = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.045, 0.055), goldM);
-      sword.add(guard);
-
-      const handle = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.22, 0.045), darkM);
-      handle.position.y = -0.13;
-      sword.add(handle);
-
+      sword.add(new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.040, 0.050), goldM));
+      const hndl = new THREE.Mesh(new THREE.BoxGeometry(0.040, 0.22, 0.040), darkM);
+      hndl.position.y = -0.13;
+      sword.add(hndl);
       mouse.add(sword);
 
-      // ── Tail — curves behind ──────────────────────────────
-      const curve = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0.05, -0.26, 0),
-        new THREE.Vector3(0.15, -0.38, -0.25),
-        new THREE.Vector3(0.08, -0.28, -0.48),
-        new THREE.Vector3(-0.08, -0.18, -0.52),
-      ]);
-      const tailGeo = new THREE.TubeGeometry(curve, 8, 0.026, 5, false);
-      mouse.add(new THREE.Mesh(tailGeo, blueFur));
+      // ── Head group (tracks cursor independently) ─────────────
+      const headGroup = new THREE.Group();
+      headGroup.position.set(0, 0.50, 0.04);
+      mouse.add(headGroup);
 
-      // ── Root group — slight Y rotation for heroic 3/4 angle
-      const root = new THREE.Group();
-      root.add(mouse);
-      root.rotation.y = 0.32;
-      scene.add(root);
+      // Head sphere (smooth, larger)
+      headGroup.add(new THREE.Mesh(new THREE.SphereGeometry(0.34, 14, 14), blueMat));
+
+      // Hood cap — top hemisphere, flatShaded for low-poly faceted look
+      const hoodGeo = new THREE.SphereGeometry(0.355, 10, 5, 0, Math.PI * 2, 0, Math.PI * 0.52);
+      headGroup.add(new THREE.Mesh(hoodGeo, hoodMat));
+
+      // Face patch — cream oval on front
+      const face = new THREE.Mesh(new THREE.SphereGeometry(0.22, 10, 8), faceMat);
+      face.scale.set(0.96, 0.86, 0.46);
+      face.position.set(0, -0.07, 0.28);
+      headGroup.add(face);
+
+      // Ears — triangular (3-sided cone) with inner pink
+      const makeEar = (side: number) => {
+        const g = new THREE.Group();
+        const out = new THREE.Mesh(new THREE.ConeGeometry(0.22, 0.42, 3), earOutM);
+        out.scale.z = 0.22;
+        g.add(out);
+        const inn = new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.30, 3), earInM);
+        inn.scale.z = 0.16;
+        inn.position.z = 0.018;
+        inn.position.y = -0.04;
+        g.add(inn);
+        g.position.set(side * 0.28, 0.28, 0.04);
+        g.rotation.z = side * -0.22; // tilt outward
+        return g;
+      };
+      headGroup.add(makeEar(-1));
+      headGroup.add(makeEar( 1));
+
+      // Eyes — amber iris + dark pupil + white shine
+      const makeEye = (sx: number) => {
+        const g = new THREE.Group();
+        g.position.set(sx * 0.126, -0.040, 0.300);
+        g.add(new THREE.Mesh(new THREE.SphereGeometry(0.090, 10, 10), irisM));
+        const pup = new THREE.Mesh(new THREE.SphereGeometry(0.055, 8, 8), pupilM);
+        pup.position.z = 0.046;
+        g.add(pup);
+        const sh = new THREE.Mesh(new THREE.SphereGeometry(0.026, 6, 6), shineM);
+        sh.position.set(sx * 0.025, 0.030, 0.085);
+        g.add(sh);
+        return g;
+      };
+      headGroup.add(makeEye(-1));
+      headGroup.add(makeEye( 1));
+
+      // Nose
+      const nose = new THREE.Mesh(new THREE.SphereGeometry(0.052, 8, 8), noseM);
+      nose.position.set(0, -0.085, 0.340);
+      headGroup.add(nose);
+
+      // ── Interaction state ────────────────────────────────────
+      let targetHeadX = 0, targetHeadY = 0;
+      let swingPhase  = 0;
+
+      const onMove = (e: MouseEvent) => {
+        const r = canvas.getBoundingClientRect();
+        targetHeadX = ((e.clientX - r.left) / r.width  - 0.5) * 0.70;
+        targetHeadY = ((e.clientY - r.top)  / r.height - 0.5) * 0.50;
+      };
+      const onTap = () => { swingPhase = 1.0; };
+      canvas.addEventListener("mousemove", onMove);
+      canvas.addEventListener("click",     onTap);
+      canvas.style.cursor = "pointer";
 
       // ── Scroll reaction ──────────────────────────────────────
       let scrollVel = 0, lastY = window.scrollY;
@@ -161,23 +175,34 @@ export default function MouseThree({ className = "" }: { className?: string }) {
         if (disposed) return;
         t += 0.012;
 
-        root.position.y = Math.sin(t * 0.75) * 0.12;
-        root.rotation.z = Math.sin(t * 0.45) * 0.033;
+        root.position.y = Math.sin(t * 0.75) * 0.10;
+        root.rotation.z = Math.sin(t * 0.45) * 0.026;
 
-        const tgt = THREE.MathUtils.clamp(-scrollVel * 0.04, -0.32, 0.32);
-        root.rotation.x = THREE.MathUtils.lerp(root.rotation.x, tgt, 0.08);
+        const tilt = THREE.MathUtils.clamp(-scrollVel * 0.04, -0.28, 0.28);
+        root.rotation.x = THREE.MathUtils.lerp(root.rotation.x, tilt, 0.08);
         scrollVel *= 0.87;
+
+        // Head tracks cursor
+        headGroup.rotation.y = THREE.MathUtils.lerp(headGroup.rotation.y, targetHeadX * 0.55, 0.06);
+        headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, targetHeadY * 0.35, 0.06);
+
+        // Sword swing on click
+        if (swingPhase > 0) {
+          swingPhase -= 0.036;
+          sword.rotation.z = 0.68 + Math.sin(swingPhase * Math.PI) * 1.5;
+          sword.rotation.y = 0.18 + Math.sin(swingPhase * Math.PI * 0.7) * 0.9;
+        } else {
+          sword.rotation.z = THREE.MathUtils.lerp(sword.rotation.z, 0.68, 0.08);
+          sword.rotation.y = THREE.MathUtils.lerp(sword.rotation.y, 0.18, 0.08);
+        }
 
         // Cape bottom vertices wave
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const cv = capeGeo.attributes.position as any;
-        const w2 = Math.sin(t * 1.4) * 0.045;
-        cv.setZ(2, -0.28 + w2);
-        cv.setZ(3, -0.28 + w2);
+        const wv = Math.sin(t * 1.3) * 0.042;
+        cv.setZ(2, -0.22 + wv);
+        cv.setZ(3, -0.22 + wv);
         cv.needsUpdate = true;
-
-        // Sword gentle raise
-        sword.rotation.z = 0.70 + Math.sin(t * 0.85) * 0.038;
 
         renderer.render(scene, camera);
         animId = requestAnimationFrame(tick);
@@ -186,7 +211,10 @@ export default function MouseThree({ className = "" }: { className?: string }) {
 
       cleanupRef.current = () => {
         cancelAnimationFrame(animId);
-        window.removeEventListener("scroll", onScroll);
+        canvas.removeEventListener("mousemove", onMove);
+        canvas.removeEventListener("click",     onTap);
+        window.removeEventListener("scroll",    onScroll);
+        capeGeo.dispose();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         scene.traverse((obj: any) => {
           if (obj.isMesh) {
@@ -195,7 +223,6 @@ export default function MouseThree({ className = "" }: { className?: string }) {
             else obj.material?.dispose?.();
           }
         });
-        capeGeo.dispose();
         renderer.dispose();
       };
     });
