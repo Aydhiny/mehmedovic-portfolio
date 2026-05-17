@@ -9,6 +9,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import ShapeCanvas from "@/components/ShapeCanvas";
+import Testimonials from "@/components/Testimonials";
 
 const socials = [
   { icon: <FaGithub />, href: "https://github.com/Aydhiny", label: "GitHub" },
@@ -262,6 +263,8 @@ export default function Page() {
 
       </div>
     </div>
+
+      <Testimonials />
     </div>
   );
 }

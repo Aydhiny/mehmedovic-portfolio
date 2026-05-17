@@ -37,6 +37,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <LanguageProvider>
+      {/* Skip-to-content — first tabbable element; visible only on keyboard focus */}
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+
       {/* Noise grain — static PNG tile, no SVG filter cost. Add /grain.png to public/ to enable. */}
       <div
         aria-hidden="true"
@@ -59,7 +64,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       </div>
       <Navbar />
       <AnimatePresence mode="wait">
-        <div>{children}</div>
+        <main id="main-content">{children}</main>
       </AnimatePresence>
       {!HIDE_FOOTER_PAGES.includes(pathname) && <Footer />}
     </LanguageProvider>

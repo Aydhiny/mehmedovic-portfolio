@@ -80,11 +80,59 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${BASE_URL}/#person`,
+      name: "Ajdin Mehmedović",
+      alternateName: "Aydhiny",
+      url: BASE_URL,
+      image: `${BASE_URL}/images/banner.png`,
+      jobTitle: "Software Engineer",
+      description:
+        "Software engineering student, music producer, indie game developer and graphic designer from Bosnia & Herzegovina.",
+      nationality: { "@type": "Country", name: "Bosnia and Herzegovina" },
+      sameAs: [
+        "https://github.com/Aydhiny",
+        "https://www.linkedin.com/in/ajdin-mehmedovic",
+        "https://www.instagram.com/ajdinmehmedovix",
+        "https://www.beatstars.com/aydhiny",
+        "https://soundcloud.com/aydhiny",
+      ],
+      knowsAbout: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Unity",
+        "C#",
+        "Music Production",
+        "Game Development",
+        "Graphic Design",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${BASE_URL}/#website`,
+      url: BASE_URL,
+      name: "Ajdin Mehmedović Portfolio",
+      publisher: { "@id": `${BASE_URL}/#person` },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

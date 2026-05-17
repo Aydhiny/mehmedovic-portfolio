@@ -234,5 +234,12 @@ export default function MouseThree({ className = "" }: { className?: string }) {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className={`block ${className}`} />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`block ${className}`}
+      role="img"
+      aria-label="Animated 3D mouse character — click to trigger sword swing, move cursor to turn head"
+    />
+  );
 }

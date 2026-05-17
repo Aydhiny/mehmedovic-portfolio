@@ -95,5 +95,5 @@ export default function ShapeCanvas({
     };
   }, [shape, color, speed, wireOpacity]);
 
-  return <canvas ref={canvasRef} className={`block ${className}`} />;
+  return <canvas ref={canvasRef} className={`block ${className}`} aria-hidden="true" />;
 }
