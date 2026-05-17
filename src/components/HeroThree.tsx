@@ -97,11 +97,14 @@ export default function HeroThree({ mouseRef }: Props) {
 
     let raf = 0;
     let t = 0;
+    let frame = 0;
     const camTarget = new THREE.Vector3();
 
     const tick = () => {
       raf = requestAnimationFrame(tick);
-      t += 0.004;
+      // Skip odd frames — decorative wireframes don't need 60fps
+      if (++frame % 2) return;
+      t += 0.008;
 
       // Sphere rotations
       inner.rotation.y = t * 0.75;

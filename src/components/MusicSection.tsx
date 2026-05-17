@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import PianoThree from "@/components/PianoThree";
+import dynamic from "next/dynamic";
 import { SiBeatstars, SiSoundcloud, SiSpotify } from "react-icons/si";
+
+const PianoThree = dynamic(() => import("@/components/PianoThree"), { ssr: false });
 import { FaYoutube } from "react-icons/fa";
 import { useLanguage } from "@/context/LanguageContext";
 

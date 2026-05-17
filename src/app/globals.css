@@ -208,6 +208,14 @@ body {
     0 0 24px rgba(124, 58, 237, 0.14);
 }
 
+/* Disable expensive backdrop-filter on mobile WebKit */
+@media (max-width: 767px) {
+  .glass, .glass-btn, .glass-input {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
 /* ─── Animations ────────────────────────────────────────── */
 @keyframes jump {
   0%   { transform: translateY(0); }

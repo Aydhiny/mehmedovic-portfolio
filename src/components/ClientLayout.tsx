@@ -37,16 +37,16 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <LanguageProvider>
-      {/* Noise grain texture — mix-blend-mode:overlay adds texture to colored orbs */}
+      {/* Noise grain — static PNG tile, no SVG filter cost. Add /grain.png to public/ to enable. */}
       <div
         aria-hidden="true"
-        className="fixed inset-0 pointer-events-none"
+        className="fixed inset-0 pointer-events-none hidden md:block"
         style={{
           zIndex: 9995,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          backgroundImage: "url('/grain.png')",
           backgroundRepeat: "repeat",
           backgroundSize: "250px 250px",
-          opacity: 0.055,
+          opacity: 0.04,
           mixBlendMode: "overlay",
         }}
       />
