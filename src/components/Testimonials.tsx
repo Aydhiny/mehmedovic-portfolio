@@ -31,29 +31,31 @@ const TESTIMONIALS = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20">
-      <motion.p
-        className="label-tag text-center block mb-4"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        Kind Words
-      </motion.p>
-      <motion.h2
-        className="text-center mb-14"
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="block font-michroma g-text uppercase tracking-[0.2em] text-base font-bold mb-1">
-          What people
-        </span>
-        <span className="block font-garamond italic g-text text-5xl sm:text-6xl leading-none">
-          are saying.
-        </span>
-      </motion.h2>
+    <section className="py-20 overflow-x-hidden">
+      <div className="px-5 sm:px-8 max-w-7xl mx-auto">
+        <motion.p
+          className="label-tag text-center block mb-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          Kind Words
+        </motion.p>
+        <motion.h2
+          className="text-center mb-14"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="block font-michroma g-text uppercase tracking-[0.1em] sm:tracking-[0.2em] text-sm sm:text-base font-bold mb-1">
+            What people
+          </span>
+          <span className="block font-garamond italic g-text text-4xl sm:text-5xl lg:text-6xl leading-none">
+            are saying.
+          </span>
+        </motion.h2>
+      </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto px-5 sm:px-8">
         {TESTIMONIALS.map((t, i) => (
@@ -88,7 +90,7 @@ export default function Testimonials() {
         ))}
       </div>
 
-      <p className="text-center text-[var(--fg-3)] text-xs mt-8 italic">
+      <p className="text-center text-[var(--fg-3)] text-xs mt-8 px-5 italic">
         Replace placeholder quotes in{" "}
         <code className="text-[var(--accent)] text-xs">src/components/Testimonials.tsx</code>{" "}
         with real ones when you have them.

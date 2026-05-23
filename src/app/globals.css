@@ -55,12 +55,7 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #f0097a, #fb923c); }
 * { scrollbar-width: thin; scrollbar-color: #e91e8c var(--bg); }
 
-/* ─── Custom cursor ─────────────────────────────────────── */
-* { cursor: none !important; }
-@media (pointer: coarse), (max-width: 768px) {
-  * { cursor: auto !important; }
-  html, body { cursor: auto !important; }
-}
+/* ─── Custom cursor removed — system cursor restored ────── */
 
 /* ─── Accessibility ─────────────────────────────────────── */
 /*

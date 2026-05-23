@@ -12,7 +12,7 @@ import Spotlight from "@/components/Spotlight";
 import MovingBorderButton from "@/components/MovingBorderButton";
 import HeroThree from "@/components/HeroThree";
 import { useLanguage } from "@/context/LanguageContext";
-import MouseThree from "@/components/MouseThree";
+import HeroCard from "@/components/HeroCard";
 
 function FloatingDiamond({
   size,
@@ -188,14 +188,14 @@ export default function Header() {
             </div>
           </motion.div>
 
-          {/* ── Right: 3D Mouse on Airplane ── */}
+          {/* ── Right: CSS hero card — zero WebGL, instant render ── */}
           <motion.div
             className="flex-shrink-0"
-            initial={{ opacity: 0, scale: 0.85 }}
+            initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 1.1, ease: "easeOut" }}
+            transition={{ delay: 0.3, duration: 1.0, ease: "easeOut" }}
           >
-            <MouseThree className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-80" />
+            <HeroCard />
           </motion.div>
 
         </div>

@@ -5,7 +5,6 @@ import ScrollProgressBar from "@/components/ProgressBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TopStrip from "@/components/TopStrip";
-import CustomCursor from "@/components/CustomCursor";
 import { AnimatePresence } from "framer-motion";
 import { LanguageProvider } from "@/context/LanguageContext";
 import EasterEggs from "@/components/EasterEggs";
@@ -57,7 +56,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       />
       <EasterEggs />
       <ScrollProgressBar />
-      <CustomCursor />
       {/* TopStrip sits above navbar — fixed, z-60, hidden on mobile */}
       <div className="fixed top-0 left-0 right-0 z-[60] hidden md:block">
         <TopStrip />
