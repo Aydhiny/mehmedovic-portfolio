@@ -15,10 +15,6 @@ const ITEMS = [
   "FIT Coding Challenge 2025 — 1st place",
 ];
 
-function timeAgo(dateStr: string) {
-  const h = Math.floor((Date.now() - new Date(dateStr).getTime()) / 3600000);
-  return h < 24 ? `${h}h ago` : `${Math.floor(h / 24)}d ago`;
-}
 
 const SEP = <span className="mx-5 opacity-30">◆</span>;
 
