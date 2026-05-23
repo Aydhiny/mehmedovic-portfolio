@@ -12,7 +12,7 @@ import Spotlight from "@/components/Spotlight";
 import MovingBorderButton from "@/components/MovingBorderButton";
 import HeroThree from "@/components/HeroThree";
 import { useLanguage } from "@/context/LanguageContext";
-import HeroCard from "@/components/HeroCard";
+import SynthwaveCard from "@/components/SynthwaveCard";
 
 function FloatingDiamond({
   size,
@@ -188,14 +188,14 @@ export default function Header() {
             </div>
           </motion.div>
 
-          {/* ── Right: CSS hero card — zero WebGL, instant render ── */}
+          {/* ── Right: Synthwave CRT monitor — pure CSS/SVG ── */}
           <motion.div
             className="flex-shrink-0"
-            initial={{ opacity: 0, scale: 0.88 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 1.0, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.9, ease: "easeOut" }}
           >
-            <HeroCard />
+            <SynthwaveCard />
           </motion.div>
 
         </div>
