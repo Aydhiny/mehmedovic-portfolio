@@ -45,8 +45,8 @@ export default function TopStrip() {
     <div
       className="hidden md:flex items-center overflow-hidden h-8"
       style={{
-        background: "#ffffff",
-        borderBottom: "1px solid rgba(233,30,140,0.18)",
+        background: "#160d2e",
+        borderBottom: "1px solid rgba(233,30,140,0.25)",
       }}
     >
       <div className="flex-1 overflow-hidden">
@@ -55,7 +55,7 @@ export default function TopStrip() {
             <span
               key={i}
               className="flex items-center flex-shrink-0 text-[0.65rem] font-medium tracking-wide whitespace-nowrap"
-              style={{ color: "#111018" }}
+              style={{ color: "#c4b5d8" }}
             >
               {i === 0 && commit ? (
                 <Link
