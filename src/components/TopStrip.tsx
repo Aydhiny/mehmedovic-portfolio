@@ -7,15 +7,8 @@ interface Commit {
   commit: { message: string };
 }
 
-const ITEMS = [
-  "Software Engineer · Music Producer · Game Developer",
-  "5M+ Streams · 5,000+ Beats · Hunter Mouse 2 Coming Soon",
-];
-
-const SEP = <span className="mx-6 opacity-25">◆</span>;
-
 export default function TopStrip() {
-  const [commit, setCommit] = useState("");
+  const [commit, setCommit] = useState<Commit | null>(null);
   const fetched = useRef(false);
 
   useEffect(() => {
@@ -23,50 +16,53 @@ export default function TopStrip() {
     fetched.current = true;
     fetch("https://api.github.com/repos/Aydhiny/mehmedovic-portfolio/commits?per_page=1")
       .then(r => r.ok ? r.json() : [])
-      .then((data: Commit[]) => {
-        if (data[0])
-          setCommit(`${data[0].sha.slice(0, 7)} — ${data[0].commit.message.split("\n")[0].slice(0, 52)}`);
-      })
+      .then((data: Commit[]) => { if (data[0]) setCommit(data[0]); })
       .catch(() => {});
   }, []);
 
-  const items = commit ? [commit, ...ITEMS] : ITEMS;
-  const doubled = [...items, ...items];
-
   return (
     <div
-      className="hidden md:flex items-center overflow-hidden h-8"
+      className="hidden md:flex items-center justify-center h-8 px-6"
       style={{
         background: "#060e1a",
-        borderBottom: "1px solid rgba(249,115,22,0.2)",
+        borderBottom: "1px solid rgba(249,115,22,0.18)",
       }}
     >
-      <div className="flex-1 overflow-hidden">
-        <div className="strip-track">
-          {doubled.map((item, i) => (
-            <span
-              key={i}
-              className="flex items-center flex-shrink-0 text-[0.64rem] font-medium tracking-wide whitespace-nowrap"
-              style={{ color: "#6b9ab8" }}
-            >
-              {i === 0 && commit ? (
-                <Link
-                  href="https://github.com/Aydhiny/mehmedovic-portfolio/commits/master"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-opacity hover:opacity-70"
-                  style={{ color: "#e91e8c" }}
-                >
-                  git push · {item}
-                </Link>
-              ) : (
-                <span>{item}</span>
-              )}
-              {SEP}
-            </span>
-          ))}
-        </div>
-      </div>
+      {commit ? (
+        <Link
+          href="https://github.com/Aydhiny/mehmedovic-portfolio/commits/master"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 hover:opacity-75 transition-opacity"
+        >
+          <span
+            className="text-[0.6rem] font-mono tracking-wider uppercase"
+            style={{ color: "#e91e8c" }}
+          >
+            latest commit
+          </span>
+          <span className="w-px h-3 opacity-20" style={{ background: "#6b9ab8" }} />
+          <span
+            className="text-[0.64rem] font-mono"
+            style={{ color: "#6b9ab8" }}
+          >
+            {commit.sha.slice(0, 7)}
+          </span>
+          <span
+            className="text-[0.64rem] font-medium truncate max-w-sm"
+            style={{ color: "#8bafc4" }}
+          >
+            {commit.commit.message.split("\n")[0].slice(0, 60)}
+          </span>
+        </Link>
+      ) : (
+        <span
+          className="text-[0.64rem] font-medium tracking-widest uppercase"
+          style={{ color: "#3a5a70" }}
+        >
+          Ajdin Mehmedović · Software Engineer · Music Producer
+        </span>
+      )}
     </div>
   );
 }
