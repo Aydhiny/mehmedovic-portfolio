@@ -4,19 +4,15 @@ import Link from "next/link";
 
 interface Commit {
   sha: string;
-  commit: { message: string; author: { date: string } };
+  commit: { message: string };
 }
 
 const ITEMS = [
-  "Music Producer · Software Engineer · Game Developer",
-  "5M+ streams worldwide as Aydhiny",
-  "5,000+ beats released on BeatStars",
-  "Hunter Mouse 2 — coming soon",
-  "FIT Coding Challenge 2025 — 1st place",
+  "Software Engineer · Music Producer · Game Developer",
+  "5M+ Streams · 5,000+ Beats · Hunter Mouse 2 Coming Soon",
 ];
 
-
-const SEP = <span className="mx-5 opacity-30">◆</span>;
+const SEP = <span className="mx-6 opacity-25">◆</span>;
 
 export default function TopStrip() {
   const [commit, setCommit] = useState("");
@@ -28,12 +24,8 @@ export default function TopStrip() {
     fetch("https://api.github.com/repos/Aydhiny/mehmedovic-portfolio/commits?per_page=1")
       .then(r => r.ok ? r.json() : [])
       .then((data: Commit[]) => {
-        if (data[0]) {
-          const c = data[0];
-          setCommit(
-            `${c.sha.slice(0, 7)} — ${c.commit.message.split("\n")[0].slice(0, 50)}`
-          );
-        }
+        if (data[0])
+          setCommit(`${data[0].sha.slice(0, 7)} — ${data[0].commit.message.split("\n")[0].slice(0, 52)}`);
       })
       .catch(() => {});
   }, []);
@@ -45,8 +37,8 @@ export default function TopStrip() {
     <div
       className="hidden md:flex items-center overflow-hidden h-8"
       style={{
-        background: "#160d2e",
-        borderBottom: "1px solid rgba(233,30,140,0.25)",
+        background: "#060e1a",
+        borderBottom: "1px solid rgba(249,115,22,0.2)",
       }}
     >
       <div className="flex-1 overflow-hidden">
@@ -54,15 +46,15 @@ export default function TopStrip() {
           {doubled.map((item, i) => (
             <span
               key={i}
-              className="flex items-center flex-shrink-0 text-[0.65rem] font-medium tracking-wide whitespace-nowrap"
-              style={{ color: "#c4b5d8" }}
+              className="flex items-center flex-shrink-0 text-[0.64rem] font-medium tracking-wide whitespace-nowrap"
+              style={{ color: "#6b9ab8" }}
             >
               {i === 0 && commit ? (
                 <Link
                   href="https://github.com/Aydhiny/mehmedovic-portfolio/commits/master"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-60 transition-opacity"
+                  className="transition-opacity hover:opacity-70"
                   style={{ color: "#e91e8c" }}
                 >
                   git push · {item}
