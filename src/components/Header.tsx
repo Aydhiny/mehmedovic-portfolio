@@ -8,7 +8,7 @@ import Spotlight from "@/components/Spotlight";
 import MovingBorderButton from "@/components/MovingBorderButton";
 import { useLanguage } from "@/context/LanguageContext";
 
-const HeroScene = dynamic(() => import("@/components/HeroScene"), { ssr: false });
+const HeroThree = dynamic(() => import("@/components/HeroThree"), { ssr: false });
 
 // Stars
 const STARS = [
@@ -195,22 +195,8 @@ export default function Header() {
 
       <Spotlight />
 
-      {/* ── Three.js orrery — absolute in sky, upper-right ── */}
-      <motion.div
-        className="absolute hidden lg:block pointer-events-none"
-        style={{ top: "12%", right: "5%", zIndex: 8 }}
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5, duration: 1.2, ease: "easeOut" }}
-      >
-        {/* Neon glow orb behind shapes */}
-        <div className="absolute pointer-events-none" style={{
-          inset: "-30%",
-          background: "radial-gradient(circle, rgba(233,30,140,0.20) 0%, rgba(249,115,22,0.10) 40%, transparent 70%)",
-          filter: "blur(24px)",
-        }} />
-        <HeroScene className="w-[300px] h-[300px] xl:w-[360px] xl:h-[360px] relative" />
-      </motion.div>
+      {/* ── Full-viewport Three.js — orrery in 3D upper-right ── */}
+      <HeroThree />
 
       {/* ── Main content ──────────────────────────────────── */}
       <div className="relative w-full max-w-7xl mx-auto px-5 sm:px-8" style={{ zIndex: 10 }}>

@@ -1,157 +1,139 @@
 "use client";
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
 
-interface Props {
-  mouseRef: React.RefObject<{ x: number; y: number }>;
-}
-
-export default function HeroThree({ mouseRef }: Props) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+// Full-viewport canvas so shapes live inside the actual sky,
+// not a tiny clipped box that lands at the wrong height.
+export default function HeroThree() {
+  const canvasRef  = useRef<HTMLCanvasElement>(null);
+  const cleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    // Skip Three.js on mobile — WebGL is expensive on low-end devices and
-    // the scene is purely decorative. The hero reads fine without it.
-    if (window.innerWidth < 768) return;
+    if (!canvas || window.innerWidth < 768) return;
+    let disposed = false;
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      alpha: true,
-      antialias: false, // off — LineSegments don't benefit, saves ~20% GPU
+    // Internal mouse tracking for camera parallax
+    let mx = 0, my = 0;
+    const onMove = (e: MouseEvent) => {
+      mx = e.clientX / window.innerWidth  - 0.5;
+      my = e.clientY / window.innerHeight - 0.5;
+    };
+    window.addEventListener("mousemove", onMove);
+
+    import("three").then((THREE) => {
+      if (disposed) return;
+
+      const scene  = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+      camera.position.set(0, 0, 5);
+
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+      const setSize = () => {
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+      };
+      setSize();
+      window.addEventListener("resize", setSize);
+
+      // ── Helpers ────────────────────────────────────────
+      const mkRing = (r: number, color: number, opacity: number) => {
+        const geo = new THREE.RingGeometry(r - 0.014, r + 0.014, 72);
+        const mat = new THREE.MeshBasicMaterial({
+          color, transparent: true, opacity, side: THREE.DoubleSide,
+        });
+        return new THREE.Mesh(geo, mat);
+      };
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const mkEdge = (geo: any, color: number, opacity: number) =>
+        new THREE.LineSegments(
+          new THREE.EdgesGeometry(geo),
+          new THREE.LineBasicMaterial({ color, transparent: true, opacity })
+        );
+
+      // ── Orrery — upper right of 3D space ───────────────
+      // At camera z=5, FOV=42: x=2.2 maps to ~82% from left,
+      // y=0.8 maps to ~29% from top — upper-right sky area.
+      const orrery = new THREE.Group();
+      orrery.position.set(2.2, 0.8, 0);
+      scene.add(orrery);
+
+      const r1 = mkRing(0.64, 0xe91e8c, 0.78);
+      r1.rotation.x = 0.22;
+
+      const r2 = mkRing(0.80, 0xf97316, 0.60);
+      r2.rotation.x = Math.PI * 0.30;
+      r2.rotation.y = 0.38;
+
+      const r3 = mkRing(0.96, 0xfbbf24, 0.44);
+      r3.rotation.x = Math.PI * 0.50;
+      r3.rotation.z = 0.52;
+
+      const gem = mkEdge(new THREE.IcosahedronGeometry(0.28, 1), 0xfde68a, 0.88);
+      orrery.add(r1, r2, r3, gem);
+
+      // ── Small accent floater (upper left of scene) ─────
+      const oct = mkEdge(new THREE.OctahedronGeometry(0.14, 0), 0xf97316, 0.55);
+      oct.position.set(-0.9, 1.6, 0.2);
+      scene.add(oct);
+
+      // ── Animation ──────────────────────────────────────
+      let t = 0, frame = 0, animId: number;
+      const camTarget = new THREE.Vector3(0, 0, 5);
+
+      const tick = () => {
+        animId = requestAnimationFrame(tick);
+        if (++frame % 2) return; // ~30 fps cap
+
+        t += 0.008;
+
+        orrery.rotation.y = t * 0.20;
+        r1.rotation.z =  t * 0.52;
+        r2.rotation.z = -t * 0.38;
+        r3.rotation.z =  t * 0.60;
+        gem.rotation.y =  t * 0.85;
+        gem.rotation.x =  t * 0.35;
+
+        oct.rotation.y = t * 1.10;
+        oct.position.y = 1.6 + Math.sin(t * 0.72) * 0.14;
+
+        // Subtle camera parallax
+        camTarget.set(mx * 0.35, -my * 0.22, 5);
+        camera.position.lerp(camTarget, 0.03);
+        camera.lookAt(0, 0, 0);
+
+        renderer.render(scene, camera);
+      };
+      animId = requestAnimationFrame(tick);
+
+      cleanupRef.current = () => {
+        cancelAnimationFrame(animId);
+        window.removeEventListener("resize", setSize);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        scene.traverse((obj: any) => {
+          obj.geometry?.dispose?.();
+          obj.material?.dispose?.();
+        });
+        renderer.dispose();
+      };
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-
-    const setSize = () => {
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
-      renderer.setSize(w, h, false);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-    };
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
-    camera.position.set(0, 0, 5);
-
-    // ── Inner sphere — magenta wireframe ──
-    const innerGeo = new THREE.SphereGeometry(1.45, 9, 9);
-    const innerEdges = new THREE.EdgesGeometry(innerGeo);
-    const inner = new THREE.LineSegments(
-      innerEdges,
-      new THREE.LineBasicMaterial({
-        color: 0xe91e8c,
-        transparent: true,
-        opacity: 0.42,
-      })
-    );
-    inner.position.x = 1.6;
-    scene.add(inner);
-
-    // ── Outer sphere — orange, counter-rotating ──
-    const outerGeo = new THREE.SphereGeometry(1.85, 7, 7);
-    const outerEdges = new THREE.EdgesGeometry(outerGeo);
-    const outer = new THREE.LineSegments(
-      outerEdges,
-      new THREE.LineBasicMaterial({
-        color: 0xf97316,
-        transparent: true,
-        opacity: 0.14,
-      })
-    );
-    outer.position.x = 1.6;
-    scene.add(outer);
-
-    // ── Octahedron accent — hot pink, floating nearby ──
-    const octaGeo = new THREE.OctahedronGeometry(0.4, 0);
-    const octaEdges = new THREE.EdgesGeometry(octaGeo);
-    const octa = new THREE.LineSegments(
-      octaEdges,
-      new THREE.LineBasicMaterial({
-        color: 0xf0097a,
-        transparent: true,
-        opacity: 0.55,
-      })
-    );
-    octa.position.set(3.2, 1.2, 0);
-    scene.add(octa);
-
-    // ── Icosahedron — gold, bottom left of sphere ──
-    const icoGeo = new THREE.IcosahedronGeometry(0.28, 0);
-    const icoEdges = new THREE.EdgesGeometry(icoGeo);
-    const ico = new THREE.LineSegments(
-      icoEdges,
-      new THREE.LineBasicMaterial({
-        color: 0xfbbf24,
-        transparent: true,
-        opacity: 0.5,
-      })
-    );
-    ico.position.set(0.1, -1.6, 0.3);
-    scene.add(ico);
-
-    // Particles removed — they added a draw call for minimal visual value
-
-    setSize();
-
-    let raf = 0;
-    let t = 0;
-    let frame = 0;
-    const camTarget = new THREE.Vector3();
-
-    const tick = () => {
-      raf = requestAnimationFrame(tick);
-      // Skip odd frames — decorative wireframes don't need 60fps
-      if (++frame % 2) return;
-      t += 0.008;
-
-      // Sphere rotations
-      inner.rotation.y = t * 0.75;
-      inner.rotation.x = t * 0.18;
-      outer.rotation.y = -t * 0.38;
-      outer.rotation.z = t * 0.22;
-
-      // Accent shapes
-      octa.rotation.x = t * 1.1;
-      octa.rotation.y = t * 0.8;
-      ico.rotation.y = -t * 0.9;
-      ico.rotation.z = t * 0.6;
-
-      // Smooth camera parallax from mouse
-      const mx = mouseRef.current?.x ?? 0;
-      const my = mouseRef.current?.y ?? 0;
-      camTarget.set(mx * 0.5, -my * 0.3, 5);
-      camera.position.lerp(camTarget, 0.04);
-      camera.lookAt(1.6, 0, 0);
-
-      renderer.render(scene, camera);
-    };
-    tick();
-
-    const onResize = () => setSize();
-    window.addEventListener("resize", onResize);
 
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", onResize);
-      renderer.dispose();
-      innerGeo.dispose();
-      innerEdges.dispose();
-      outerGeo.dispose();
-      outerEdges.dispose();
-      octaGeo.dispose();
-      octaEdges.dispose();
-      icoGeo.dispose();
-      icoEdges.dispose();
+      disposed = true;
+      window.removeEventListener("mousemove", onMove);
+      cleanupRef.current?.();
+      cleanupRef.current = null;
     };
-  }, [mouseRef]);
+  }, []);
 
   return (
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0 }}
+      style={{ zIndex: 2 }}
       aria-hidden="true"
     />
   );
