@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-// Lightweight Three.js scene — torus + octahedron + icosahedron
-// Single WebGL context, ~30fps cap, alpha transparent background
+// Three orbiting rings (orrery / gyroscope) + central gem
+// Much more synthwave than a misaligned torus
 export default function HeroScene({ className = "" }: { className?: string }) {
   const canvasRef  = useRef<HTMLCanvasElement>(null);
   const cleanupRef = useRef<(() => void) | null>(null);
@@ -15,41 +15,67 @@ export default function HeroScene({ className = "" }: { className?: string }) {
     import("three").then((THREE) => {
       if (disposed) return;
 
-      const w = canvas.clientWidth  || 420;
-      const h = canvas.clientHeight || 420;
+      const w = canvas.clientWidth  || 340;
+      const h = canvas.clientHeight || 340;
 
-      const scene    = new THREE.Scene();
-      const camera   = new THREE.PerspectiveCamera(48, w / h, 0.1, 100);
-      camera.position.z = 4.8;
+      const scene  = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(46, w / h, 0.1, 100);
+      camera.position.z = 4.2;
 
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
       renderer.setSize(w, h, false);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const line = (geo: any, color: number, opacity: number) =>
-        new THREE.LineSegments(
-          new THREE.EdgesGeometry(geo),
-          new THREE.LineBasicMaterial({ color, transparent: true, opacity })
-        );
+      // ── Central gem — icosahedron wireframe ─────────────
+      const gemGeo   = new THREE.IcosahedronGeometry(0.55, 1);
+      const gemEdges = new THREE.EdgesGeometry(gemGeo);
+      const gem = new THREE.LineSegments(
+        gemEdges,
+        new THREE.LineBasicMaterial({ color: 0xfde68a, transparent: true, opacity: 0.90 })
+      );
+      scene.add(gem);
 
-      // Large torus — magenta, main shape
-      const torus = line(new THREE.TorusGeometry(1.05, 0.36, 14, 40), 0xe91e8c, 0.72);
-      scene.add(torus);
+      // ── Helper: flat orbit ring (RingGeometry, solid) ────
+      const makeRing = (r: number, color: number, opacity: number) => {
+        const geo = new THREE.RingGeometry(r - 0.018, r + 0.018, 80);
+        const mat = new THREE.MeshBasicMaterial({
+          color,
+          transparent: true,
+          opacity,
+          side: THREE.DoubleSide,
+        });
+        return new THREE.Mesh(geo, mat);
+      };
 
-      // Octahedron — orange, floats upper-right
-      const octa = line(new THREE.OctahedronGeometry(0.50, 0), 0xf97316, 0.75);
-      octa.position.set(1.5, 1.1, 0.2);
-      scene.add(octa);
+      // Ring 1 — magenta, near-horizontal
+      const ring1 = makeRing(1.10, 0xe91e8c, 0.80);
+      ring1.rotation.x = 0.22;
+      scene.add(ring1);
 
-      // Icosahedron — gold, floats lower-left
-      const ico = line(new THREE.IcosahedronGeometry(0.28, 0), 0xfbbf24, 0.65);
-      ico.position.set(-1.4, -1.0, 0.4);
-      scene.add(ico);
+      // Ring 2 — orange, tilted ~55°
+      const ring2 = makeRing(1.22, 0xf97316, 0.65);
+      ring2.rotation.x = Math.PI * 0.32;
+      ring2.rotation.y = 0.35;
+      scene.add(ring2);
 
-      // Outer sphere — very faint magenta, gives depth
-      const sphere = line(new THREE.SphereGeometry(2.1, 8, 8), 0xe91e8c, 0.07);
-      scene.add(sphere);
+      // Ring 3 — gold, tilted ~80°
+      const ring3 = makeRing(1.38, 0xfbbf24, 0.50);
+      ring3.rotation.x = Math.PI * 0.48;
+      ring3.rotation.z = 0.55;
+      scene.add(ring3);
+
+      // ── Outer ghost sphere for depth ────────────────────
+      const ghostEdges = new THREE.EdgesGeometry(new THREE.SphereGeometry(1.6, 9, 9));
+      const ghost = new THREE.LineSegments(
+        ghostEdges,
+        new THREE.LineBasicMaterial({ color: 0xe91e8c, transparent: true, opacity: 0.06 })
+      );
+      scene.add(ghost);
+
+      // ── All objects in a group that slowly rotates ───────
+      const group = new THREE.Group();
+      group.add(gem, ring1, ring2, ring3, ghost);
+      scene.add(group);
 
       let t = 0, frame = 0, animId: number;
 
@@ -58,19 +84,18 @@ export default function HeroScene({ className = "" }: { className?: string }) {
         if (++frame % 2) return; // ~30fps
         t += 0.008;
 
-        torus.rotation.x = t * 0.38;
-        torus.rotation.y = t * 0.52;
+        // Slow global tumble
+        group.rotation.y = t * 0.28;
+        group.rotation.x = Math.sin(t * 0.15) * 0.12;
 
-        octa.rotation.x  = t * 0.95;
-        octa.rotation.y  = t * 0.68;
-        octa.position.y  = 1.1 + Math.sin(t * 0.75) * 0.16;
+        // Individual ring orbits
+        ring1.rotation.z =  t * 0.55;
+        ring2.rotation.z = -t * 0.40;
+        ring3.rotation.z =  t * 0.65;
 
-        ico.rotation.y   = -t * 0.88;
-        ico.rotation.z   =  t * 0.55;
-        ico.position.y   = -1.0 + Math.sin(t * 0.60 + 1.4) * 0.13;
-
-        sphere.rotation.y = t * 0.12;
-        sphere.rotation.x = t * 0.07;
+        // Gem spins faster
+        gem.rotation.y =  t * 0.90;
+        gem.rotation.x =  t * 0.40;
 
         renderer.render(scene, camera);
       };
@@ -80,7 +105,8 @@ export default function HeroScene({ className = "" }: { className?: string }) {
         cancelAnimationFrame(animId);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         scene.traverse((obj: any) => {
-          if (obj.isLine) { obj.geometry?.dispose(); obj.material?.dispose(); }
+          obj.geometry?.dispose?.();
+          obj.material?.dispose?.();
         });
         renderer.dispose();
       };

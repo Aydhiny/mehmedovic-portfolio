@@ -195,11 +195,28 @@ export default function Header() {
 
       <Spotlight />
 
+      {/* ── Three.js orrery — absolute in sky, upper-right ── */}
+      <motion.div
+        className="absolute hidden lg:block pointer-events-none"
+        style={{ top: "12%", right: "5%", zIndex: 8 }}
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.5, duration: 1.2, ease: "easeOut" }}
+      >
+        {/* Neon glow orb behind shapes */}
+        <div className="absolute pointer-events-none" style={{
+          inset: "-30%",
+          background: "radial-gradient(circle, rgba(233,30,140,0.20) 0%, rgba(249,115,22,0.10) 40%, transparent 70%)",
+          filter: "blur(24px)",
+        }} />
+        <HeroScene className="w-[300px] h-[300px] xl:w-[360px] xl:h-[360px] relative" />
+      </motion.div>
+
       {/* ── Main content ──────────────────────────────────── */}
       <div className="relative w-full max-w-7xl mx-auto px-5 sm:px-8" style={{ zIndex: 10 }}>
         <div className="flex flex-col gap-10 py-36 lg:py-44">
 
-          {/* Name — FULL WIDTH, no column constraint, so "ić" never clips */}
+          {/* Name — full width, never constrained to a column */}
           <motion.h1
             className="leading-none"
             style={{ x: textX, y: textY }}
@@ -233,54 +250,33 @@ export default function Header() {
             </span>
           </motion.h1>
 
-          {/* Bottom row — tagline+buttons left, Three.js right */}
-          <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
+          {/* Tagline + buttons — left-aligned below the name */}
+          <motion.div
+            className="max-w-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+          >
+            <p className="text-white/60 text-base sm:text-lg mb-8 leading-relaxed">
+              {t.hero.tagline}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <MovingBorderButton href="/ajdin_mehmedovic_cv.pdf" target="_blank" rel="noopener noreferrer">
+                {t.hero.downloadCV}
+                <FaDownload className="size-3.5" />
+              </MovingBorderButton>
+              <Link
+                href="https://github.com/Aydhiny"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold"
+              >
+                {t.hero.github}
+                <FaGithub className="size-3.5" />
+              </Link>
+            </div>
+          </motion.div>
 
-            {/* Left: tagline + CTA */}
-            <motion.div
-              className="max-w-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-            >
-              <p className="text-white/60 text-base sm:text-lg mb-8 leading-relaxed">
-                {t.hero.tagline}
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <MovingBorderButton href="/ajdin_mehmedovic_cv.pdf" target="_blank" rel="noopener noreferrer">
-                  {t.hero.downloadCV}
-                  <FaDownload className="size-3.5" />
-                </MovingBorderButton>
-                <Link
-                  href="https://github.com/Aydhiny"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold"
-                >
-                  {t.hero.github}
-                  <FaGithub className="size-3.5" />
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Right: Three.js with neon glow orb behind it */}
-            <motion.div
-              className="relative hidden lg:block flex-shrink-0"
-              initial={{ opacity: 0, scale: 0.88 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 1.1, ease: "easeOut" }}
-            >
-              {/* Neon orb — visible backdrop that makes wireframes readable */}
-              <div className="absolute inset-0 pointer-events-none" style={{
-                borderRadius: "50%",
-                background: "radial-gradient(circle, rgba(233,30,140,0.22) 0%, rgba(249,115,22,0.12) 45%, transparent 72%)",
-                transform: "scale(1.35)",
-                filter: "blur(18px)",
-              }} />
-              <HeroScene className="w-[360px] h-[360px] xl:w-[420px] xl:h-[420px] relative" />
-            </motion.div>
-
-          </div>
         </div>
       </div>
 
